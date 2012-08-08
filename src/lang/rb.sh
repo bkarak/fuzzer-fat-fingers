@@ -6,7 +6,7 @@
 
 compile_rb()
 {
-	ruby -c $1
+	ruby -c $1 1>&2
 }
 
 run_rb()
