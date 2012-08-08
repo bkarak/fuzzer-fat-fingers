@@ -21,24 +21,25 @@ Now comes the difficult part: The submission deadline is August 10th! Papers sho
 
 [[3] http://rosettacode.org/](http://rosettacode.org/)
 
-Selected languages
-------------------
+Selected languages (based on popularity)
+----------------------------------------
 
-* Java
-* C
-* C++
-* PHP
-* C#
-* VB
-* Python
-* OC
-* Perl
-* Javascript
-* Haskell
-* Ruby
-* Actionscript
-* Shell
-* SQL
+* Java (OpenJDK 1.6.0_18)
+* C (gcc 4.4.5)
+* C++ (g++ 4.4.5)
+* PHP (PHP 5.3.3-7)
+* C# (mono 2.6.7, CLI v2.0)
+* VB (bwbasic 2.20 [http://sourceforge.net/projects/bwbasic/](http://sourceforge.net/projects/bwbasic/))
+* Python (python 2.6.6)
+* OC (ocaml 3.11.2)
+* Perl (perl 5.10.1)
+* Javascript (spidermonkey smjs 1.8.0)
+* Haskell (ghc 6.12.1)
+* Ruby (ruby 1.5.8)
+* Not Included
+  * Actionscript (?)
+  * Shell (bash, csh (?))
+  * SQL (?)
 
 Selected Tasks
 --------------
