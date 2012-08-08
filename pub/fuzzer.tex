@@ -1,4 +1,4 @@
-\documentclass[preprint,10pt]{sigplanconf}
+\documentclass[10pt]{sigplanconf}
 
 % The following \documentclass options may be useful:
 %
@@ -14,11 +14,11 @@
 \copyrightyear{2012} 
 \copyrightdata{[to be supplied]} 
 
-\titlebanner{banner above paper title}        % These are ignored unless
-\preprintfooter{short description of paper}   % 'preprint' option specified.
+%\titlebanner{banner above paper title}        % These are ignored unless
+%\preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\title{Title Text}
-\subtitle{Subtitle Text, if any}
+\title{Still Thinking About it!}
+%\subtitle{Subtitle Text, if any}
 
 \authorinfo{Diomidis Spinellis\and Vassilios Karakoidas}
            {Athens University of Economics and Business}
@@ -40,12 +40,7 @@ keyword1, keyword2
 
 \section{Introduction}
 
-The text of the paper begins here.
-
-\appendix
-\section{Appendix Title}
-
-This is the text of the appendix, if you need one.
+The text of the paper begins here. \cite{C99}
 
 \acks
 
@@ -54,15 +49,16 @@ Acknowledgments, if needed.
 % We recommend abbrvnat bibliography style.
 
 \bibliographystyle{abbrvnat}
+\bibliography{fuzzer}
 
 % The bibliography should be embedded for final submission.
 
-\begin{thebibliography}{}
-\softraggedright
+%\begin{thebibliography}{}
+%\softraggedright
 
-\bibitem[Smith et~al.(2009)Smith, Jones]{smith02}
-P. Q. Smith, and X. Y. Jones. ...reference text...
+%\bibitem[Smith et~al.(2009)Smith, Jones]{smith02}
+%P. Q. Smith, and X. Y. Jones. ...reference text...
 
-\end{thebibliography}
+%\end{thebibliography}
 
-\end{document}
+%\end{document}

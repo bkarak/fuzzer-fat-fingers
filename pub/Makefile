@@ -1,7 +1,9 @@
 
 all:
 	pdflatex fuzzer.tex
-
+	bibtex fuzzer
+	pdflatex fuzzer.tex
+	pdflatex fuzzer.tex
 
 clean:
 	-rm -f fuzzer.aux
