@@ -14,7 +14,7 @@ done
 TASKS=$(cd ../tasks ; find . -maxdepth 1 -type d | sed '/^\.$/d;s/^\.\///')
 
 TASKS=Hello
-LANGS=pl
+LANGS="java pl py cs php"
 
 # Log phase, id, and result
 log()
