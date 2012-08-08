@@ -6,7 +6,7 @@
 
 compile_cs()
 {
-	mcs $1
+	mono-csc $1
 }
 
 run_cs()
