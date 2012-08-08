@@ -31,7 +31,7 @@ Selected languages (based on popularity)
 * C# (mono 2.6.7, CLI v2.0)
 * VB (bwbasic 2.20 [http://sourceforge.net/projects/bwbasic/](http://sourceforge.net/projects/bwbasic/))
 * Python (python 2.6.6)
-* OC (ocaml 3.11.2)
+* Objective-C (GNU Objective-C 4.4.5)
 * Perl (perl 5.10.1)
 * Javascript (spidermonkey smjs 1.8.0)
 * Haskell (ghc 6.12.1)
@@ -40,12 +40,16 @@ Selected languages (based on popularity)
   * Actionscript (?)
   * Shell (bash, csh (?))
   * SQL (?)
+  * OC (ocaml 3.11.2)
 
-Selected Tasks
+Proposed Tasks
 --------------
+We want each task to be available in all the languages, to be non-trivial and easy to test via its standard input and standard output.
+
 * [http://rosettacode.org/wiki/CSV_to_HTML_translation](http://rosettacode.org/wiki/CSV_to_HTML_translation)
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life](http://rosettacode.org/wiki/Conway%27s_Game_of_Life)
 * [http://rosettacode.org/wiki/Letter_frequency](http://rosettacode.org/wiki/Letter_frequency)
 * [http://rosettacode.org/wiki/N-queens_problem](http://rosettacode.org/wiki/N-queens_problem)
 * [http://rosettacode.org/wiki/Numerical_integration](http://rosettacode.org/wiki/Numerical_integration)
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi)
+* Add tasks here
