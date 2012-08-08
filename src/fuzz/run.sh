@@ -43,7 +43,7 @@ done
 # Log phase, id, and result
 log()
 {
-	echo "$task $lang $1 $2 $3"
+	echo "$task $lang $2 $1 $3"
 }
 
 # Test the specified fuzz and program
