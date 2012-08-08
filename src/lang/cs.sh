@@ -6,7 +6,7 @@
 
 compile_cs()
 {
-	mono-csc $1
+	mono-csc $1 1>&2
 }
 
 run_cs()
