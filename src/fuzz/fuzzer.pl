@@ -39,10 +39,12 @@ foreach my $l (@tokens) {
 	print join('', @{$l});
 }
 
+exit 0;
+
 # Substitute a single token with a similar one
 sub similarSubstitutionFuzz {
 	# Try until a substitution succeeds
-	for (;;) {
+	for (my $try2 = 0; $try2 < 100; $try2++) {
 		# Select first token
 		my $lineIndex = int(rand($line));
 		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
@@ -62,6 +64,7 @@ sub similarSubstitutionFuzz {
 			}
 		}
 	}
+	exit 1;
 }
 
 # Return the type of the passed token

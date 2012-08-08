@@ -6,10 +6,10 @@
 
 compile_py()
 {
-	: # Add code here
+	python -c "import py_compile; py_compile.compile(r'$1')"
 }
 
 run_py()
 {
-	: # Add code here
+	python $1
 }

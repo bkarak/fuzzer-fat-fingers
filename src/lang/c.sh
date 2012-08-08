@@ -6,10 +6,12 @@
 
 compile_c()
 {
-	: # Add code here
+	EXE=`basename $1 .c`
+	rm -f $EXE
+	gcc -o $EXE $1
 }
 
 run_c()
 {
-	: # Add code here
+	./`basename $1 .c`
 }

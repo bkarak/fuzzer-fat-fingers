@@ -13,13 +13,37 @@ done
 
 TASKS=$(cd ../tasks ; find . -maxdepth 1 -type d | sed '/^\.$/d;s/^\.\///')
 
-TASKS=Hello
-LANGS=pl
+FUZZ=1
+
+while getopts 't:l:v' opt; do
+  case $opt in
+    t)
+      TASKS="$OPTARG"
+      ;;
+    l)
+      LANGS="$OPTARG"
+      ;;
+    v)
+      FUZZ=0
+      ;;
+    \?)
+      cat <<EOF >&2
+"Invalid option: -$OPTARG" 
+Usage: $0 [-l lang] [-t task] [-v]
+-l lang		Run only specified language
+-t task		Run only specified task
+-v		Verify tasks, to not fuzz
+EOF
+      exit 1
+      ;;
+  esac
+done
+
 
 # Log phase, id, and result
 log()
 {
-	echo "$task $lang $1 $2 $3"
+	echo "$task $lang $2 $1 $3"
 }
 
 # Test the specified fuzz and program
@@ -27,50 +51,81 @@ test_version()
 {
 	fuzzid=$1
 	program=$2
+
+	dir=../run/$task/$lang/$fuzzid
+	rm -rf $dir
+	mkdir -p $dir
+	cp $program $dir/
+	(
+	cd $dir
+	base=$(basename $program)
 	echo "Testing $task for $lang version $fuzzid" 1>&2
-	if ! compile_$lang $program
+	if ! compile_$lang $base
 	then
 		log COMPILE $fuzzid FAIL
 		return
 	fi
 	log COMPILE $fuzzid OK
-	if ! run_$lang $task.$lang >$task.$lang.$fuzzid.output
+	if ! run_$lang $base >$task.$lang.$fuzzid.output
 	then
 		log RUN $fuzzid FAIL
 		return
 	fi
 	log RUN $fuzzid OK
-	if diff $task.$lang.reference $task.$lang.$fuzzid.output
+	if diff ../$task.$lang.reference $task.$lang.$fuzzid.output
 	then
 		log OUTPUT $fuzzid OK
 	else
 		log OUTPUT $fuzzid FAIL
 	fi
+	)
 }
+
+rm -rf ../run
 
 # For each task
 for task in $TASKS
 do
 	echo Testing $task 1>&2
-	(
-	cd ../tasks/$task
 	for lang in $LANGS
 	do
 		echo Priming $task for $lang 1>&2
+		dir=../run/$task/$lang/prime
+		rm -rf $dir
+		mkdir -p $dir
+		cp ../tasks/$task/$task.$lang $dir/
+		(
+		cd $dir
 		if ! compile_$lang $task.$lang
 		then
 			log COMPILE prime FAIL
 			continue
 		fi
 		log COMPILE prime OK
-		if ! run_$lang $task.$lang >$task.$lang.reference
+		if ! run_$lang $task.$lang >../$task.$lang.reference
 		then
 			log RUN prime FAIL
 			continue
 		fi
 		log RUN prime OK
+		)
+
 		echo Testing $task for $lang 1>&2
-		test_version original $task.$lang
+		test_version original ../tasks/$task/$task.$lang
+
+		if [ "$FUZZ" -eq 0 ]
+		then
+			continue
+		fi
+		echo Fuzzing $task for $lang with fuzz 1 1>&2
+		mkdir -p ../run/fuzz/$task/$lang/fuzz1
+		if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
+		then
+			log FUZZ fuzz1  OK
+		else
+			log FUZZ fuzz1  FAIL
+			continue
+		fi
+		test_version fuzz1 ../run/fuzz/$task/$lang/fuzz1/$task.$lang
 	done
-	)
 done

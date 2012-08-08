@@ -6,10 +6,10 @@
 
 compile_php()
 {
-	: # Add code here
+	php -l $1 1>&2
 }
 
 run_php()
 {
-	: # Add code here
+	php $1
 }
