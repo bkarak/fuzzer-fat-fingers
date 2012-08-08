@@ -6,10 +6,10 @@
 
 compile_java()
 {
-	javac -d ~ $1
+	javac $1
 }
 
 run_java()
 {
-	java -cp ~ `echo $1 | cut -f 1 -d .`
+	java `basename $1 .java`
 }
