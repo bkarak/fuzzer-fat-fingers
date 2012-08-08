@@ -83,7 +83,13 @@ do
 		fi
 		log RUN prime OK
 		)
+
 		echo Testing $task for $lang 1>&2
 		test_version original ../tasks/$task/$task.$lang
+
+		echo Testing $task for $lang with fuzz 1 1>&2
+		mkdir -p ../run/fuzz/$task/$lang/fuzz1
+		perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
+		test_version fuzz1 ../run/fuzz/$task/$lang/fuzz1/$task.$lang
 	done
 done
