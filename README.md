@@ -46,10 +46,18 @@ Proposed Tasks
 --------------
 We want each task to be available in all the languages, to be non-trivial and easy to test via its standard input and standard output.
 
+Selected:
+
+* [http://rosettacode.org/wiki/Day_of_the_week](http://rosettacode.org/wiki/Day_of_the_week)
+
+Disqualified:
+
+* [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) -- Missing Javascript, Objective-C, PHP
+
+Pool:
+
 * [http://rosettacode.org/wiki/CSV_to_HTML_translation](http://rosettacode.org/wiki/CSV_to_HTML_translation)
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life](http://rosettacode.org/wiki/Conway%27s_Game_of_Life)
 * [http://rosettacode.org/wiki/Letter_frequency](http://rosettacode.org/wiki/Letter_frequency)
 * [http://rosettacode.org/wiki/N-queens_problem](http://rosettacode.org/wiki/N-queens_problem)
 * [http://rosettacode.org/wiki/Numerical_integration](http://rosettacode.org/wiki/Numerical_integration)
-* [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi)
-* Add tasks here
