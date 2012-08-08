@@ -6,7 +6,7 @@
 
 compile_php()
 {
-	php -l $1
+	php -l $1 1>&2
 }
 
 run_php()
