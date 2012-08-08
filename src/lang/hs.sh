@@ -6,10 +6,12 @@
 
 compile_hs()
 {
-	: # Add code here
+	EXE=`basename $1 .hs`
+	rm -f $EXE
+	ghc -o $EXE $1
 }
 
 run_hs()
 {
-	: # Add code here
+	./`basename $1 .hs`
 }
