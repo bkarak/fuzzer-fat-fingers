@@ -6,10 +6,12 @@
 
 compile_cpp()
 {
-	: # Add code here
+	EXE=`basename $1 .cpp`
+	rm -f $EXE
+	g++ -o $EXE $1
 }
 
 run_cpp()
 {
-	: # Add code here
+	./`basename $1 .cpp`
 }
