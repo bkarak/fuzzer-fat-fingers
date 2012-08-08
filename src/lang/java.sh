@@ -6,10 +6,10 @@
 
 compile_java()
 {
-	: # Add code here
+	javac -d ~ $1
 }
 
 run_java()
 {
-	: # Add code here
+	java -cp ~ `echo $1 | cut -f 1 -d .`
 }
