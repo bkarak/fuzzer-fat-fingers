@@ -8,7 +8,7 @@ then
 	exit 1
 fi
 
-. ./languages.sh
+. ../lang/languages.sh
 
 mkdir -p $1
 for i in $LANGS
