@@ -6,10 +6,10 @@
 
 compile_java()
 {
-	: # Add code here
+	javac $1
 }
 
 run_java()
 {
-	: # Add code here
+	java `basename $1 .java`
 }
