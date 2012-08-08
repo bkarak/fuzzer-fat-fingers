@@ -57,6 +57,8 @@ test_version()
 	)
 }
 
+rm -rf ../run
+
 # For each task
 for task in $TASKS
 do
@@ -89,7 +91,13 @@ do
 
 		echo Testing $task for $lang with fuzz 1 1>&2
 		mkdir -p ../run/fuzz/$task/$lang/fuzz1
-		perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
+		if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
+		then
+			log FUZZ fuzz1  OK
+		else
+			log FUZZ fuzz1  FAIL
+			continue
+		fi
 		test_version fuzz1 ../run/fuzz/$task/$lang/fuzz1/$task.$lang
 	done
 done
