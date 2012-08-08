@@ -13,8 +13,32 @@ done
 
 TASKS=$(cd ../tasks ; find . -maxdepth 1 -type d | sed '/^\.$/d;s/^\.\///')
 
-TASKS=Hello
-LANGS="java pl py cs php c cpp rb hs"
+FUZZ=1
+
+while getopts 't:l:v' opt; do
+  case $opt in
+    t)
+      TASKS="$OPTARG"
+      ;;
+    l)
+      LANGS="$OPTARG"
+      ;;
+    v)
+      FUZZ=0
+      ;;
+    \?)
+      cat <<EOF >&2
+"Invalid option: -$OPTARG" 
+Usage: $0 [-l lang] [-t task] [-v]
+-l lang		Run only specified language
+-t task		Run only specified task
+-v		Verify tasks, to not fuzz
+EOF
+      exit 1
+      ;;
+  esac
+done
+
 
 # Log phase, id, and result
 log()
@@ -89,7 +113,11 @@ do
 		echo Testing $task for $lang 1>&2
 		test_version original ../tasks/$task/$task.$lang
 
-		echo Testing $task for $lang with fuzz 1 1>&2
+		if [ "$FUZZ" -eq 0 ]
+		then
+			continue
+		fi
+		echo Fuzzing $task for $lang with fuzz 1 1>&2
 		mkdir -p ../run/fuzz/$task/$lang/fuzz1
 		if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
 		then
