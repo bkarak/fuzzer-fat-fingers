@@ -6,10 +6,10 @@
 
 compile_rb()
 {
-	: # Add code here
+	ruby -c $1
 }
 
 run_rb()
 {
-	: # Add code here
+	ruby $1
 }
