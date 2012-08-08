@@ -6,10 +6,10 @@
 
 compile_cs()
 {
-	: # Add code here
+	mcs $1
 }
 
 run_cs()
 {
-	: # Add code here
+	mono `basename $1 .cs`.exe
 }
