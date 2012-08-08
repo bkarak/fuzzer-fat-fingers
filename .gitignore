@@ -1,5 +1,1 @@
-*.output
-*.pyc
-*.exe
-*.class
-*.reference
+src/run
