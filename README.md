@@ -53,8 +53,6 @@ Selected:
 * [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
 
-* [http://rosettacode.org/wiki/Dot_product](http://rosettacode.org/wiki/Dot_product)
-
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
