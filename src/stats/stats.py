@@ -33,7 +33,7 @@ def main():
 		_language = _l[1].strip()
 		_fuzzer_name = _l[2].strip()
 		_activity = _l[3].strip()
-		_result = 
+		_result = _l[4].strip()
 
 		task_obj = task_map.get(_task_name, Task(_task_name))
 
