@@ -6,10 +6,12 @@
 
 compile_m()
 {
-	: # Add code here
+	EXE=`basename $1 .c`-m
+	rm -f $EXE
+        gobjc -o $EXE $1
 }
 
 run_m()
 {
-	: # Add code here
+	./`basename $1 .c`-m
 }
