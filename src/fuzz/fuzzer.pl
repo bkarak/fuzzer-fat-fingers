@@ -7,9 +7,10 @@ use warnings;
 
 # Parse arguments
 use Getopt::Std;
-our($opt_d, $opt_f, $opt_l, $opt_n, $opt_r, $opt_t);
+our($opt_d, $opt_f, $opt_l, $opt_n, $opt_s, $opt_r, $opt_t);
 $opt_n = 1;
 $opt_f = 'SimilarSubstitution';
+$opt_s = 0;
 
 my @fuzzFunctions = qw(
 	IdentifierSubstitution
@@ -21,7 +22,7 @@ my @fuzzFunctions = qw(
 
 my $fuzzRe = join('|', @fuzzFunctions);
 
-usage('Illegal option') unless (getopts('df:ln:rt'));
+usage('Illegal option') unless (getopts('df:ln:rs:t'));
 usage('Unknown fuzz function ' . $opt_f) if ($opt_f !~ m/^($fuzzRe)$/);
 
 if ($opt_l) {
@@ -37,6 +38,7 @@ usage: $0 [-d] [-r] [-t]
 -l	List available fuzzing functions
 -n n	Apply fuzz function n times
 -r	Use a random seed
+-s s	Offset random seed by s
 -t	Execute unit tests and exit
 
 fuzz function: $fuzzRe
@@ -46,8 +48,14 @@ fuzz function: $fuzzRe
 
 testTokenType() if ($opt_t);
 
-# Ensure repeatable results
-srand 1234567 unless ($opt_r);
+# Ensure repeatable results that differ according to opt_s and opt_f
+if (!$opt_r) {
+	my $adjust = 0;
+	foreach my $n (map(ord, split(//, $opt_f))) {
+		$adjust += $n;
+	}
+	srand(1234567 + $opt_s + $adjust);
+}
 
 # References to arrays of tokens
 my @tokens;

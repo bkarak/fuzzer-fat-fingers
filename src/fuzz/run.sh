@@ -5,6 +5,9 @@
 
 . ../lang/languages.sh
 
+# Maximum time to run a command
+TIMEOUT=5
+
 # Source language-specific functionality
 for lang in $LANGS
 do
@@ -14,8 +17,9 @@ done
 TASKS=$(cd ../tasks ; find . -maxdepth 1 -type d | sed '/^\.$/d;s/^\.\///')
 FUZZFUNCS="`perl fuzzer.pl -l`"
 FUZZ=1
+NTIMES=1
 
-while getopts 'f:l:t:v' opt; do
+while getopts 'f:l:n:t:v' opt; do
   case $opt in
     f)
       FUZZFUNCS="$OPTARG"
@@ -25,6 +29,9 @@ while getopts 'f:l:t:v' opt; do
       ;;
     l)
       LANGS="$OPTARG"
+      ;;
+    n)
+      NTIMES="$OPTARG"
       ;;
     v)
       FUZZ=0
@@ -70,7 +77,7 @@ test_version()
 		return
 	fi
 	log COMPILE $fuzzid OK
-	if ! run_$lang $base >$task.$lang.$fuzzid.output 2>&1
+	if ! timeout $TIMEOUT bash -c ". ../../../../lang/$lang.sh; run_$lang $base" >$task.$lang.$fuzzid.output 2>&1 </dev/null
 	then
 		log RUN $fuzzid FAIL
 		return
@@ -123,16 +130,19 @@ do
 		fi
 		for fuzz in $FUZZFUNCS
 		do
-			echo Fuzzing $task for $lang with $fuzz 1>&2
-			mkdir -p ../run/fuzz/$task/$lang/$fuzz
-			if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/$fuzz/$task.$lang
-			then
-				log FUZZ $fuzz  OK
-			else
-				log FUZZ $fuzz  FAIL
-				continue
-			fi
-			test_version $fuzz ../run/fuzz/$task/$lang/$fuzz/$task.$lang
+			for i in $(seq 1 $NTIMES)
+			do
+				echo Fuzzing $task $i/$NTIMES for $lang with $fuzz 1>&2
+				mkdir -p ../run/fuzz/$task/$lang/$fuzz
+				if perl fuzzer.pl -f $fuzz -s $i <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/$fuzz/$task.$lang
+				then
+					log FUZZ Fuzz$fuzz  OK
+				else
+					log FUZZ Fuzz$fuzz  FAIL
+					continue
+				fi
+				test_version Fuzz$fuzz ../run/fuzz/$task/$lang/$fuzz/$task.$lang
+			done
 		done
 	done
 done

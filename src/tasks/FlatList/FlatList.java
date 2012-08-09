@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
  
- 
 public final class FlatList {
  
 	public static List<Object> flatten(List<?> list) {
@@ -21,6 +20,9 @@ public final class FlatList {
 	}
 
 	public static void main(String[] args) {
-		
+		List<Object> flat = new ArrayList<Object>();
+
+		List<Object> tree = new ArrayList<Object>();
+		tree.add();	
 	}
 }
