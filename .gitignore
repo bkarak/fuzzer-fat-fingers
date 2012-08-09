@@ -1,7 +1,8 @@
 src/run
+src/rosetta
 *.output
 *.pyc
 *.class
 *.exe
 *.reference
-
+*.swp
