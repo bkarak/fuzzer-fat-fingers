@@ -48,8 +48,14 @@ fuzz function: $fuzzRe
 
 testTokenType() if ($opt_t);
 
-# Ensure repeatable results
-srand(1234567 + $opt_s) unless ($opt_r);
+# Ensure repeatable results that differ according to opt_s and opt_f
+if (!$opt_r) {
+	my $adjust = 0;
+	foreach my $n (map(ord, split(//, $opt_f))) {
+		$adjust += $n;
+	}
+	srand(1234567 + $opt_s + $adjust);
+}
 
 # References to arrays of tokens
 my @tokens;
