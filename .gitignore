@@ -8,3 +8,8 @@ src/rosetta
 *.o
 *.hi
 *.swp
+*.aux
+*.bbl
+*.blg
+*.log
+pub/fuzzer.pdf
