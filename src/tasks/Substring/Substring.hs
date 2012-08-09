@@ -1,4 +1,4 @@
- import Data.Text hiding (length)
+import Data.Text hiding (length)
  
 -- Return the number of non-overlapping occurrences of sub in str.
 countSubStrs str sub = length $ breakOnAll (pack sub) (pack str)
