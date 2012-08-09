@@ -9,7 +9,7 @@ compile_m()
 	EXE=`basename $1 .c`-m
 	rm -f $EXE
         gcc -g -fgnu-runtime -O -c $1
-	gcc -o $EXE -Wno-import `basename $1 .m`.o  -lobjc
+	gcc -o $EXE -fgnu-runtime `basename $1 .m`.o  -lobjc
 }
 
 run_m()
