@@ -1,1 +1,7 @@
 src/run
+*.output
+*.pyc
+*.class
+*.exe
+*.reference
+

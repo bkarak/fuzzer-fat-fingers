@@ -50,7 +50,11 @@ Selected:
 
 * [http://rosettacode.org/wiki/Day_of_the_week](http://rosettacode.org/wiki/Day_of_the_week)
 * [http://rosettacode.org/wiki/Flatten_a_list](http://rosettacode.org/wiki/Flatten_a_list)
-* [http://rosettacode.org/wiki/Accumulator_factory] (http://rosettacode.org/wiki/Accumulator_factory)
+* [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
+
+* [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
+* [http://rosettacode.org/wiki/Determine_if_a_string_is_numeric](http://rosettacode.org/wiki/Determine_if_a_string_is_numeric)
+* [http://rosettacode.org/wiki/Dot_product](http://rosettacode.org/wiki/Dot_product)
 
 Disqualified:
 
