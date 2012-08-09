@@ -4,4 +4,5 @@ src/run
 *.class
 *.exe
 *.reference
-
+*.o
+*.hi
