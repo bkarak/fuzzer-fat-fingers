@@ -1,3 +1,4 @@
+% vim: spell
 \documentclass[10pt]{sigplanconf}
 
 % The following \documentclass options may be useful:
@@ -38,7 +39,7 @@ term1, term2
 \keywords
 Programming Languages, Compiler, Fuzzing, Unit Testing
 
-\section{Introduction}
+\section{Introduction} % {{{1
 
 \cite{C99}
 
@@ -49,16 +50,8 @@ Programming Languages, Compiler, Fuzzing, Unit Testing
 	\item Refactoring tools may act as fuzzers (they are programs and we have to assume that they have bugs), thus we are not measuring the resiliense of the programming languages against the human factor, we do it even against automated code refactoring tools.
 \end{itemize}
 
-\section{Related Work}
 
-Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
-
-Testing ... \cite{HAM06}
-
-Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
-
-\section{Experiment}
-
+\section{Methodology} % {{{1
 \begin{table}
 \begin{center}
 \caption{List of selected Rosseta Code tasks.}
@@ -81,11 +74,13 @@ ManBoy & \\
 \end{center}
 \end{table}
 
-\subsection{Methodology}
 
+Fuzzing types
 \begin{itemize}
-	\item Fuzzer categorisation: is the fuzzer result deterministic
+\item Replace one random token with another.
+This simulates abbsent-mindendness 
 \end{itemize}
+the fuzzer result is deterministic
 
 We measure:
 
@@ -95,14 +90,23 @@ We measure:
 	\item Result Error: if the program is not producing the proper result
 \end{itemize}
 
-\subsection{Results}
+\section{Results} % {{{1
 
-\subsection{Discussion}
+\section{Discussion} % {{{1
 
-\section{Conclusions}
+\section{Related Work} % {{{1
+
+Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
+
+Testing ... \cite{HAM06}
+
+Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
+
+\section{Conclusions} % {{{1
 
 \acks
 
+STEREO
 Acknowledgments, if needed.
 
 % We recommend abbrvnat bibliography style.
