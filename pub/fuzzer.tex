@@ -8,6 +8,7 @@
 % authoryear    To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{url}
 
 \begin{document}
 
@@ -52,6 +53,45 @@ Programming Languages, Compiler, Fuzzing, Unit Testing
 
 
 \section{Methodology} % {{{1
+\begin{table}
+\begin{center}
+\caption{Tested languages.}
+\label{tab:langs}
+\begin{tabular}{ l l}
+ \hline
+Language & Implementation \\
+\hline
+C 		& gcc 4.4.5 \\
+C++ 		& g++ 4.4.5 \\
+C\# 		& mono 2.6.7, CLI v2.0 \\
+Haskell 	& ghc 6.12.1 \\
+Java 		& OpenJDK 1.6.0\_18 \\
+Javascript 	& spidermonkey smjs 1.8.0 \\
+Objective-C 	& GNU Objective-C 4.4.5 \\
+PHP 		& PHP 5.3.3-7 \\
+Perl 		& perl 5.10.1 \\
+Python 		& python 2.6.6 \\
+Ruby 		& ruby 1.5.8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+We selected the languages to test based on a number of sources
+collated in an {\sc ieee} Spectrum article \cite{Kin11}:
+an index created by
+{\sc tiobe}\footnote{\url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}} (a software research firm),
+the number of book titles listed on Powell's Books,
+references in online discussions on {\sc irc}, and
+number of job posts on Craigslist.
+From the superset of the popular languages listed in those
+sources we excluded
+Actionscript, Visual Basic, {\sc sql}, and the Unix shell,
+because the corresponding programs would not match our methods.
+The list of languages we used in our study and the
+particular implementations we used are listed in
+Table~\ref{tab:lang}.
+
 \begin{table}
 \begin{center}
 \caption{List of selected Rosseta Code tasks.}
