@@ -5,6 +5,9 @@
 
 . ../lang/languages.sh
 
+# Maximum time to run a command
+TIMEOUT=5
+
 # Source language-specific functionality
 for lang in $LANGS
 do
@@ -74,7 +77,7 @@ test_version()
 		return
 	fi
 	log COMPILE $fuzzid OK
-	if ! run_$lang $base >$task.$lang.$fuzzid.output 2>&1
+	if ! timeout $TIMEOUT bash -c ". ../../../../lang/$lang.sh; run_$lang $base" >$task.$lang.$fuzzid.output 2>&1 </dev/null
 	then
 		log RUN $fuzzid FAIL
 		return
