@@ -11,4 +11,4 @@ def printzz(myarray):
                 print "%2i" % myarray[(x,y)],
         print
  
-printzz(zigzag(5))
+print(zigzag(5))
