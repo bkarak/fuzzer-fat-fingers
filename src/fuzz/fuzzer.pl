@@ -43,7 +43,7 @@ while (<>) {
 exit 0 if ($opt_t);
 
 # Introduce a single fuzz
-similarSubstitutionFuzz();
+fuzzSimilarSubstitution();
 
 # Print program
 foreach my $l (@tokens) {
@@ -53,7 +53,8 @@ foreach my $l (@tokens) {
 exit 0;
 
 # Substitute a single token with a similar one
-sub similarSubstitutionFuzz {
+# This simulates absent-mindendness
+sub fuzzSimilarSubstitution {
 	# Try until a substitution succeeds
 	for (my $try2 = 0; $try2 < $ntokens; $try2++) {
 		# Select first token
@@ -69,6 +70,60 @@ sub similarSubstitutionFuzz {
 			my $class2 = tokenClass(${$tokens[$lineIndex2]}[$tokenIndex2]);
 			if (${$tokens[$lineIndex]}[$tokenIndex] ne ${$tokens[$lineIndex2]}[$tokenIndex2] &&
 				$class2 eq $class) {
+				print "Changing [${$tokens[$lineIndex]}[$tokenIndex]] of class $class into [${$tokens[$lineIndex2]}[$tokenIndex2]] of class $class2\n" if ($opt_d);
+				${$tokens[$lineIndex]}[$tokenIndex] = ${$tokens[$lineIndex2]}[$tokenIndex2];
+				return;
+			}
+		}
+	}
+	exit 1;
+}
+
+# Substitute a single token with a random one
+# This simulates a typo
+sub fuzzRandomSubstitution {
+	# Try until a substitution succeeds
+	for (my $try2 = 0; $try2 < $ntokens; $try2++) {
+		# Select first token
+		my $lineIndex = int(rand($line));
+		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
+		my $class = tokenClass(${$tokens[$lineIndex]}[$tokenIndex]);
+		next if ($class eq 'space');
+
+		# Try replacing this token with an equivalent one
+		for (my $try = 0; $try < $ntokens; $try++) {
+			my $lineIndex2 = int(rand($line));
+			my $tokenIndex2 = int(rand($#{$tokens[$lineIndex2]}));
+			my $class2 = tokenClass(${$tokens[$lineIndex2]}[$tokenIndex2]);
+			next if ($class2 eq 'space');
+			if (${$tokens[$lineIndex]}[$tokenIndex] ne ${$tokens[$lineIndex2]}[$tokenIndex2]) {
+				print "Changing [${$tokens[$lineIndex]}[$tokenIndex]] of class $class into [${$tokens[$lineIndex2]}[$tokenIndex2]] of class $class2\n" if ($opt_d);
+				${$tokens[$lineIndex]}[$tokenIndex] = ${$tokens[$lineIndex2]}[$tokenIndex2];
+				return;
+			}
+		}
+	}
+	exit 1;
+}
+
+# Substitute a single identifier token with another one
+# This simulates a semantic error
+sub fuzzIdentifierSubstitution {
+	# Try until a substitution succeeds
+	for (my $try2 = 0; $try2 < $ntokens; $try2++) {
+		# Select first token
+		my $lineIndex = int(rand($line));
+		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
+		my $class = tokenClass(${$tokens[$lineIndex]}[$tokenIndex]);
+		next unless ($class eq 'id');
+
+		# Try replacing this token with an equivalent one
+		for (my $try = 0; $try < $ntokens; $try++) {
+			my $lineIndex2 = int(rand($line));
+			my $tokenIndex2 = int(rand($#{$tokens[$lineIndex2]}));
+			my $class2 = tokenClass(${$tokens[$lineIndex2]}[$tokenIndex2]);
+			next unless ($class2 eq 'id');
+			if (${$tokens[$lineIndex]}[$tokenIndex] ne ${$tokens[$lineIndex2]}[$tokenIndex2]) {
 				print "Changing [${$tokens[$lineIndex]}[$tokenIndex]] of class $class into [${$tokens[$lineIndex2]}[$tokenIndex2]] of class $class2\n" if ($opt_d);
 				${$tokens[$lineIndex]}[$tokenIndex] = ${$tokens[$lineIndex2]}[$tokenIndex2];
 				return;
