@@ -1,3 +1,5 @@
+using System;
+
 class Tokenizer
 {
     static void Main()
@@ -8,7 +10,7 @@ class Tokenizer
 		string[] strings = str.Split(',');
 		foreach (string s in strings)
 		{
-			Console.WriteLine (s + ".");
+			System.Console.WriteLine (s + ".");
 		}
     }
 }

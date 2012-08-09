@@ -1,9 +1,7 @@
-var eth = {
- 
-	halve : function ( n ){  return Math.floor(n/2);  },
-	double: function ( n ){  return 2*n;              },
-	isEven: function ( n ){  return n%2 === 0);       },
- 
+var eth = { 
+	halve : function (n){ return Math.floor(n/2); },
+	double: function (n){ return 2*n; },
+	isEven: function (n){ return (n%2 === 0);       },
 	mult: function ( a , b ){
 		var sum = 0, a = [a], b = [b];
  
@@ -20,7 +18,8 @@ var eth = {
 		}
  
 		return sum + b[0];
- 
 	}
 }
+
+print(eth.mult(17,34));
  
