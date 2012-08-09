@@ -19,4 +19,8 @@ public final class FlatList {
 			}
 		}
 	}
+
+	public static void main(String[] args) {
+		
+	}
 }

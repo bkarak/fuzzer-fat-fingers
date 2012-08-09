@@ -22,7 +22,7 @@
  
 int main()
 {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  NSAutoReleasePool *pool = [[NSAutoReleasePool alloc] init];
  
   NSArray *p = [NSArray 
 		 arrayWithObjects:
