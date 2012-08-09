@@ -8,7 +8,7 @@ compile_hs()
 {
 	EXE=`basename $1 .hs`
 	rm -f $EXE
-	ghc -o $EXE $1
+	ghc -package containers -o $EXE $1
 }
 
 run_hs()
