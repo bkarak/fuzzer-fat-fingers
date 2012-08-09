@@ -10,5 +10,4 @@ function powerset(ary) {
  
 var res = powerset([1,2,3,4]);
  
-load('json2.js');
-print(JSON.stringify(res));
+print(res);
