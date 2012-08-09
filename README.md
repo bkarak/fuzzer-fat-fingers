@@ -51,9 +51,8 @@ Selected:
 * [http://rosettacode.org/wiki/Day_of_the_week](http://rosettacode.org/wiki/Day_of_the_week)
 * [http://rosettacode.org/wiki/Flatten_a_list](http://rosettacode.org/wiki/Flatten_a_list)
 * [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
-
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
-* [http://rosettacode.org/wiki/Determine_if_a_string_is_numeric](http://rosettacode.org/wiki/Determine_if_a_string_is_numeric)
+
 * [http://rosettacode.org/wiki/Dot_product](http://rosettacode.org/wiki/Dot_product)
 
 Disqualified:
@@ -61,6 +60,7 @@ Disqualified:
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
 * [http://rosettacode.org/wiki/N-queens_problem](http://rosettacode.org/wiki/N-queens_problem) - missing languages
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life](http://rosettacode.org/wiki/Conway%27s_Game_of_Life) - complex output
+* [http://rosettacode.org/wiki/Determine_if_a_string_is_numeric](http://rosettacode.org/wiki/Determine_if_a_string_is_numeric) - All implementations are missing main function (and proper includes)
 
 Pool:
 
