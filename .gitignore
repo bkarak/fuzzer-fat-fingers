@@ -1,4 +1,5 @@
 src/run
+src/rosetta
 *.output
 *.pyc
 *.class
@@ -6,3 +7,4 @@ src/run
 *.reference
 *.o
 *.hi
+*.swp
