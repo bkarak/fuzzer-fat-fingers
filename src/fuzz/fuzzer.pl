@@ -84,7 +84,7 @@ sub fuzzSimilarSubstitution {
 		my $lineIndex = int(rand($line));
 		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
 		my $class = tokenClass(${$tokens[$lineIndex]}[$tokenIndex]);
-		next if ($class eq 'space');
+		next if ($class eq 'space' || $class eq 'gdel');
 
 		# Try replacing this token with an equivalent one
 		for (my $try = 0; $try < $ntokens; $try++) {
@@ -195,6 +195,8 @@ sub tokenClass {
 		return 'float';
 	} elsif ($token =~ m/^(["'])/) {
 		return $1;		# String or char literal
+	} elsif ($token =~ m/^([()\[\]\{\}])/) {
+		return 'gdel';		# Group delimiter
 	} else {
 		return 'op';
 	}
@@ -208,6 +210,8 @@ sub testTokenType {
 	ensure (q<tokenClass('3.14') eq 'float'>);
 	ensure (q<tokenClass('"hello"') eq '"'>);
 	ensure (q<tokenClass('++') eq 'op'>);
+	ensure (q<tokenClass('(') eq 'gdel'>);
+	ensure (q<tokenClass('}') eq 'gdel'>);
 }
 
 # Complain and exit if passed expression evaluates to false
