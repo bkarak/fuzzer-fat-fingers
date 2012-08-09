@@ -1,3 +1,4 @@
+% vim: spell
 \documentclass[10pt]{sigplanconf}
 
 % The following \documentclass options may be useful:
@@ -7,6 +8,7 @@
 % authoryear    To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{url}
 
 \begin{document}
 
@@ -38,7 +40,7 @@ term1, term2
 \keywords
 Programming Languages, Compiler, Fuzzing, Unit Testing
 
-\section{Introduction}
+\section{Introduction} % {{{1
 
 \cite{C99}
 
@@ -49,15 +51,48 @@ Programming Languages, Compiler, Fuzzing, Unit Testing
 	\item Refactoring tools may act as fuzzers (they are programs and we have to assume that they have bugs), thus we are not measuring the resiliense of the programming languages against the human factor, we do it even against automated code refactoring tools.
 \end{itemize}
 
-\section{Related Work}
 
-Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
+\section{Methodology} % {{{1
+\begin{table}
+\begin{center}
+\caption{Tested languages.}
+\label{tab:langs}
+\begin{tabular}{ l l}
+ \hline
+Language & Implementation \\
+\hline
+C 		& gcc 4.4.5 \\
+C++ 		& g++ 4.4.5 \\
+C\# 		& mono 2.6.7, CLI v2.0 \\
+Haskell 	& ghc 6.12.1 \\
+Java 		& OpenJDK 1.6.0\_18 \\
+Javascript 	& spidermonkey smjs 1.8.0 \\
+Objective-C 	& GNU Objective-C 4.4.5 \\
+PHP 		& PHP 5.3.3-7 \\
+Perl 		& perl 5.10.1 \\
+Python 		& python 2.6.6 \\
+Ruby 		& ruby 1.5.8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-Testing ... \cite{HAM06}
-
-Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
-
-\section{Experiment}
+We selected the languages to test based on a number of sources
+collated in an {\sc ieee} Spectrum article \cite{Kin11}:
+an index created by
+{\sc tiobe}\footnote{\url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}} (a software research firm),
+the number of book titles listed on Powell's Books,
+references in online discussions on {\sc irc}, and
+number of job posts on Craigslist.
+From the superset of the popular languages listed in those
+sources we excluded
+Actionscript, Visual Basic, {\sc sql}, and the Unix shell,
+because the corresponding programs would not match our methods.
+According to the source composition,
+our language coverage ranges from 71\% to 86\% of all languages.
+The list of languages we used in our study and the
+particular implementations we used are listed in
+Table~\ref{tab:lang}.
 
 \begin{table}
 \begin{center}
@@ -74,16 +109,21 @@ FuncComp & \\
 Horner & \\
 Hello & A typical ``hello, world!'' program\\
 Mult & \\
+MutRecursion & \\
+ManBoy & \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\subsection{Methodology}
 
+Fuzzing types
 \begin{itemize}
-	\item Fuzzer categorisation: is the fuzzer result deterministic
+\item Replace one random token with another.
+This simulates abbsent-mindendness 
 \end{itemize}
+
+the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
 
 We measure:
 
@@ -93,16 +133,34 @@ We measure:
 	\item Result Error: if the program is not producing the proper result
 \end{itemize}
 
+\section{Results} % {{{1
+
+\section{Discussion} % {{{1
+
+\section{Related Work} % {{{1
+
+Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
+
+Out approach fuzzes the program with pseudo-random
+perturbations based in same cases on knowledge of
+lexical tokens.
+This can result in a large number of failures.
+An alternative approach, {\em grammar-based white box fuzzing}~\cite{Cog08},
+takes into account the input language's grammar to fuzz the input in
+ways that are syntactically correct.
+This results in a higher rate of successful fuzzing and the location
+of deeper problems.
 
 
-\subsection{Results}
+Testing ... \cite{HAM06}
 
-\subsection{Discussion}
+Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
 
-\section{Conclusions}
+\section{Conclusions} % {{{1
 
 \acks
 
+STEREO
 Acknowledgments, if needed.
 
 % We recommend abbrvnat bibliography style.

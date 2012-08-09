@@ -6,10 +6,10 @@
 
 compile_js()
 {
-	: # Add code here
+	smjs $1
 }
 
 run_js()
 {
-	: # Add code here
+	smjs $1
 }

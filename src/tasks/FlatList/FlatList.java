@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
  
  
-public final class FlattenUtil {
+public final class FlatList {
  
 	public static List<Object> flatten(List<?> list) {
 		List<Object> retVal = new LinkedList<Object>();

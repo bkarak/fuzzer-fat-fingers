@@ -5,4 +5,11 @@ src/rosetta
 *.class
 *.exe
 *.reference
+*.o
+*.hi
 *.swp
+*.aux
+*.bbl
+*.blg
+*.log
+pub/fuzzer.pdf

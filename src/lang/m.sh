@@ -6,10 +6,13 @@
 
 compile_m()
 {
-	: # Add code here
+	EXE=`basename $1 .c`-m
+	rm -f $EXE
+        gcc -g -fgnu-runtime -O -c $1
+	gcc -o $EXE -Wno-import `basename $1 .m`.o  -lobjc
 }
 
 run_m()
 {
-	: # Add code here
+	./`basename $1 .c`-m
 }

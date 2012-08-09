@@ -51,14 +51,20 @@ Selected:
 * [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
 * [http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation](http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation)
-* [http://rosettacode.org/wiki/Ethiopian_multiplication] (http://rosettacode.org/wiki/Ethiopian_multiplication)
-* [http://rosettacode.org/wiki/Mutual_recursion} (http://rosettacode.org/wiki/Mutual_recursion)
+* [http://rosettacode.org/wiki/Ethiopian_multiplication](http://rosettacode.org/wiki/Ethiopian_multiplication)
+* [http://rosettacode.org/wiki/Mutual_recursion](http://rosettacode.org/wiki/Mutual_recursion)
+* [http://rosettacode.org/wiki/Man_or_boy_test](http://rosettacode.org/wiki/Man_or_boy_test)
+* [http://rosettacode.org/wiki/Power_set](http://rosettacode.org/wiki/Power_set)
+* [http://rosettacode.org/wiki/Tokenize_a_string](http://rosettacode.org/wiki/Tokenize_a_string)
+
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
 * [http://rosettacode.org/wiki/N-queens_problem](http://rosettacode.org/wiki/N-queens_problem) - missing languages
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life](http://rosettacode.org/wiki/Conway%27s_Game_of_Life) - complex output
 * [http://rosettacode.org/wiki/Determine_if_a_string_is_numeric](http://rosettacode.org/wiki/Determine_if_a_string_is_numeric) - All implementations are missing main function (and proper includes)
+* [http://rosettacode.org/wiki/Sleep](http://rosettacode.org/wiki/Sleep)
+
 
 Pool:
 
