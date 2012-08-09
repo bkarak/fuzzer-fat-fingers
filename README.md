@@ -55,6 +55,7 @@ Selected:
 * [http://rosettacode.org/wiki/Mutual_recursion} (http://rosettacode.org/wiki/Mutual_recursion)
 * [http://rosettacode.org/wiki/Man_or_boy_test] (http://rosettacode.org/wiki/Man_or_boy_test)
 * [http://rosettacode.org/wiki/Power_set] (http://rosettacode.org/wiki/Power_set)
+* [http://rosettacode.org/wiki/Sleep] (http://rosettacode.org/wiki/Sleep)
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
