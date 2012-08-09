@@ -150,7 +150,7 @@ class LanguageStatus(LineVisitor):
 			print "%s &" % (tn,),
 			for l in _langs:			
 				if dcount.get_value(l) == 3:
-					print "\\Checkmark &",
+					print "\\ding{51} &",
 					_dict_count.add(l)
 				else:
 					print "\\ding{55} &",
