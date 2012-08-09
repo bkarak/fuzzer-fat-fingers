@@ -52,6 +52,7 @@ Selected:
 * [http://rosettacode.org/wiki/Flatten_a_list](http://rosettacode.org/wiki/Flatten_a_list)
 * [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
+* [http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation] (http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation)
 
 Disqualified:
 
