@@ -70,13 +70,13 @@ test_version()
 		return
 	fi
 	log COMPILE $fuzzid OK
-	if ! run_$lang $base >$task.$lang.$fuzzid.output
+	if ! run_$lang $base >$task.$lang.$fuzzid.output 2>&1
 	then
 		log RUN $fuzzid FAIL
 		return
 	fi
 	log RUN $fuzzid OK
-	if diff ../$task.$lang.reference $task.$lang.$fuzzid.output
+	if diff ../$task.$lang.reference $task.$lang.$fuzzid.output >/dev/null
 	then
 		log OUTPUT $fuzzid OK
 	else
@@ -106,7 +106,7 @@ do
 			continue
 		fi
 		log COMPILE prime OK
-		if ! run_$lang $task.$lang >../$task.$lang.reference
+		if ! run_$lang $task.$lang >../$task.$lang.reference 2>&1
 		then
 			log RUN prime FAIL
 			continue
