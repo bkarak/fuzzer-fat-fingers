@@ -101,19 +101,20 @@ Table~\ref{tab:lang}.
  \hline
 Task Name & Description\\
 \hline
-AccumFactory \\
-Beers \\
-Dow \\
-FlatList \\
-FuncComp \\
-Horner \\
+AccumFactory & \\
+Beers & \\
+Dow & \\
+FlatList & \\
+FuncComp & \\
+Horner & \\
 Hello & A typical ``hello, world!'' program\\
-Mult \\
-MutRecursion \\
-ManBoy \\
-Power \\
-Substring \\
-ZigZag \\
+Mult & \\
+MutRecursion & \\
+ManBoy & \\
+Power & \\
+Substring & \\
+Tokenizer & \\
+ZigZag & \\
 \hline
 \end{tabular}
 \end{center}
@@ -141,6 +142,8 @@ We measure:
 \begin{table*}
 \begin{center}
 % ['c', 'cpp', 'cs', 'hs', 'java']
+\caption{Task per languages (1)}
+\label{tbl:lang-per-task-one}
 \begin{tabular}{ c r r r r r r r r r r r r r r r }
 \hline
  & \multicolumn{3}{c}{C (\%)} & \multicolumn{3}{c}{C++ (\%)} & \multicolumn{3}{c}{C\# (\%)} & \multicolumn{3}{c}{Haskell (\%)} & \multicolumn{3}{c}{Java (\%)}\\
@@ -160,6 +163,35 @@ Horner &  42 & 66 & 100 & 42 & 66 & 100 & 50 & 100 & 100 & 42 & 100 & 50 & 42 & 
 MutRecursion &  57 & 75 & 50 & 42 & 66 & 100 & 57 & 100 & 66 & 42 & 66 & 100 & 42 & 66 & 100 \\
 Dow &  42 & 66 & 100 & 42 & 100 & 100 & 42 & 100 & 50 & 57 & 100 & 33 & 42 & 100 & 50 \\
 Mult &  57 & 100 & 33 & 42 & 100 & 50 & 57 & 100 & 66 & 42 & 100 & 50 & 42 & 100 & 50 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+\begin{table*}
+\begin{center}
+% ['js', 'php', 'pl', 'py', 'rb']
+\caption{Task per languages (2)}
+\label{tbl:lang-per-task-two}
+\begin{tabular}{ c r r r r r r r r r r r r r r r }
+\hline
+ & \multicolumn{3}{c}{Javascript (\%)} & \multicolumn{3}{c}{PHP (\%)} & \multicolumn{3}{c}{Perl (\%)} & \multicolumn{3}{c}{Python (\%)} & \multicolumn{3}{c}{Ruby (\%)}\\
+ & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out \\
+\hline
+AccumFactory &  50 & 100 & 100 & 57 & 75 & 50 & 71 & 80 & 33 & 57 & 100 & 33 & 85 & 83 & 75 \\
+Hello &  50 & 100 & 100 & 50 & 100 & 50 & 66 & 100 & 100 & 33 & 100 & 100 & 66 & 100 & 100 \\
+FlatList &  66 & 100 & 100 & 71 & 100 & 75 & 66 & 75 & 50 & 71 & 40 & 100 & 100 & 85 & 100 \\
+Power &  57 & 100 & 33 & 57 & 100 & 0 & 71 & 100 & 100 & 71 & 80 & 66 & 50 & 100 & 100 \\
+ZigZag &  57 & 0 & 0 & 100 & 100 & 16 & 71 & 60 & 50 & 85 & 83 & 75 & 42 & 100 & 50 \\
+FuncComp &  66 & 50 & 100 & 57 & 75 & 100 & 57 & 75 & 100 & 57 & 50 & 100 & 42 & 100 & 100 \\
+Substring &  83 & 60 & 50 & 33 & 100 & 100 & 66 & 75 & 100 & 50 & 100 & 50 & 66 & 50 & 100 \\
+ManBoy &  57 & 75 & 50 & 57 & 100 & 33 & 57 & 75 & 50 & 42 & 100 & 50 & 42 & 100 & 50 \\
+Beers &  85 & 66 & 33 & 57 & 100 & 33 & 71 & 80 & 66 & 42 & 100 & 50 & 57 & 100 & 33 \\
+Tokenizer &  50 & 66 & 100 & 33 & 100 & 100 & 50 & 100 & 100 & 66 & 50 & 100 & 66 & 50 & 100 \\
+Horner &  71 & 80 & 66 & 57 & 100 & 33 & 57 & 100 & 33 & 33 & 100 & 100 & 57 & 75 & 50 \\
+MutRecursion &  71 & 60 & 100 & 57 & 75 & 50 & 57 & 100 & 100 & 71 & 40 & 100 & 42 & 66 & 100 \\
+Dow &  71 & 60 & 50 & 57 & 75 & 50 & 42 & 100 & 50 & 57 & 75 & 50 & 71 & 80 & 100 \\
+Mult &  42 & 100 & 50 & 57 & 100 & 33 & 42 & 66 & 100 & 57 & 100 & 100 & 42 & 100 & 50 \\
 \hline
 \end{tabular}
 \end{center}
