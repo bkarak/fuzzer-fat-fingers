@@ -1,6 +1,6 @@
 summary: run.out
 	@echo "Results per task"
-	@awk '$$3 == "original" && $$5 == "OK"{ status[$$1]++ } END {for (i in status) print i, status[i], "/ 33"}' $<
+	@awk '$$3 == "original" && $$5 == "OK"{ status[$$1]++ } END {for (i in status) print i, status[i], "/ 30"}' $<
 	@echo "Results per language"
 	@awk 'BEGIN {ntasks = '`find ../tasks -maxdepth 1 -type d | wc -l`'} $$3 == "original" && $$5 == "OK"{ status[$$2]++ } END {for (i in status) print i, status[i], "/ ", ntasks * 3}' $<
 
