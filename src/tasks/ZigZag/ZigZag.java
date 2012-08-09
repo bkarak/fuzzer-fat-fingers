@@ -1,7 +1,8 @@
 
+
 public class ZigZag {
-  public static int[][] Zig_Zag(final int size)
-  {
+	
+  public static int[][] zigZag(final int size){
     int[][] data = new int[size][size];
     int i = 1;
     int j = 1;
@@ -28,11 +29,13 @@ public class ZigZag {
         j--;
     }
     
+    
+    }
     return data;
   }
 
   public static void main(String[] args) {
-    int[][] zigzag = ZigZag.Zig_Zag(5);
+    int[][] zigzag = ZigZag.zigZag(5);
     for (int i = 0; i < zigzag.length; i++ ) {
         for (int k = 0; k < zigzag[i].length; k++) {
             System.out.print(zigzag[i][k] + ",");
