@@ -52,7 +52,7 @@ Selected:
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
 * [http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation](http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation)
 * [http://rosettacode.org/wiki/Ethiopian_multiplication] (http://rosettacode.org/wiki/Ethiopian_multiplication)
-
+* [http://rosettacode.org/wiki/Mutual_recursion} (http://rosettacode.org/wiki/Mutual_recursion)
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
