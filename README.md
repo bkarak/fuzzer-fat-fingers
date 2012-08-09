@@ -53,6 +53,7 @@ Selected:
 * [http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation](http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation)
 * [http://rosettacode.org/wiki/Ethiopian_multiplication] (http://rosettacode.org/wiki/Ethiopian_multiplication)
 * [http://rosettacode.org/wiki/Mutual_recursion} (http://rosettacode.org/wiki/Mutual_recursion)
+* [http://rosettacode.org/wiki/Man_or_boy_test] (http://rosettacode.org/wiki/Man_or_boy_test)
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
