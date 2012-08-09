@@ -17,5 +17,16 @@ namespace RosettaCode {
  
             return result;
         }
+
+        static void Main ( string[ ] args ) {
+            for (int i = 0; i < 20; i++) {
+                System.Console.Write(F(i));
+            }
+            System.Console.WriteLine();
+            for (int i = 0; i < 20; i++) {
+                System.Console.Write(M(i));
+            }
+            System.Console.WriteLine();
+        }
     }
 }
