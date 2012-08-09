@@ -16,7 +16,7 @@ public class ZigZag {
         else
           i += 2;
      
-      if (i > 1)
+    if (i > 1)
         i--;
     } else {
       // Odd stripes
@@ -27,11 +27,17 @@ public class ZigZag {
       if (j > 1)
         j--;
     }
-      return data;
-    }
+    
+    return data;
   }
 
   public static void main(String[] args) {
-    
+    int[][] zigzag = ZigZag.Zig_Zag(5);
+    for (int i = 0; i < zigzag.length; i++ ) {
+        for (int k = 0; k < zigzag[i].length; k++) {
+            System.out.print(zigzag[i][k] + ",");
+        }
+        System.out.println();
+    }  
   }
 }
