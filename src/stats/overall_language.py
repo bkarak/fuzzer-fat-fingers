@@ -144,15 +144,22 @@ class LanguageStatus(LineVisitor):
 	def export(self):
 		print 'Export LanguageStatus'
 		_langs = ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
+		_dict_count = DictCount()
 
 		for (tn, dcount) in self.__tasks.iteritems():
 			print "%s &" % (tn,),
 			for l in _langs:			
 				if dcount.get_value(l) == 3:
 					print "\\Checkmark &",
+					_dict_count.add(l)
 				else:
 					print "\\ding{55} &",
 			print "\\\\"
+
+		print "Total &",
+		for l in _langs:
+			print "%d &" % (_dict_count.get_value(l)),
+		print "\\\\"
 
 def main():
 	_visitors = [LanguageStatus()]
