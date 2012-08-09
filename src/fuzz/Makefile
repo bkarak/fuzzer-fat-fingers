@@ -4,6 +4,9 @@ summary: run.out
 run.out:
 	bash run.sh >$@
 
+clean:
+	rm -f run.out
+
 test:
 	perl -c fuzzer.pl
 	perl fuzzer.pl -t Makefile | diff Makefile -
