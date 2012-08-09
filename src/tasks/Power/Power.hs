@@ -7,4 +7,4 @@ powerset = fromList . fmap fromList . listPowerset . toList
 listPowerset :: [a] -> [[a]]
 listPowerset = filterM (const [True, False])
 
-Main listPowerset [1,2,3]
+main = print $ listPowerset [1,2,3]

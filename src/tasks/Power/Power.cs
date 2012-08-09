@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Power {
-  public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
-  
-{
+  public IEnumerable GetPowerSet(List list) {
       return from m in Enumerable.Range(0, 1 << list.Count)
                     select
                         from i in Enumerable.Range(0, list.Count)
@@ -21,4 +22,8 @@ public class Power {
           result.Select(subset => 
               string.Join(",", subset.Select(clr => clr.ToString()).ToArray())).ToArray()));
   }
+
+	static void main(string[] args) {
+		PowerSetofColors();
+	}
 }
