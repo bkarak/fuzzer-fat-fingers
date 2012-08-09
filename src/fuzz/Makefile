@@ -16,3 +16,8 @@ test:
 	perl fuzzer.pl -t fuzzer.pl | diff -b fuzzer.pl -
 	! perl fuzzer.pl fuzzer.pl | diff -b - fuzzer.pl >/dev/null
 	! perl fuzzer.pl Makefile | diff -b - Makefile >/dev/null
+	! perl fuzzer.pl -f IdentifierSubstitution fuzzer.pl | diff -b - fuzzer.pl >/dev/null
+	! perl fuzzer.pl -f IntegerPerturbation fuzzer.pl | diff -b - fuzzer.pl >/dev/null
+	! perl fuzzer.pl -f RandomCharacterSubstitution fuzzer.pl | diff -b - fuzzer.pl >/dev/null
+	! perl fuzzer.pl -f RandomTokenSubstitution fuzzer.pl | diff -b - fuzzer.pl >/dev/null
+	! perl fuzzer.pl -f SimilarSubstitution fuzzer.pl | diff -b - fuzzer.pl >/dev/null
