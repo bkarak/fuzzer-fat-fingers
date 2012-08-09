@@ -5,7 +5,7 @@ end
 # mixing Integer and Float
 x = accumulator(1)
 x.call(5)
-p accumulator(3)  # add some output to show what it returns
+#p accumulator(3)  # add some output to show what it returns
 puts x.call(2.3)  # prints 8.3
  
 # mixing Rational and Complex
