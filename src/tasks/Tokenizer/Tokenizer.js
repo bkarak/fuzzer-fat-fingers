@@ -1,1 +1,1 @@
-alert( "Hello,How,Are,You,Today".split(",").join(".") );
+print("Hello,How,Are,You,Today".split(",").join(".") );
