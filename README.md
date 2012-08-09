@@ -57,6 +57,9 @@ Selected:
 * [http://rosettacode.org/wiki/Power_set](http://rosettacode.org/wiki/Power_set)
 * [http://rosettacode.org/wiki/Tokenize_a_string](http://rosettacode.org/wiki/Tokenize_a_string)
 * [http://rosettacode.org/wiki/Zig-zag_matrix] (http://rosettacode.org/wiki/Zig-zag_matrix)
+* [http://rosettacode.org/wiki/99_Bottles_of_Beer] (http://rosettacode.org/wiki/99_Bottles_of_Beer)
+
+
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
