@@ -6,7 +6,7 @@
 
 compile_py()
 {
-	python -c "import py_compile; py_compile.compile(r'$1')"
+	python /usr/lib/python2.6/py_compile.py $1
 }
 
 run_py()
