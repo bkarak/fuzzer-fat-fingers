@@ -1,3 +1,9 @@
+summary: run.out
+	awk '$$3 == "original" && $$5 == "OK"{ status[$$1]++ } END {for (i in status) print i, status[i], "/ 33"}' $<
+
+run.out:
+	bash run.sh >$@
+
 test:
 	perl -c fuzzer.pl
 	perl fuzzer.pl -t Makefile | diff Makefile -
