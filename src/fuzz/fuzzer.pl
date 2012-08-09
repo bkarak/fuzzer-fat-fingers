@@ -8,7 +8,14 @@ use warnings;
 # Parse arguments
 use Getopt::Std;
 our($opt_t, $opt_r, $opt_d);
-getopts('rtd');
+if (!getopts('rtd')) {
+	print STDERR qq{usage: $0 [-d] [-r] [-t]
+-d	Enable debug output
+-r	Use a random seed
+-t	Execute unit tests and exit
+};
+	exit 1;
+}
 
 testTokenType() if ($opt_t);
 
