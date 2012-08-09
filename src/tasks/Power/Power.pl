@@ -1,3 +1,3 @@
-sub powerset ( *@list ) {
-    reduce( -> @L, $n { [ @L, @L.map({[ $_.list, $n ]}) ] }, [[]], @list );
-}
+sub p{@_?map{$_,[$_[0],@$_]}p(@_[1..$#_]):[]}
+
+p(1,5);
