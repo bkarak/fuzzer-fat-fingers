@@ -1,5 +1,11 @@
-public static ArrayList<String> getpowerset(int a[],int n,ArrayList<String> ps)
-    {
+import java.util.ArrayList;
+
+public class Power {
+    public static void main(String[] args) {
+        
+    }
+
+    public static ArrayList<String> getpowerset(int a[],int n,ArrayList<String> ps) {
         if(n<0)
         {
             return null;
@@ -23,3 +29,4 @@ public static ArrayList<String> getpowerset(int a[],int n,ArrayList<String> ps)
         ps.addAll(tmp);
         return ps;
     }
+}

@@ -1,12 +1,13 @@
-public class ManOrBoy {
+
+public class ManBoy {
     interface Arg {
         public int run();
     }
  
-    public static int A(final int k, final Arg x1, final Arg x2,
-                          final Arg x3, final Arg x4, final Arg x5) {
+    public static int A(final int k, final Arg x1, final Arg x2, final Arg x3, final Arg x4, final Arg x5) {
         if (k <= 0)
             return x4.run() + x5.run();
+        
         return new Arg() {
             int m = k;
             public int run() {
@@ -15,6 +16,7 @@ public class ManOrBoy {
             }
         }.run();
     }
+
     public static Arg C(final int i) {
         return new Arg() {
             public int run() { return i; }
