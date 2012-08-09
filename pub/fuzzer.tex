@@ -88,6 +88,8 @@ From the superset of the popular languages listed in those
 sources we excluded
 Actionscript, Visual Basic, {\sc sql}, and the Unix shell,
 because the corresponding programs would not match our methods.
+According to the source composition,
+our language coverage ranges from 71\% to 86\% of all languages.
 The list of languages we used in our study and the
 particular implementations we used are listed in
 Table~\ref{tab:lang}.
@@ -138,6 +140,17 @@ We measure:
 \section{Related Work} % {{{1
 
 Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
+
+Out approach fuzzes the program with pseudo-random
+perturbations based in same cases on knowledge of
+lexical tokens.
+This can result in a large number of failures.
+An alternative approach, {\em grammar-based white box fuzzing}~\cite{Cog08},
+takes into account the input language's grammar to fuzz the input in
+ways that are syntactically correct.
+This results in a higher rate of successful fuzzing and the location
+of deeper problems.
+
 
 Testing ... \cite{HAM06}
 
