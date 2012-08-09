@@ -2,7 +2,7 @@
  
 int main()
 {
-   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+   NSAutoReleasePool *pool = [[NSAutoReleasePool alloc] init];
    NSUInteger i;
  
    for(i=2008; i<2121; i++)
