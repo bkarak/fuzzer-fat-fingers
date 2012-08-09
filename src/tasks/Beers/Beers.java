@@ -1,5 +1,6 @@
 import java.text.MessageFormat;
-public class Beer
+
+public class Beers
 {
  static String bottles(final int n)
  {
