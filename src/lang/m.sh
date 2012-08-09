@@ -6,10 +6,10 @@
 
 compile_m()
 {
-	EXE=`basename $1 .c`-m
+	EXE=`basename $1 .m`-m
 	rm -f $EXE
-        gcc -g -fgnu-runtime -O -c $1
-	gcc -o $EXE -fgnu-runtime `basename $1 .m`.o  -lobjc
+        gcc `gnustep-config --base-libs --objc-flags` -O -c $1
+	#gcc `gnustep-config --base-libs` -o $EXE $1
 }
 
 run_m()
