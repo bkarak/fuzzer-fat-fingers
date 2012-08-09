@@ -7,7 +7,7 @@ use warnings;
 
 # Parse arguments
 use Getopt::Std;
-our($opt_d, $opt_f, $opt_n, $opt_r, $opt_t);
+our($opt_d, $opt_f, $opt_l, $opt_n, $opt_r, $opt_t);
 $opt_n = 1;
 $opt_f = 'SimilarSubstitution';
 
@@ -21,14 +21,20 @@ my @fuzzFunctions = qw(
 
 my $fuzzRe = join('|', @fuzzFunctions);
 
-usage('Illegal option') unless (getopts('df:n:rt'));
+usage('Illegal option') unless (getopts('df:ln:rt'));
 usage('Unknown fuzz function ' . $opt_f) if ($opt_f !~ m/^($fuzzRe)$/);
+
+if ($opt_l) {
+	print join(' ', @fuzzFunctions);
+	exit 0;
+}
 
 sub usage {
 	print STDERR qq{$_[0]
 usage: $0 [-d] [-r] [-t]
 -d	Enable debug output
 -f fuzz	Select fuzz function
+-l	List available fuzzing functions
 -n n	Apply fuzz function n times
 -r	Use a random seed
 -t	Execute unit tests and exit
