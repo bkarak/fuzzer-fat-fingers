@@ -101,15 +101,19 @@ Table~\ref{tab:lang}.
  \hline
 Task Name & Description\\
 \hline
-AccumFactory & \\
-Dow & \\
-FlatList & \\
-FuncComp & \\
-Horner & \\
+AccumFactory \\
+Beers \\
+Dow \\
+FlatList \\
+FuncComp \\
+Horner \\
 Hello & A typical ``hello, world!'' program\\
-Mult & \\
-MutRecursion & \\
-ManBoy & \\
+Mult \\
+MutRecursion \\
+ManBoy \\
+Power \\
+Substring \\
+ZigZag \\
 \hline
 \end{tabular}
 \end{center}
@@ -133,6 +137,34 @@ We measure:
 \end{itemize}
 
 \section{Results} % {{{1
+
+\begin{table*}
+\begin{center}
+% ['c', 'cpp', 'cs', 'hs', 'java']
+\begin{tabular}{ c r r r r r r r r r r r r r r r }
+\hline
+ & \multicolumn{3}{c}{C (\%)} & \multicolumn{3}{c}{C++ (\%)} & \multicolumn{3}{c}{C\# (\%)} & \multicolumn{3}{c}{Haskell (\%)} & \multicolumn{3}{c}{Java (\%)}\\
+ & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out \\
+\hline
+AccumFactory &  42 & 66 & 100 & 42 & 100 & 50 & 33 & 100 & 100 & 42 & 100 & 100 & 42 & 100 & 50 \\
+Hello &  33 & 100 & 100 & 33 & 100 & 100 & 33 & 100 & 100 & 50 & 100 & 100 & 50 & 100 & 100 \\
+FlatList &  42 & 100 & 100 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 100 & 50 & 0 & 0 & 0 \\
+Power &  85 & 66 & 66 & 42 & 100 & 50 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 100 & 100 \\
+ZigZag &  42 & 66 & 100 & 57 & 100 & 66 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 66 & 100 \\
+FuncComp &  71 & 80 & 100 & 42 & 66 & 100 & 42 & 100 & 50 & 33 & 100 & 100 & 33 & 100 & 100 \\
+Substring &  42 & 66 & 100 & 42 & 66 & 100 & 42 & 66 & 100 & 0 & 0 & 0 & 33 & 100 & 100 \\
+ManBoy &  42 & 100 & 50 & 0 & 0 & 0 & 42 & 100 & 50 & 42 & 100 & 50 & 42 & 100 & 50 \\
+Beers &  33 & 100 & 100 & 42 & 100 & 50 & 42 & 100 & 50 & 71 & 80 & 33 & 42 & 100 & 50 \\
+Tokenizer &  42 & 66 & 100 & 33 & 100 & 100 & 33 & 100 & 100 & 0 & 0 & 0 & 33 & 100 & 100 \\
+Horner &  42 & 66 & 100 & 42 & 66 & 100 & 50 & 100 & 100 & 42 & 100 & 50 & 42 & 100 & 50 \\
+MutRecursion &  57 & 75 & 50 & 42 & 66 & 100 & 57 & 100 & 66 & 42 & 66 & 100 & 42 & 66 & 100 \\
+Dow &  42 & 66 & 100 & 42 & 100 & 100 & 42 & 100 & 50 & 57 & 100 & 33 & 42 & 100 & 50 \\
+Mult &  57 & 100 & 33 & 42 & 100 & 50 & 57 & 100 & 66 & 42 & 100 & 50 & 42 & 100 & 50 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
 
 \section{Discussion} % {{{1
 

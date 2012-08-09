@@ -33,6 +33,30 @@ class StatStructure:
 			else:
 				self.fail_run += 1
 
+	def rate_compiled(self):
+		if self.get_total_compiled() == 0:
+			return 0.0
+
+		return float(self.succ_compiled) / float(self.get_total_compiled())
+
+	def rate_fuzz(self):
+		if self.get_total_fuzz() == 0:
+			return 0.0
+
+		return float(self.succ_fuzz) / float(self.get_total_fuzz())
+
+	def rate_run(self):
+		if self.get_total_run() == 0:
+			return 0.0
+
+		return float(self.succ_run) / float(self.get_total_run())
+
+	def rate_output(self):
+		if self.get_total_output() == 0:
+			return 0.0
+
+		return float(self.succ_output) / float(self.get_total_output())
+
 	def get_total_compiled(self):
 		return self.succ_compiled + self.fail_compiled
 
@@ -70,6 +94,9 @@ class TaskAggregator(LineVisitor):
 		if fuzzer_name == 'prime':
 			pass
 
+		if language == 'm':
+			pass
+
 		# results are task_name, (lang, no_compiled_success, no_run_success, no_fuz, no_output_success)
 		results = self.__tasks.get(task_name, {})
 		stat_structure = results.get(language, StatStructure(language))
@@ -77,10 +104,19 @@ class TaskAggregator(LineVisitor):
 		results[language] = stat_structure
 		self.__tasks[task_name] = results
 
+	def __export(self, languages):
+		for (tn, struct_dict) in self.__tasks.iteritems():
+			print "%s & " % (tn,),
+			for lang in languages:
+				ss = struct_dict[lang]
+				print r"%d & %d & %d &" % (ss.rate_compiled()*100, ss.rate_run()*100, ss.rate_output()*100),
+			print "\\\\"		
+
 	def export(self):
 		print 'Export TaskAggregator'
-
-		
+		self.__export(['c', 'cpp', 'cs', 'hs', 'java'])
+		print "--------"
+		self.__export(['js', 'php', 'pl', 'py', 'rb'])
 
 
 def main():
