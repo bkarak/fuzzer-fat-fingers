@@ -25,10 +25,14 @@ srand 1234567 unless ($opt_r);
 # References to arrays of tokens
 my @tokens;
 
+# Total number of tokens
+my $ntokens = 0;
+
 # Read program lines
 my $line = 0;
 while (<>) {
 	@{$tokens[$line]} = tokenize();
+	$ntokens += scalar(@{$tokens[$line]});
 	if ($opt_t) {
 		print join('', @{$tokens[$line]});
 		next;
@@ -51,7 +55,7 @@ exit 0;
 # Substitute a single token with a similar one
 sub similarSubstitutionFuzz {
 	# Try until a substitution succeeds
-	for (my $try2 = 0; $try2 < 100; $try2++) {
+	for (my $try2 = 0; $try2 < $ntokens; $try2++) {
 		# Select first token
 		my $lineIndex = int(rand($line));
 		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
@@ -59,7 +63,7 @@ sub similarSubstitutionFuzz {
 		next if ($class eq 'space');
 
 		# Try replacing this token with an equivalent one
-		for (my $try = 0; $try < 100; $try++) {
+		for (my $try = 0; $try < $ntokens; $try++) {
 			my $lineIndex2 = int(rand($line));
 			my $tokenIndex2 = int(rand($#{$tokens[$lineIndex2]}));
 			my $class2 = tokenClass(${$tokens[$lineIndex2]}[$tokenIndex2]);
