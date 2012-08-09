@@ -45,6 +45,7 @@ Programming Languages, Compiler, Fuzzing, Unit Testing
 \begin{itemize}
 	\item The common case in this experiment is the human factor, how the program responds to human errors (syntax, mistypes).
 	\item The fuzzer that messes with variables and their values follows the standard pattern that is used to test applications and enhance their security against input validation attacks.
+	\item The work presented here, could measure the fault tolerance for these languages. There is a generic term ``software fault tolerance'', which describes te
 	\item Refactoring tools may act as fuzzers (they are programs and we have to assume that they have bugs), thus we are not measuring the resiliense of the programming languages against the human factor, we do it even against automated code refactoring tools.
 \end{itemize}
 
@@ -60,6 +61,8 @@ Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
 
 \begin{table}
 \begin{center}
+\caption{List of selected Rosseta Code tasks.}
+\label{tab:Tasks}
 \begin{tabular}{ l p{4cm}}
  \hline
 Task Name & Description\\
@@ -70,14 +73,27 @@ FlatList & \\
 FuncComp & \\
 Horner & \\
 Hello & A typical ``hello, world!'' program\\
+Mult & \\
 \hline
 \end{tabular}
 \end{center}
-\caption{List of selected Rosseta Code tasks}
-\label{tab:Tasks}	
 \end{table}
 
 \subsection{Methodology}
+
+\begin{itemize}
+	\item Fuzzer categorisation: is the fuzzer result deterministic
+\end{itemize}
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
+	\item Execution Failure: if the program is executing correctly (without crashing)
+	\item Result Error: if the program is not producing the proper result
+\end{itemize}
+
+
 
 \subsection{Results}
 
