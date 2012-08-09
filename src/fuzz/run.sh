@@ -76,7 +76,7 @@ test_version()
 		return
 	fi
 	log RUN $fuzzid OK
-	if diff ../$task.$lang.reference $task.$lang.$fuzzid.output
+	if diff ../$task.$lang.reference $task.$lang.$fuzzid.output >/dev/null
 	then
 		log OUTPUT $fuzzid OK
 	else
