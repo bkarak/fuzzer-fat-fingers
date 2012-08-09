@@ -140,6 +140,17 @@ We measure:
 
 Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
 
+Out approach fuzzes the program with pseudo-random
+perturbations based in same cases on knowledge of
+lexical tokens.
+This can result in a large number of failures.
+An alternative approach, {\em grammar-based white box fuzzing}~\cite{Cog08},
+takes into account the input language's grammar to fuzz the input in
+ways that are syntactically correct.
+This results in a higher rate of successful fuzzing and the location
+of deeper problems.
+
+
 Testing ... \cite{HAM06}
 
 Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
