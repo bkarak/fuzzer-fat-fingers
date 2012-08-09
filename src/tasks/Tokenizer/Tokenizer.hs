@@ -1,3 +1,5 @@
+import Text.Regex.Posix
+
 splitBy :: (a -> Bool) -> [a] -> [[a]]
 splitBy _ [] = []
 splitBy f list = first : splitBy f (dropWhile f rest) where
@@ -12,5 +14,4 @@ joinWith d xs = concat $ List.intersperse d xs
 putStrLn $ joinWith "." $ splitBy (== ',') $ "Hello,How,Are,You,Today"
  
 -- using regular expression to split:
-import Text.Regex
 putStrLn $ joinWith "." $ splitRegex (mkRegex ",") $ "Hello,How,Are,You,Today"
