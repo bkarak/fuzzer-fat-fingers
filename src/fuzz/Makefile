@@ -9,7 +9,7 @@ clean:
 
 test:
 	perl -c fuzzer.pl
-	perl fuzzer.pl -t Makefile | diff Makefile -
-	perl fuzzer.pl -t fuzzer.pl | diff fuzzer.pl -
-	! perl fuzzer.pl fuzzer.pl | diff - fuzzer.pl >/dev/null
-	! perl fuzzer.pl Makefile | diff - Makefile >/dev/null
+	perl fuzzer.pl -t Makefile | diff -b Makefile -
+	perl fuzzer.pl -t fuzzer.pl | diff -b fuzzer.pl -
+	! perl fuzzer.pl fuzzer.pl | diff -b - fuzzer.pl >/dev/null
+	! perl fuzzer.pl Makefile | diff -b - Makefile >/dev/null
