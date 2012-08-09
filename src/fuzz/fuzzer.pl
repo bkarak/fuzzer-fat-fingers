@@ -7,12 +7,33 @@ use warnings;
 
 # Parse arguments
 use Getopt::Std;
-our($opt_t, $opt_r, $opt_d);
-if (!getopts('rtd')) {
-	print STDERR qq{usage: $0 [-d] [-r] [-t]
+our($opt_d, $opt_f, $opt_n, $opt_r, $opt_t);
+$opt_n = 1;
+$opt_f = 'SimilarSubstitution';
+
+my @fuzzFunctions = qw(
+	IdentifierSubstitution
+	IntegerPerturbation
+	RandomCharacterSubstitution
+	RandomTokenSubstitution
+	SimilarSubstitution
+);
+
+my $fuzzRe = join('|', @fuzzFunctions);
+
+usage('Illegal option') unless (getopts('df:n:rt'));
+usage('Unknown fuzz function ' . $opt_f) if ($opt_f !~ m/^($fuzzRe)$/);
+
+sub usage {
+	print STDERR qq{$_[0]
+usage: $0 [-d] [-r] [-t]
 -d	Enable debug output
+-f fuzz	Select fuzz function
+-n n	Apply fuzz function n times
 -r	Use a random seed
 -t	Execute unit tests and exit
+
+fuzz function: $fuzzRe
 };
 	exit 1;
 }
@@ -42,8 +63,10 @@ while (<>) {
 
 exit 0 if ($opt_t);
 
-# Introduce a single fuzz
-fuzzSimilarSubstitution();
+# Fuzz
+for (my $i = 0; $i < $opt_n; $i++) {
+	eval("fuzz$opt_f()");
+}
 
 # Print program
 foreach my $l (@tokens) {
@@ -79,9 +102,18 @@ sub fuzzSimilarSubstitution {
 	exit 1;
 }
 
+# Substitute a single character with a random one
+# This simulates an editor error or typo
+sub fuzzRandomCharacterSubstitution {
+	my $lineIndex = int(rand($line));
+	my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
+	my $tokenLength = length(${$tokens[$lineIndex]}[$tokenIndex]);
+	substr(${$tokens[$lineIndex]}[$tokenIndex], int(rand($tokenLength)), 1) = chr(int(rand(256)));
+}
+
 # Substitute a single token with a random one
 # This simulates a typo
-sub fuzzRandomSubstitution {
+sub fuzzRandomTokenSubstitution {
 	# Try until a substitution succeeds
 	for (my $try2 = 0; $try2 < $ntokens; $try2++) {
 		# Select first token
@@ -128,6 +160,22 @@ sub fuzzIdentifierSubstitution {
 				${$tokens[$lineIndex]}[$tokenIndex] = ${$tokens[$lineIndex2]}[$tokenIndex2];
 				return;
 			}
+		}
+	}
+	exit 1;
+}
+
+# Perturb an integer token by one
+# This simulates an off by one error or a misunderstanding of a status code
+sub fuzzIntegerPerturbation {
+	# Try until a substitution succeeds
+	for (my $try = 0; $try < $ntokens; $try++) {
+		# Select first token
+		my $lineIndex = int(rand($line));
+		my $tokenIndex = int(rand($#{$tokens[$lineIndex]}));
+		if (tokenClass(${$tokens[$lineIndex]}[$tokenIndex]) eq 'int') {
+			${$tokens[$lineIndex]}[$tokenIndex] += int(rand(2)) * 2 - 1;
+			return;
 		}
 	}
 	exit 1;
