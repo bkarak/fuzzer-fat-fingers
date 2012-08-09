@@ -1,4 +1,4 @@
-public class Compose {
+public class FuncComp {
  
     // Java doesn't have function type so we define an interface
     // of function objects instead

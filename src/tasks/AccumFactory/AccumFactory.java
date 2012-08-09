@@ -1,4 +1,4 @@
-public class Accumulator {
+public class AccumFactory {
     private double sum;
     public Accumulator(double sum0) {
         sum = sum0;
