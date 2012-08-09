@@ -12,7 +12,7 @@
 
 \conferenceinfo{PLATEAU '12}{October 21, Tucson (AZ)} 
 \copyrightyear{2012} 
-\copyrightdata{[to be supplied]} 
+\copyrightdata{[to be supplied]}
 
 %\titlebanner{banner above paper title}        % These are ignored unless
 %\preprintfooter{short description of paper}   % 'preprint' option specified.
@@ -36,17 +36,64 @@ This is the text of the abstract.
 term1, term2
 
 \keywords
-Programming Languages, Compiler,
+Programming Languages, Compiler, Fuzzing, Unit Testing
 
 \section{Introduction}
 
-The text of the paper begins here. \cite{C99}
+\cite{C99}
+
+\begin{itemize}
+	\item The common case in this experiment is the human factor, how the program responds to human errors (syntax, mistypes).
+	\item The fuzzer that messes with variables and their values follows the standard pattern that is used to test applications and enhance their security against input validation attacks.
+	\item The work presented here, could measure the fault tolerance for these languages. There is a generic term ``software fault tolerance'', which describes te
+	\item Refactoring tools may act as fuzzers (they are programs and we have to assume that they have bugs), thus we are not measuring the resiliense of the programming languages against the human factor, we do it even against automated code refactoring tools.
+\end{itemize}
 
 \section{Related Work}
 
+Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
+
+Testing ... \cite{HAM06}
+
+Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
+
 \section{Experiment}
 
+\begin{table}
+\begin{center}
+\caption{List of selected Rosseta Code tasks.}
+\label{tab:Tasks}
+\begin{tabular}{ l p{4cm}}
+ \hline
+Task Name & Description\\
+\hline
+AccumFactory & \\
+Dow & \\
+FlatList & \\
+FuncComp & \\
+Horner & \\
+Hello & A typical ``hello, world!'' program\\
+Mult & \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \subsection{Methodology}
+
+\begin{itemize}
+	\item Fuzzer categorisation: is the fuzzer result deterministic
+\end{itemize}
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
+	\item Execution Failure: if the program is executing correctly (without crashing)
+	\item Result Error: if the program is not producing the proper result
+\end{itemize}
+
+
 
 \subsection{Results}
 

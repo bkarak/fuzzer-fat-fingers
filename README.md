@@ -16,9 +16,7 @@ Now comes the difficult part: The submission deadline is August 10th! Papers sho
 
 
 [[1] http://splashcon.org/2012/program/panels/460-software-tools-research-panel](http://splashcon.org/2012/program/panels/460-software-tools-research-panel)
-
 [[2] https://sites.google.com/site/workshopplateau/call-for-submissions](https://sites.google.com/site/workshopplateau/call-for-submissions)
-
 [[3] http://rosettacode.org/](http://rosettacode.org/)
 
 Selected languages (based on popularity)
@@ -52,9 +50,9 @@ Selected:
 * [http://rosettacode.org/wiki/Flatten_a_list](http://rosettacode.org/wiki/Flatten_a_list)
 * [http://rosettacode.org/wiki/Accumulator_factory](http://rosettacode.org/wiki/Accumulator_factory)
 * [http://rosettacode.org/wiki/Function_composition](http://rosettacode.org/wiki/Function_composition)
-
-* [http://rosettacode.org/wiki/Dot_product](http://rosettacode.org/wiki/Dot_product)
-
+* [http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation](http://rosettacode.org/wiki/Horner%27s_rule_for_polynomial_evaluation)
+* [http://rosettacode.org/wiki/Ethiopian_multiplication] (http://rosettacode.org/wiki/Ethiopian_multiplication)
+* [http://rosettacode.org/wiki/Mutual_recursion} (http://rosettacode.org/wiki/Mutual_recursion)
 Disqualified:
 
 * [http://rosettacode.org/wiki/Pi](http://rosettacode.org/wiki/Pi) - missing languages
