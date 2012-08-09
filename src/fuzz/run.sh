@@ -12,11 +12,14 @@ do
 done
 
 TASKS=$(cd ../tasks ; find . -maxdepth 1 -type d | sed '/^\.$/d;s/^\.\///')
-
+FUZZFUNCS="`perl fuzzer.pl -l`"
 FUZZ=1
 
-while getopts 't:l:v' opt; do
+while getopts 'f:l:t:v' opt; do
   case $opt in
+    f)
+      FUZZFUNCS="$OPTARG"
+      ;;
     t)
       TASKS="$OPTARG"
       ;;
@@ -28,8 +31,9 @@ while getopts 't:l:v' opt; do
       ;;
     \?)
       cat <<EOF >&2
-"Invalid option: -$OPTARG" 
+"Invalid option: -$OPTARG"
 Usage: $0 [-l lang] [-t task] [-v]
+-f fuzzfunc	Execute only the specified fuzz function
 -l lang		Run only specified language
 -t task		Run only specified task
 -v		Verify tasks, to not fuzz
@@ -117,15 +121,18 @@ do
 		then
 			continue
 		fi
-		echo Fuzzing $task for $lang with fuzz 1 1>&2
-		mkdir -p ../run/fuzz/$task/$lang/fuzz1
-		if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/fuzz1/$task.$lang
-		then
-			log FUZZ fuzz1  OK
-		else
-			log FUZZ fuzz1  FAIL
-			continue
-		fi
-		test_version fuzz1 ../run/fuzz/$task/$lang/fuzz1/$task.$lang
+		for fuzz in $FUZZFUNCS
+		do
+			echo Fuzzing $task for $lang with $fuzz 1>&2
+			mkdir -p ../run/fuzz/$task/$lang/$fuzz
+			if perl fuzzer.pl <../tasks/$task/$task.$lang >../run/fuzz/$task/$lang/$fuzz/$task.$lang
+			then
+				log FUZZ $fuzz  OK
+			else
+				log FUZZ $fuzz  FAIL
+				continue
+			fi
+			test_version $fuzz ../run/fuzz/$task/$lang/$fuzz/$task.$lang
+		done
 	done
 done
