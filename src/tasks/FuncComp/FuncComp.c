@@ -1,16 +1,15 @@
-#include <stdlib.h>
-#include <math.h> 
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <math.h>
 
 #define CALL(f, x) f->fn(f, x)
- 
+
 /* generic interface for functors from double to double */
 
 typedef struct double_to_double {
   double (*fn)(struct double_to_double *, double);
 } double_to_double;
- 
+
 /* functor returned by compose */
 typedef struct compose_functor {
   double (*fn)(struct compose_functor *, double);
@@ -33,8 +32,8 @@ double_to_double *compose(double_to_double *f,
   result->g = g;
   return (double_to_double *)result;
 }
-  
-/* we can make functors for sin and asin by using 
+
+/* we can make functors for sin and asin by using
    the following as "fn" in a functor */
 double sin_call(double_to_double *this, double x) {
   return sin(x);
@@ -42,20 +41,20 @@ double sin_call(double_to_double *this, double x) {
 double asin_call(double_to_double *this, double x) {
   return asin(x);
 }
-  
+
 int main() {
   double_to_double *my_sin = malloc(sizeof(double_to_double));
   my_sin->fn = &sin_call;
   double_to_double *my_asin = malloc(sizeof(double_to_double));
   my_asin->fn = &asin_call;
- 
+
   double_to_double *sin_asin = compose(my_sin, my_asin);
- 
+
   printf("%f\n", CALL(sin_asin, 0.5)); /* prints "0.500000" */
- 
+
   free(sin_asin);
   free(my_sin);
   free(my_asin);
- 
+
   return 0;
 }
