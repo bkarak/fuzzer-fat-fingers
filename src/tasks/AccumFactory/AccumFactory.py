@@ -1,11 +1,11 @@
 def accumulator(sum):
   def f(n):
-    nonlocal sum
-    sum += n
-    return sum
+    global s
+    s += n
+    return s
   return f
- 
+
+s = 0
 x = accumulator(1)
 x(5)
-print(accumulator(3))
 print(x(2.3))
