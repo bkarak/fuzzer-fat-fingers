@@ -85,14 +85,11 @@ programming languages,
 and by analyzing tens of thousands of cases we present an overview of
 the likelihood and impact of these errors among diverse languages.
 
-In the remainder of this paper we present our
-methods (Section~\ref{sec:method}) and
-results (Section~\ref{sec:results}),
-we discuss our findings (Section~\ref{sec:discussion}),
-compare our approach against related work
-(Section~\ref{sec:related}),
-and conclude with proposals for further work
-(Section~\ref{sec:conclusions}).
+In the remainder of this paper we
+outline our methods (Section~\ref{sec:method}),
+present and discuss our findings (Section~\ref{sec:results}),
+compare our approach against related work (Section~\ref{sec:related}),
+and conclude with proposals for further study (Section~\ref{sec:conclusions}).
 
 \section{Methodology} % {{{1
 \label{sec:method}
@@ -341,7 +338,7 @@ We collected the results of these operations in an 86 thousand row
 table,
 which we analyzed through simple scripts.
 
-\section{Results} % {{{1
+\section{Results and Discussion} % {{{1
 \label{sec:results}
 
 \begin{table*}
@@ -364,12 +361,34 @@ Ruby       & 52.3 & 11.8 & 9.1  & 100.0 & 91.1 & 31.6  & 27.6 & 14.7 & 12.3 & 33
 \textbf{Mean} & 30.6 & 14.0 & 6.2  & 95.1  & 74.5 & 15.8  & 15.1 & 9.7  & 5.3  & 12.8 & 8.5  & 3.5  & 30.3 & 18.7 & 6.6 \\
 \end{tabular}
 \end{center}
-\caption{Aggregated results per language}
+\caption{Success rates for each phase, fuzz operation, and language.}
 \label{tbl:aggregated-per-language}
 \end{table*}
 
-\section{Discussion} % {{{1
-\label{sec:discussion}
+
+In total we tested
+% grep 'original COMPILE OK' run2.out | wc -l
+133 task implementations
+% grep FUZZ run2.out |wc -l
+attempting 35,000 fuzzing operations,
+% grep 'FUZZ OK' run2.out |wc -l
+of which 32,602 (93\%) were successful.
+% egrep -v 'original|prime' run2.out | fgrep 'COMPILE OK' | wc -l
+From the fuzzed programs 10,999 (34\%)
+compiled or were syntax-checked without a problem.
+% egrep -v 'original|prime' run2.out | fgrep 'RUN OK' | wc -l
+From those programs 7,348 (67\%, or 22\% of the fuzzed total) terminated successfully.
+Of those 2,301 produced identical results, indicating that the fuzz was
+inconsequential to the program's operation.
+% egrep -v 'original|prime' run2.out | fgrep 'OUTPUT FAIL' | wc -l
+The rest, 5,045 programs (69\% of those that run, 15\% of the fuzzed total),
+compiled and run without a problem, but produced wrong results.
+
+
+The aggregate results for each fuzz type, phase, and language are summarized in
+Table~\ref{tbl:aggregated-per-language}.
+
+
 
 \section{Related Work} % {{{1
 \label{sec:related}
