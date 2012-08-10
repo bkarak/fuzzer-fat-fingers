@@ -132,6 +132,7 @@ class AggregatedTasks(LineVisitor):
 			print "%s & %.1f & %.1f & %.1f\\\\" % (self.lang_names[l], 100*_total_rate_com, 100*_total_rate_run, 100*_total_rate_out)
 
 		_grand_total_succ_out = _dict_fz.get_value("grand_total_succ_out")
+
 		_grand_total_com_rate = float(_dict_fz.get_value("grand_total_com") - _grand_total_succ_out) / float(_dict_fz.get_value("grand_total_fuzz"))
 		_grand_total_run_rate = float(_dict_fz.get_value("grand_total_run") - _grand_total_succ_out) / float(_dict_fz.get_value("grand_total_fuzz"))
 		_grand_total_out_rate = float(_dict_fz.get_value("grand_total_out")) / float(_dict_fz.get_value("grand_total_fuzz"))
