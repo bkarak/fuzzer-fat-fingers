@@ -3,9 +3,9 @@
 
 % The following \documentclass options may be useful:
 %
-% 10pt          To set in 10-point type instead of 9-point.
-% 11pt          To set in 11-point type instead of 9-point.
-% authoryear    To obtain author/year citation style instead of numeric.
+% 10pt     To set in 10-point type instead of 9-point.
+% 11pt     To set in 11-point type instead of 9-point.
+% authoryear  To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
 \usepackage{bbding}
@@ -18,15 +18,15 @@
 \copyrightyear{2012} 
 \copyrightdata{[to be supplied]}
 
-%\titlebanner{banner above paper title}        % These are ignored unless
-%\preprintfooter{short description of paper}   % 'preprint' option specified.
+%\titlebanner{banner above paper title}    % These are ignored unless
+%\preprintfooter{short description of paper}  % 'preprint' option specified.
 
 \title{Programming Languages vs. Fat Fingers}
 \subtitle{An Empirical Study}
 
 \authorinfo{Diomidis Spinellis\and Vassilios Karakoidas}
-           {Athens University of Economics and Business}
-           {\{dds, bkarak\}@aueb.gr}
+      {Athens University of Economics and Business}
+      {\{dds, bkarak\}@aueb.gr}
 
 \maketitle
 
@@ -129,10 +129,16 @@ ZigZag \\
 \end{table}
 
 Fuzzing types
-\begin{itemize}
-\item Replace one random token with another.
-This simulates abbsent-mindendness 
-\end{itemize}
+
+% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
+\begin{description}
+	\item [IdentifierSubstitution (IdSub)]
+	\item [IntegerPerturbation (IntPert)]
+	\item [RandomCharacterSubstitution (RandCharSub)]
+	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
+
+	\item [SimilarSubstitution (SimSub)]
+\end{description}
 
 the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
 
@@ -150,31 +156,54 @@ We measure:
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
 \caption{Language Compatibility per Task}
-\label{tbl:lang-}
+\label{tbl:lang-compatibility}
 \begin{tabular}{l c c c c c c c c c c}
  \hline
  & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby\\
 \hline
-AccumFactory & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Hello & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-FlatList & \ding{51}  & \ding{55}  & \ding{55}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Power & \ding{51}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-ZigZag & \ding{51}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-FuncComp & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Substring & \ding{51}  & \ding{51}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-ManBoy & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Beers & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Tokenizer & \ding{51}  & \ding{51}  & \ding{51}  & \ding{55}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Horner & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-MutRecursion & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Dow & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
-Mult & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51}  & \ding{51} \\
- & 14  & 13  & 11  & 12  & 13  & 13  & 14  & 14  & 14  & 14 \\
+AccumFactory & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Hello & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+FlatList & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Power & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+ZigZag & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+FuncComp & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Substring & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+ManBoy & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Beers & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Tokenizer & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Horner & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+MutRecursion & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Dow & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Mult & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+ & 14 & 13 & 11 & 12 & 13 & 13 & 14 & 14 & 14 & 14 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
+\begin{table*}
+\begin{center}
+\caption{Aggregated results per language}
+\label{tbl:aggregated-per-language}
+\begin{tabular}{ l r r r r r r r r r r r r r r r r r r }
+ \hline
+ & \multicolumn{3}{c}{IdSub (\%)} & \multicolumn{3}{c}{IntPert (\%)} & \multicolumn{3}{c}{RandCharSub (\%)} & \multicolumn{3}{c}{RandTokenSub (\%)} & \multicolumn{3}{c}{SimSub (\%)}\\
+ & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out\\
+\hline
+C & 16 & 84 & 74 & 100 & 52 & 35 & 7 & 100 & 84 & 5 & 94 & 66 & 20 & 80 & 57 \\
+C++ & 5 & 87 & 79 & 91 & 51 & 13 & 3 & 100 & 92 & 2 & 94 & 52 & 8 & 86 & 44 \\
+C\# & 6 & 100 & 95 & 69 & 93 & 18 & 4 & 100 & 96 & 3 & 100 & 90 & 7 & 96 & 80 \\
+Haskell & 4 & 48 & 23 & 89 & 93 & 12 & 3 & 92 & 66 & 3 & 91 & 54 & 13 & 83 & 18 \\
+Java & 5 & 69 & 80 & 100 & 82 & 24 & 3 & 95 & 95 & 2 & 81 & 92 & 7 & 81 & 48 \\
+Javascript & 65 & 27 & 31 & 100 & 79 & 7 & 30 & 31 & 82 & 15 & 38 & 32 & 57 & 40 & 22 \\
+PHP & 56 & 60 & 8 & 99 & 88 & 18 & 37 & 87 & 5 & 25 & 92 & 4 & 46 & 86 & 3 \\
+Perl & 57 & 50 & 25 & 100 & 91 & 24 & 15 & 76 & 58 & 18 & 77 & 34 & 44 & 61 & 38 \\
+Python & 43 & 39 & 72 & 100 & 75 & 19 & 18 & 37 & 89 & 20 & 51 & 54 & 45 & 52 & 42 \\
+Ruby & 52 & 22 & 77 & 100 & 91 & 34 & 27 & 53 & 83 & 33 & 47 & 69 & 57 & 46 & 59 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
 
 \section{Discussion} % {{{1
 

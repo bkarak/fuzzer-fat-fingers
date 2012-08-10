@@ -153,15 +153,22 @@ class AggregatedTasks(LineVisitor):
 		
 	def export(self):
 		print 'Export AggregatedTasks'
+		print self.fuzzers
+
 		for l in self.langs_export:
 			print "%s &" % (self.lang_names[l]),
 			results = self.__languages[l]
 
 			for fz in self.fuzzers:
-				fuzzer_dict = results[fz]
+				fd = results[fz]
+				if fz == 'prime' or fz == 'original':
+					continue
 
+				print "%d & %d & %d" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
+				if fz != self.fuzzers[len(self.fuzzers) - 1]:
+					print " &",
 
-
+			print "\\\\"
 
 
 class LanguageStatus(LineVisitor):
