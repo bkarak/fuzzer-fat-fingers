@@ -305,13 +305,13 @@ they implemented automation shell scripts and a fuzzer, a program that generated
 random character sequences according to certain specifications.
 
 Fuzzing is used mainly to detect software security vulnerabilities and 
-improve overall reliability \cite{TJC08}. Several tools and techniques \cite{WWGZ11,GLRI09}
-have been developed, introducing concept like \textit{directed fuzz testing}.
+improve overall reliability \cite{TJC08,GODE07}. Several tools and techniques \cite{WWGZ11}
+have been developed, introducing concept like \textit{directed fuzz testing} \cite{GLRI09}.
 
 Our approach fuzzes the program with pseudo-random
 perturbations based in same cases on knowledge of
-lexical tokens.
-This can result in a large number of failures.
+lexical tokens. This can result in a large number of failures.
+
 An alternative approach, {\em grammar-based white box fuzzing}~\cite{God08},
 takes into account the input language's grammar to fuzz the input in
 ways that are syntactically correct.
