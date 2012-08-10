@@ -70,6 +70,7 @@ class AggregatedTasks(LineVisitor):
 		
 	def export(self):
 		print 'Export AggregatedTasks'
+		self.fuzzers = ['FuzzIntegerPerturbation', 'FuzzIdentifierSubstitution', 'FuzzSimilarSubstitution', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution']
 		print self.fuzzers
 		_dict_fz = data_structures.DictCount()
 
@@ -88,7 +89,7 @@ class AggregatedTasks(LineVisitor):
 				# last line
 				_dict_fz.add("%s.com"%fz, val=fd.succ_compiled)
 				_dict_fz.add("%s.run"%fz, val=fd.succ_run)
-				_dict_fz.add("%s.out"%fz, val=fd.succ_output)
+				_dict_fz.add("%s.out"%fz, val=fd.fail_output)
 				_dict_fz.add("%s.fuzz"%fz, val=fd.succ_fuzz)
 
 				# total for all fuzzers

@@ -44,7 +44,7 @@ class StatStructure(object):
 		return float(self.succ_run) / float(self.__get_succ_fuzz())
 
 	def rate_output(self):
-		return float(self.succ_output) / float(self.__get_succ_fuzz())
+		return float(self.fail_output) / float(self.__get_succ_fuzz())
 
 	def __get_succ_fuzz(self):
 		if self.succ_fuzz == 0:
