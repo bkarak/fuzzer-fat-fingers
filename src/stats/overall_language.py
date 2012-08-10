@@ -94,7 +94,7 @@ class AggregatedTasks(LineVisitor):
 				# total for all fuzzers
 				_dict_fz.add("%s.total_com"%l, val=fd.succ_compiled)
 				_dict_fz.add("%s.total_run"%l, val=fd.succ_run)
-				_dict_fz.add("%s.total_out"%l, val=fd.succ_output)
+				_dict_fz.add("%s.total_out"%l, val=fd.fail_output)
 				_dict_fz.add("%s.total_fuzz"%l, val=fd.succ_fuzz)
 
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
