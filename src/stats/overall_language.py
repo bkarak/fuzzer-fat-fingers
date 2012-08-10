@@ -95,7 +95,6 @@ class AggregatedTasks(LineVisitor):
 				_dict_fz.add("%s.total_com"%l, val=fd.succ_compiled)
 				_dict_fz.add("%s.total_run"%l, val=fd.succ_run)
 				_dict_fz.add("%s.total_out"%l, val=fd.fail_output)
-				_dict_fz.add("%s.total_succ_out"%l, val=fd.succ_output)
 				_dict_fz.add("%s.total_fuzz"%l, val=fd.succ_fuzz)
 
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
@@ -119,23 +118,23 @@ class AggregatedTasks(LineVisitor):
 		print "---- summary"
 
 		for l in self.langs_export:
-			_total_rate_com = float(_dict_fz.get_value("%s.total_com"%l) - _dict_fz.get_value("%s.total_succ_out"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
-			_total_rate_run = float(_dict_fz.get_value("%s.total_run"%l) - _dict_fz.get_value("%s.total_succ_out"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
-			_total_rate_out = float(_dict_fz.get_value("%s.total_out"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
+			_succ_fuz = _dict_fz.get_value("%s.total_fuzz"%l)
+			
+			_total_rate_com = float(_dict_fz.get_value("%s.total_com"%l)) / float(_succ_fuz)
+			_total_rate_run = float(_dict_fz.get_value("%s.total_run"%l)) / float(_succ_fuz)
+			_total_rate_out = float(_dict_fz.get_value("%s.total_out"%l)) / float(_succ_fuz)
 
 			_dict_fz.add("grand_total_com", val=_dict_fz.get_value("%s.total_com"%l))
 			_dict_fz.add("grand_total_run", val=_dict_fz.get_value("%s.total_run"%l))
 			_dict_fz.add("grand_total_out", val=_dict_fz.get_value("%s.total_out"%l))
-			_dict_fz.add("grand_total_succ_out", val=_dict_fz.get_value("%s.total_succ_out"%l))
-			_dict_fz.add("grand_total_fuzz", val=_dict_fz.get_value("%s.total_fuzz"%l))
+			_dict_fz.add("grand_total_fuzz", val=_succ_fuz)
 
 			print "%s & %.1f & %.1f & %.1f\\\\" % (self.lang_names[l], 100*_total_rate_com, 100*_total_rate_run, 100*_total_rate_out)
 
-		_grand_total_succ_out = _dict_fz.get_value("grand_total_succ_out")
-
-		_grand_total_com_rate = float(_dict_fz.get_value("grand_total_com") - _grand_total_succ_out) / float(_dict_fz.get_value("grand_total_fuzz"))
-		_grand_total_run_rate = float(_dict_fz.get_value("grand_total_run") - _grand_total_succ_out) / float(_dict_fz.get_value("grand_total_fuzz"))
-		_grand_total_out_rate = float(_dict_fz.get_value("grand_total_out")) / float(_dict_fz.get_value("grand_total_fuzz"))
+		_grand_total_succ_fuzz = _dict_fz.get_value("grand_total_fuzz")
+		_grand_total_com_rate = float(_dict_fz.get_value("grand_total_com")) / float(_grand_total_succ_fuzz)
+		_grand_total_run_rate = float(_dict_fz.get_value("grand_total_run")) / float(_grand_total_succ_fuzz)
+		_grand_total_out_rate = float(_dict_fz.get_value("grand_total_out")) / float(_grand_total_succ_fuzz)
 
 		print "\\textbf{Mean} & \\textbf{%.1f} & \\textbf{%.1f} & \\textbf{%.1f}\\\\" % (100*_grand_total_com_rate, 100*_grand_total_run_rate, 100*_grand_total_out_rate)
 
