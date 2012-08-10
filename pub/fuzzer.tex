@@ -361,7 +361,7 @@ Perl       & 100  & 91   & 22.1 & 57.9 & 29.3 & 7.4	 & 44.3	& 27.3 & 10.5 & 15.1
 Python     & 100  & 75.3 & 14.4 & 43.3 & 17.3 & 12.6 & 45.2	& 23.6 & 10.0 & 18.3 & 6.9	& 6.1  & 20.7 & 10.6 & 5.7\\
 Ruby       & 100  & 91.1 & 31.6 & 52.3 & 11.8 & 9.1	 & 58	& 27   & 16.1 & 27.6 & 14.7	& 12.3 & 33.4 & 15.8 & 11.1\\
 \hline															
-\textbf{Mean} & 95.1 & 74.5 & 15.8 & 30.6 & 14.0 & 6.2  & 30.3 & 18.7 & 6.6  & 15.1 & 9.7  & 5.3  & 12.8 & 8.5  & 3.5\\
+\textbf{Mean} & \textbf{95.1} & \textbf{74.5} & \textbf{15.8} & \textbf{30.6} & \textbf{14.0} & \textbf{6.2} & \textbf{30.3} & \textbf{18.7} & \textbf{6.6} & \textbf{15.1} & \textbf{9.7} & \textbf{5.3} & \textbf{12.8} & \textbf{8.5} & \textbf{3.5}\\
 \end{tabular}
 \end{center}
 \caption{Aggregated results per language}
@@ -414,7 +414,7 @@ Type systems are usually realized as type checkers in compilers and linkers of p
 
 In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
 
-Statically typed languages are less tolerant to our approach, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are more tolerant and usually they fail upon execution or produce corrupted output.
+Statically typed languages are less tolerant to fuzzing, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are more tolerant and usually they fail upon execution or produce corrupted output.
 
 \section{Conclusions} % {{{1
 \label{sec:conclusions}
