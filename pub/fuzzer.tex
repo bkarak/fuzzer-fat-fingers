@@ -65,15 +65,16 @@ To study these questions we chose ten popular programming languages,
 and a corpus of programs written in all of them.
 We then constructed a source code mutation {\em fuzzer}:
 a tool that systematically introduces diverse random perturbations
-into the program's source code,
-and examined whether the resultant source code had errors that
-were detected at compile or runtime, and whether it produced
+into the program's source code.
+Finally, we applied the fuzzing tool on the source code corpus
+and examined whether the resultant code had errors that
+were detected at compile or run time, and whether it produced
 erroneous results.
 
 In practice,
 the errors that we artificially introduced into the source code can
 crop up in a number of ways.
-Mistyping---the ``fat fingers'' syndrome-- is one plausible source.
+Mistyping---the ``fat fingers'' syndrome---is one plausible source.
 Other scenarios include
 absent-mindedness,
 automated refactorings gone awry
@@ -89,7 +90,7 @@ class of errors.
 In addition, we apply this method to numerous tasks written in ten popular
 programming languages,
 and by analyzing tens of thousands of cases we present an overview of
-the likelihood and impact of these errors among diverse languages.
+the likelihood and impact of these errors among ten popular languages.
 
 In the remainder of this paper we
 outline our methods (Section~\ref{sec:method}),
@@ -117,7 +118,7 @@ Python 		& python 2.6.6 \\
 Ruby 		& ruby 1.5.8 \\
 \end{tabular}
 \end{center}
-\caption{Tested languages.}
+\caption{Studied languages.}
 \label{tab:langs}
 \end{table}
 
@@ -127,27 +128,28 @@ an index created by
 {\sc tiobe}\footnote{\url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}} (a software research firm),
 the number of book titles listed on Powell's Books,
 references in online discussions on {\sc irc}, and
-number of job posts on Craigslist.
+the number of job posts on Craigslist.
 From the superset of the popular languages listed in those
 sources we excluded
 Actionscript, Visual Basic, {\sc sql}, Objective C, and the Unix shell,
 because the corresponding programs or infrastructure would not match our methods.
-According to the source composition,
-our language coverage ranges from 71\% to 86\% of all languages.
-The list of the ten languages we used in our study and the
+According to the source of the popularity index,
+the coverage of the languages we selected over all languages
+ranges from 71\% to 86\%.
+The list of the ten languages we adopted for our study and the
 particular implementations we used are listed in
 Table~\ref{tab:langs}.
 
-We obtained source code executing the same task in all ten
-languages of our study from
+We obtained fragments of source code executing the same task in all of
+our study's ten languages from
 {\em Rosetta Code},\footnote{\url{http://rosettacode.org/}}
 a so-called programming chrestomathy site,
-organized in the form of a wiki.
+implemented as a wiki.
 In the words of its creators,
 the site aims is to present code for the same task in as many languages as possible,
 thus demonstrating their similarities and differences and
 aiding persons with a grounding in one approach to a problem in learning another.
-At the time of the writing {\em Rosetta Code}
+At the time of our writing {\em Rosetta Code}
 listed 600 tasks and code in 470 languages.
 However, most of the tasks are presented only in a subset of those languages.
 
@@ -244,7 +246,7 @@ splits it into tokens,
 performs a single random modification from a set of
 predefined types,
 and outputs the result.
-The program uses regular expressions to group tokens int
+The program uses regular expressions to group tokens into
 six categories:
 identifiers (including reserved words),
 horizontal white space (spaces and tabs),
@@ -257,7 +259,7 @@ Based on this categorization,
 we defined the following five modification types.
 \begin{description}
 \item [Identifier Substitution --- IdSub]
-A single randomly chose identifier is replaced with another one,
+A single randomly chosen identifier is replaced with another one,
 randomly-chosen from the program's tokens.
 This change can simulate absent-mindedness, a semantic error, or
 a search-and-replace or refactoring operation gone awry.
@@ -266,7 +268,7 @@ The value of a randomly chosen integer constant
 is randomly perturbed by $1$ or $-1$.
 This change simulates off-by-one errors.
 \item [Random Character Substitution --- RandCharSub]
-A single randomly chosen character (byte) within a randomly chose token
+A single randomly chosen character (byte) within a randomly chosen token
 is substituted with a random byte.
 This change simulates a typo or error in a complex editing command.
 \item [Similar Token Substitution --- SimSub]
@@ -277,17 +279,17 @@ randomly chosen from the program's source code.
 This change simulates absent-mindedness and semantic errors.
 \item [Random Token Substitution --- RandTokenSub]
 A single randomly chosen non-space token
-is substituted with another token of the same category,
+is substituted with another token.
 This change can simulate most of the previously described errors.
 \end{description}
 
-Most fuzzing operations are implemented in a Monte Carlo style:
+Most fuzzing operations are implemented in a Monte Carlo fashion:
 tokens are randomly chosen until they match the operation's constraints.
 To aid the reproducibility of our results,
 the fuzzer's random number generator is seeded with a constant value,
 offset by another constant argument that is incremented on each successive run
 and a hash value of the specified fuzzing operation.
-Thus each time the fuzzer is executed with the same parameters it
+Thus, each time the fuzzer is executed with the same parameters it
 produces the same results.
 
 To run our tasks we created for each one of our languages two methods.
@@ -296,11 +298,11 @@ For interpreted languages this method checks the program's syntactic validity.
 The aim of this ``compilation'' method is to test for errors that can
 be statically detected before deployment.
 The second method invokes (if required) the particular language's
-runtime environment to run the executable program
+run time environment to run the executable program
 (or the source code for interpreted languages),
 and stores the results into a file.
 
-A separate driver program compiled and run all the tasks from the ten
+A separate driver program compiles and runs all the tasks from the ten
 languages introducing fuzz into their source code.
 As a task's programs written in different languages produce slightly
 different results,
@@ -331,15 +333,14 @@ We had cases where the fuzzed code failed to terminate.
 We detected those cases by imposing a 5s timeout on the time a program
 was allowed to execute.
 \item[Output Validity --- out]
-The fuzzed program is producing the results different from those of
+The fuzzed program is producing results different from those of
 the original one.
 \end{description}
 
 The driver program run a complete fuzz, compile, run, verify cycle
 for each of the five fuzz operations 50 times for
 each task and each supported language.
-We collected the results of these operations in an 86 thousand row
-table,
+We collected the results of these operations in an 86,627 row table,
 which we analyzed through simple scripts.
 
 \section{Results and Discussion} % {{{1
@@ -359,30 +360,31 @@ From the fuzzed programs 10,999 (34\%)
 compiled or were syntax-checked without a problem.
 % egrep -v 'original|prime' run2.out | fgrep 'RUN OK' | wc -l
 From those programs 7,348 (67\%, or 22\% of the fuzzed total) terminated successfully.
-Of those 2,301 produced identical results, indicating that the fuzz was
+Of those 2,301 produced output identical to the reference one,
+indicating that the fuzz was
 inconsequential to the program's operation.
 % egrep -v 'original|prime' run2.out | fgrep 'OUTPUT FAIL' | wc -l
 The rest, 5,045 programs (69\% of those that run, 15\% of the fuzzed total),
-compiled and run without a problem, but produced wrong results.
+compiled and run without a problem, but produced wrong output.
 
 These aggregate results indicate that we chose an effective set
 of fuzzing methods.
 Syntax and semantic checking appear to be an effective but not
 fail-safe method for detecting the fuzz errors we introduced,
 as they blocked about two thirds of the fuzzed programs.
-A large percentage of the programs also executed without an error,
+A large percentage of the programs also terminated successfully,
 giving us in the end wrong results for 15\% of the programs.
 
 This is worrying:
 it indicates that a significant number of trivial changes in a program's source
 code that can happen accidentally will not be caught at compile and run
-time and result in an erroneously operating program.
+time and will result in an erroneously operating program.
 In an ideal case we would want program code to have enough redundancy
 so that such small changes would result in an incorrect program
 that would not compile.
 However, as any user of {\sc raid} storage can attest,
 redundancy comes at a cost.
-Programming productivity in such language would suffer as programmers
+Programming productivity in such a language would suffer as programmers
 would have to write more code and keep in sync mutually dependent parts
 of the code.
 
@@ -396,7 +398,7 @@ of the code.
 
 The aggregate results per language are summarized in Figure~\ref{fig:results}
 in the form of {\em failure modes}:
-successful compiles or executions, which consequently failed to catch an
+successful compilations or executions, which consequently failed to catch an
 erroneous program and resulted in wrong results.
 The rationale behind this depiction is that the later in the software
 development life cycle an error is caught the more damaging it is.
@@ -412,7 +414,7 @@ caught more errors at compile time than languages
 with weak or dynamic type systems
 (Ruby, Python, Perl, {\sc php}, and JavaScript).
 Somewhat predictably, C fell somewhere in the middle,
-confirming a belief that its type system is not as strong
+confirming a widely-held belief that its type system is not as strong
 as many of its adherents (including this article's first author)
 think it is.
 However, C produced a higher number of run-time errors,
@@ -421,8 +423,9 @@ similar to that of the other strongly-typed languages.
 
 A picture similar to that of compile-time errors
 is also apparent for run time behavior.
-Again, code written in weakly-typed languages are more probable to run without
-a problem than code written in languages with a strong type system.
+Again, code written in weakly-typed languages is more probable to run without
+a problem (a crash or an exception)
+than code written in languages with a strong type system.
 As one would expect these two differences result in a higher rate of
 wrong output from programs written in languages with weak typing.
 With an error rate of 37\% for {\sc php} against one of 8\% for
@@ -475,10 +478,12 @@ Identifier substitution ({\em IdSub}) and similar token substitution
 Although one might expect that {\em IdSub} would be more difficult
 to detect than the wider-ranging {\em SimSub},
 our fuzzer's treatment of reserved words as identifiers
-probably gave the game away.
+probably gave the game away by having {\em SimSub} introduce many
+trivial syntax errors.
 Nevertheless, {\em SimSub} resulted in a significantly higher number
-of successful runs and erroneous results.
-The erroneous results for {\em SimSub} were dramatically higher
+of successful runs and consequent erroneous results.
+Interestingly,
+the erroneous results for {\em SimSub} were dramatically higher
 than those for {\em IdSub} in the case of
 languages with a more imaginative syntax, like Python, Haskell, and Ruby.
 
@@ -492,6 +497,7 @@ with non-{\sc ascii} characters.
 Finally, the random token substitution resulted in the lowest number
 of successful compilations or runs and consequently
 also a low number of erroneous results.
+However,
 {\sc php} performed particularly badly in this area indicating a
 dangerously loose syntax.
 
@@ -540,7 +546,7 @@ Type systems are usually realized as type checkers in compilers and linkers of p
 
 In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
 
-Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at runtime and usually they fail upon execution or produce corrupted output.
+Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at run time and usually they fail upon execution or produce corrupted output.
 
 Different behaviour and productivity issues of the programmers are also pointed out in reference \cite{RWSB68}, which states that high-level abstractions of PL/I. helped programmers to write fewer program statements, but with higher frequency of errors. To support this, a programmer implemented twice seven benchmark problems in PL/I and in one other language; Cobol, Fortran and Jovial. The aforementioned publication is very interesting, because it correlates directly the language abstractions with the user productivity and efficiency, in terms of valid program code, with the comparison of programming languages. It is an experinment similar to the one presented in this research.
 
@@ -550,7 +556,7 @@ Different behaviour and productivity issues of the programmers are also pointed 
 The work we described in this study cries to be extended
 by applying it on a larger and more diverse corpus of programming tasks.
 It would also be interesting to test a wider variety of languages.
-Although Haskell performed broadly similar to the other strongly-typed
+Although Haskell performed broadly similarly to the other strongly-typed
 languages in our set we would hope that other declarative languages
 would exhibit more interesting characteristics.
 The fuzz operations can be also extended and be made more realistic,
@@ -558,15 +564,16 @@ perhaps by implementing a mixture based on data from actual programming
 errors.
 
 In this study we tallied the failure modes associated with each
-languages and fuzz operation and reported the aggregate results.
-Manually analyzing and categorizing the failure modes associated
-with each language and fuzz operation is likely to produce
-interesting insights, as well as feedback that can drive the
+language and fuzz operation and reported the aggregate results.
+Manually analyzing and categorizing the failure modes by looking
+at the actual compilation and run time errors
+is likely to produce interesting insights,
+as well as feedback that can drive the
 construction of better fuzz operations.
 
 We already mentioned in Section~\ref{sec:results} that the
 large degree of variation we witnessed among the scripting
-language results may be a result of those languages
+language results may be a result of those languages'
 more experimental nature.
 More interestingly, this variation also suggests that
 comparative language fuzz testing of the type we performed
@@ -580,8 +587,8 @@ This opens the door into two broad research directions.
 
 The first research direction involves the comparative evaluation
 of programming languages using objective criteria,
-such as the response to fuzzing of code implementing the same functionality
-in diverse languages.
+such as the response of code implementing the same functionality
+in diverse languages to fuzz manipulation.
 This is made significantly easier through the publication of
 tasks implemented in numerous programming languages on the
 {\em Rosetta Code} site.
