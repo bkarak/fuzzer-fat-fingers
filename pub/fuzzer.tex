@@ -301,7 +301,9 @@ execution paths and all program inputs to fully test the validity and the reliab
 
 Random Testing \cite{HAM06} seems to be the only solution that can partially deal with this problem,
 but still it is not widely adopted outside the academic fields \cite{GGBO07}, since the techniques it 
-introduces are difficult to be applied in complex systems and achieve good code coverage, if so at a significant cost \cite{RAWO06}§.
+introduces are difficult to be applied in complex systems and achieve good code coverage, if so at a significant cost \cite{RAWO06}.
+
+The above case is made worse with the use of complex refactorings \cite{Fow00} in day-to-day programming. Refactorings are beneficial, but they are programs integrated in {\sc ide}s and also have bugs \cite{DDGM07}. Every bug results in corrupted code, which is very difficult to detect, especially for the case of dynamic langugages \cite{SCHA12}.
 
 Our experiment aims to exhibit the fault tolerance \cite{LYU95,KOKR07} of each language and use their features such as 
 their type systems to our advantage. 
