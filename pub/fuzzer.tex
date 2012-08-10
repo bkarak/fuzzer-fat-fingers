@@ -97,42 +97,6 @@ and conclude with proposals for further work
 \section{Methodology} % {{{1
 \label{sec:method}
 
-We selected the languages to test based on a number of sources
-collated in an {\sc ieee} Spectrum article \cite{Kin11}:
-an index created by
-{\sc tiobe}\footnote{\url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}} (a software research firm),
-the number of book titles listed on Powell's Books,
-references in online discussions on {\sc irc}, and
-number of job posts on Craigslist.
-From the superset of the popular languages listed in those
-sources we excluded
-Actionscript, Visual Basic, {\sc sql}, Objective C, and the Unix shell,
-because the corresponding programs or infrastructure would not match our methods.
-According to the source composition,
-our language coverage ranges from 71\% to 86\% of all languages.
-The list of languages we used in our study and the
-particular implementations we used are listed in
-Table~\ref{tab:langs}.
-
-% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
-\begin{description}
-	\item [IdentifierSubstitution (IdSub)]
-	\item [IntegerPerturbation (IntPert)]
-	\item [RandomCharacterSubstitution (RandCharSub)]
-	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-	\item [SimilarSubstitution (SimSub)]
-\end{description}
-
-the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
-
-We measure:
-
-\begin{itemize}
-	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
-	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
-	\item Output Validity Success Rate (out): if the program is not producing the proper result
-\end{itemize}
-
 \begin{table}
 \begin{center}
 \begin{tabular}{ l l}
@@ -155,6 +119,35 @@ Ruby 		& ruby 1.5.8 \\
 \caption{Tested languages.}
 \label{tab:langs}
 \end{table}
+
+We selected the languages to test based on a number of sources
+collated in an {\sc ieee} Spectrum article \cite{Kin11}:
+an index created by
+{\sc tiobe}\footnote{\url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}} (a software research firm),
+the number of book titles listed on Powell's Books,
+references in online discussions on {\sc irc}, and
+number of job posts on Craigslist.
+From the superset of the popular languages listed in those
+sources we excluded
+Actionscript, Visual Basic, {\sc sql}, Objective C, and the Unix shell,
+because the corresponding programs or infrastructure would not match our methods.
+According to the source composition,
+our language coverage ranges from 71\% to 86\% of all languages.
+The list of the ten languages we used in our study and the
+particular implementations we used are listed in
+Table~\ref{tab:langs}.
+
+We obtained source code executing the same task in all ten
+languages of our study from {\em Rosetta Code},\url{http://rosettacode.org/}
+a so-called programming chrestomathy site,
+organized in the form of a wiki.
+In the words of its creators,
+the site aims is to present code for the same task in as many languages as possible,
+thus demonstrating their similarities and differences and
+aiding persons with a grounding in one approach to a problem in learning another.
+At the time of the writing {\em Rosetta Code}
+listed 600 tasks and code in 470 languages.
+However, most of the tasks are presented only a subset of those languages.
 
 \begin{table}
 \begin{center}
@@ -182,6 +175,41 @@ ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url
 \caption{List of selected Rosseta Code tasks.}
 \label{tab:Tasks}
 \end{table}
+
+We selected our tasks from {\em Rosetta Code} through the following process.
+First, we downloaded the listing of all available tasks and
+filtered it to create a list of task name {\sc url}s.
+We then downloaded the page for each task in MediWiki markup format,
+located the headers for the languages in which that task was implemented, and
+created a table containing tasks names and language names.
+We joined that table with our chosen languages,
+thus obtaining a count of the tasks implemented in
+most of the languages in our set.
+From that set we selected tasks that implemented diverse
+non-trivial functionality,
+and also, as a test case, the ``Hello, world!'' task.
+The tasks we studied are listed in Table~\ref{tab:tasks}.
+
+
+% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
+\begin{description}
+	\item [IdentifierSubstitution (IdSub)]
+	\item [IntegerPerturbation (IntPert)]
+	\item [RandomCharacterSubstitution (RandCharSub)]
+	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
+	\item [SimilarSubstitution (SimSub)]
+\end{description}
+
+the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
+	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
+	\item Output Validity Success Rate (out): if the program is not producing the proper result
+\end{itemize}
+
 
 Fuzzing types
 
