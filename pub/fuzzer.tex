@@ -22,8 +22,8 @@
 %\titlebanner{banner above paper title} % These are ignored unless
 %\preprintfooter{short description of paper} % 'preprint' option specified.
 
-\title{Programming Languages vs. Fat Fingers}
-\subtitle{Comparative Language Fuzz Testing}
+\title{Comparative Language Fuzz Testing}
+\subtitle{Programming Languages vs. Fat Fingers}
 
 \authorinfo{Diomidis Spinellis\and Vassilios Karakoidas}
   {Athens University of Economics and Business}
@@ -35,16 +35,17 @@
 We explore how programs written in ten popular programming languages
 are affected by small changes of their source code.
 This allows us to analyze the extend to which these languages
-can detect simple errors at compile or at run time.
+allow the detection of simple errors at compile or at run time.
 Our study is based on a large corpus of programs written in several programming
 languages systematically perturbed using a mutation-based fuzz generator.
-Our results prove that languages with weak type systems are significantly
+The results we obtained
+prove that languages with weak type systems are significantly
 likelier than languages that enforce strong typing to let fuzzed programs
-compile and run to produce erroneous results.
-This also shows that comparative language fuzz testing is a
-legitimate technique for evaluating programming language designs.
+compile and run, and, in the end, produce erroneous results.
+More importantly, our study also shows that comparative language fuzz testing
+is a legitimate technique for evaluating programming language designs.
 \end{abstract}
- 
+
  \category{D.3.0}{Programming Languages}{General}
 
 \terms
