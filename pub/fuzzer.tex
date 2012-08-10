@@ -190,6 +190,8 @@ non-trivial functionality,
 and also, as a test case, the ``Hello, world!'' task.
 The tasks we studied are listed in Table~\ref{tab:tasks}.
 
+Fuzzing types
+
 % FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
 \begin{description}
 	\item [IdentifierSubstitution (IdSub)]
@@ -207,29 +209,6 @@ We measure:
 	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
 	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
 	\item Output Validity Success Rate (out): if the program is not producing the proper result
-\end{itemize}
-
-
-Fuzzing types
-
-% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
-\begin{description}
-	\item [IdentifierSubstitution (IdSub)]
-	\item [IntegerPerturbation (IntPert)]
-	\item [RandomCharacterSubstitution (RandCharSub)]
-	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-
-	\item [SimilarSubstitution (SimSub)]
-\end{description}
-
-the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
-
-We measure:
-
-\begin{itemize}
-	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
-	\item Execution Failure: if the program is executing correctly (without crashing)
-	\item Result Error: if the program is not producing the proper result
 \end{itemize}
 
 
@@ -318,7 +297,10 @@ ways that are syntactically correct.
 This results in a higher rate of successful fuzzing and the location
 of deeper problems.
 
-Testing ... \cite{HAM06}
+All these approaches are based on the fact that it is practically impossible to detect all
+execution paths and all program inputs to fully test the validity and the reliability of a program.
+
+Random Testing ... \cite{HAM06}
 
 Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
 
