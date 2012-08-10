@@ -159,7 +159,7 @@ class AggregatedTasks(LineVisitor):
 				if fz == 'prime' or fz == 'original':
 					continue
 
-				print "%.3f & %.3f & %.3f" % (fd.rate_compiled(), fd.rate_run(), fd.rate_output()),
+				print "%.1f & %.1f & %.1f" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
 
