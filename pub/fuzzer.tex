@@ -164,7 +164,7 @@ Hello & A typical ``hello, world!'' program.\\
 Mult & Ethiopian Multiplication: a method to multiply integers using only addition, doubling and halving.\\
 MutRecursion & Hofstadter's Female and Male sequence~\cite{Hof89}.\\
 ManBoy & A test to distinguish compilers that correctly implement
-recursion and non-local references from those that to not~\cite{Knu64}.  \\
+recursion and non-local references from those that do not~\cite{Knu64}.  \\
 Power & Calculation of a set's $S$ power set: the set of all subsets of $S$.\\
 Substring & Count the occurrences of a substring.\\
 Tokenizer & A string tokenizing program.\\
@@ -173,7 +173,7 @@ where the numbers increase sequentially in a zig-zag along the anti-diagonals of
 \end{tabular}
 \end{center}
 \caption{List of the selected {\em Rosseta Code} tasks.}
-\label{tab:Tasks}
+\label{tab:tasks}
 \end{table}
 
 We selected our tasks from {\em Rosetta Code} through the following process.
@@ -383,21 +383,35 @@ utilities in various operating systems and architectures and discrovered that
 they implemented automation shell scripts and a fuzzer, a program that generated
 random character sequences according to certain specifications.
 
-Since then, Fuzzing \cite{TJC08}, \cite{WWGZ11} , \cite{GLRI09}
+Fuzzing is used mainly to detect software security vulnerabilities and 
+improve overall reliability \cite{TJC08,GODE07}. Several tools and techniques \cite{WWGZ11}
+have been developed, introducing concept like \textit{directed fuzz testing} \cite{GLRI09}.
 
 Our approach fuzzes the program with pseudo-random
 perturbations based in same cases on knowledge of
-lexical tokens.
-This can result in a large number of failures.
-An alternative approach, {\em grammar-based white box fuzzing}~\cite{God08},
+lexical tokens. This can result in a large number of failures.
+
+An alternative approach, {\em grammar-based white box fuzzing} \cite{God08},
 takes into account the input language's grammar to fuzz the input in
 ways that are syntactically correct.
 This results in a higher rate of successful fuzzing and the location
 of deeper problems.
 
-Testing ... \cite{HAM06}
+All these approaches are based on the fact that it is practically impossible to detect all
+execution paths and all program inputs to fully test the validity and the reliability of a program.
 
-Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
+Random Testing \cite{HAM06} seems to be the only solution that can partially deal with this problem,
+but still it is not widely adopted outside the academic fields \cite{GGBO07}, since the techniques it 
+introduces are difficult to be applied in complex systems and achieve good code coverage, if so at a significant cost \cite{RAWO06}§.
+
+Our experiment aims to exhibit the fault tolerance \cite{LYU95,KOKR07} of each language and use their features such as 
+their type systems to our advantage. 
+
+Type systems are usually realized as type checkers in compilers and linkers of programming languages. They are categorized as static and dynamic. \textit{Static typing} implies static type checking. In other words, the ability of a programming language's compiler to know all the data types that are used in a program, and guarantee that they are correct at compile time. \textit{Dynamic typing} is exactly the opposite. The languages that are dynamically checked perform run-time checks in order to ensure consistent type use. 
+
+In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
+
+Statically typed languages are less tolerant to our approach, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are more tolerant and usually they fail upon execution or produce corrupted output.
 
 \section{Conclusions} % {{{1
 \label{sec:conclusions}
