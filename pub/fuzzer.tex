@@ -216,21 +216,21 @@ We measure:
  \hline
  & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby\\
 \hline
-AccumFactory & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Hello & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-FlatList & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Power & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-ZigZag & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-FuncComp & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Substring & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-ManBoy & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Beers & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Tokenizer & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Horner & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-MutRecursion & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Dow & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-Mult & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
- & 14 & 13 & 11 & 12 & 13 & 13 & 14 & 14 & 14 & 14 \\
+AccumFactory &  &  &  &  &  &  &  &  &  &  \\
+Hello &  &  &  &  &  &  &  &  &  &  \\
+FlatList &  & \ding{55} & \ding{55} &  & \ding{55} &  &  &  &  &  \\
+Power &  &  & \ding{55} &  &  &  &  &  &  &  \\
+ZigZag &  &  & \ding{55} &  &  & \ding{55} &  &  &  &  \\
+FuncComp &  &  &  &  &  &  &  &  &  &  \\
+Substring &  &  &  & \ding{55} &  &  &  &  &  &  \\
+ManBoy &  &  &  &  &  &  &  &  &  &  \\
+Beers &  &  &  &  &  &  &  &  &  &  \\
+Tokenizer &  &  &  & \ding{55} &  &  &  &  &  &  \\
+Horner &  &  &  &  &  &  &  &  &  &  \\
+MutRecursion &  &  &  &  &  &  &  &  &  &  \\
+Dow &  &  &  &  &  &  &  &  &  &  \\
+Mult &  &  &  &  &  &  &  &  &  &  \\
+Total & 14 & 13 & 11 & 12 & 13 & 13 & 14 & 14 & 14 & 14 \\
 \hline
 \end{tabular}
 \end{center}
@@ -271,11 +271,15 @@ Ruby & 52 & 22 & 77 & 100 & 91 & 34 & 27 & 53 & 83 & 33 & 47 & 69 & 57 & 46 & 59
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
 
-In that they describe how ... % XXX 
+In that they describe how they tested the common collection of {\sc unix}
+utilities in various operating systems and architectures and discrovered that
+25-33\% of these, are crashing under certain conditions. To perform these tests
+they implemented automation shell scripts and a fuzzer, a program that generated
+random character sequences according to certain specifications.
 
 Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
 
-Out approach fuzzes the program with pseudo-random
+Our approach fuzzes the program with pseudo-random
 perturbations based in same cases on knowledge of
 lexical tokens.
 This can result in a large number of failures.
