@@ -397,10 +397,11 @@ ways that are syntactically correct.
 This results in a higher rate of successful fuzzing and the location
 of deeper problems.
 
-All these approaches are based on the fact that it is practically impossible to detect all
+Another interesting approach is H-fuzzing \cite{ZWZH11}, which is a heuristic method that examines the execution paths
+of the program to achieve higher path coverage. All these approaches are based on the fact that it is practically impossible to detect all
 execution paths and all program inputs to fully test the validity and the reliability of a program.
 
-Random Testing \cite{HAM06} seems to be the only solution that can partially deal with this problem,
+Random Testing \cite{HAM06} seems to be promising solution that can partially deal with this problem,
 but still it is not widely adopted outside the academic fields \cite{GGBO07}, since the techniques it 
 introduces are difficult to be applied in complex systems and achieve good code coverage, if so at a significant cost \cite{RAWO06}.
 
