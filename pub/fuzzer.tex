@@ -497,8 +497,11 @@ dangerously loose syntax.
 
 \section{Related Work} % {{{1
 \label{sec:related}
-Comparative language evaluation has a long and colorful history;
-see for instance reference \cite{Ker81} and the reference therein.
+Comparative language evaluation has a long and colorful history; Kernighan \cite{Ker81} points out Pascal's design and syntax flaws. A comparison of Algol 60, FORTRAN, Pascal and Algol 68 is presented in reference \cite{BOJO80}.
+
+Different behaviour and productivity issues of the programmers are pointed out in reference \cite{RWSB68}, which states that high-level abstractions of PL/I. helped programmers to write fewer program statements, but with higher frequency of errors. To support this, a programmer implemented twice seven benchmark problems in PL/I and in one other language; Cobol, Fortran and Jovial. The aforementioned publication is very interesting, because it correlates directly the language abstractions with the user productivity and efficiency, in terms of valid program code, with the comparison of programming languages.
+
+In reference \cite{PREC00} seven different languages are also compared in terms of reliability, program length among others. This time modern languages are included in the comparison, like C, C++ and Java.
 
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
@@ -541,8 +544,6 @@ Type systems are usually realized as type checkers in compilers and linkers of p
 In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
 
 Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at runtime and usually they fail upon execution or produce corrupted output.
-
-Different behaviour and productivity issues of the programmers are also pointed out in reference \cite{RWSB68}, which states that high-level abstractions of PL/I. helped programmers to write fewer program statements, but with higher frequency of errors. To support this, a programmer implemented twice seven benchmark problems in PL/I and in one other language; Cobol, Fortran and Jovial. The aforementioned publication is very interesting, because it correlates directly the language abstractions with the user productivity and efficiency, in terms of valid program code, with the comparison of programming languages. It is an experinment similar to the one presented in this research.
 
 \section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
