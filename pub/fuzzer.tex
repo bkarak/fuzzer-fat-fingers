@@ -100,7 +100,6 @@ and conclude with proposals for further work
 \begin{table}
 \begin{center}
 \begin{tabular}{ l l}
- \hline
 Language & Implementation \\
 \hline
 C 			& gcc 4.4.5 \\
@@ -113,7 +112,6 @@ PHP 		& PHP 5.3.3-7 \\
 Perl 		& perl 5.10.1 \\
 Python 		& python 2.6.6 \\
 Ruby 		& ruby 1.5.8 \\
-\hline
 \end{tabular}
 \end{center}
 \caption{Tested languages.}
@@ -153,7 +151,6 @@ However, most of the tasks are presented only in a subset of those languages.
 \begin{table}
 \begin{center}
 \begin{tabular}{ l p{5cm}}
- \hline
 Task Name & Description\\
 \hline
 AccumFactory & A function that takes a number $n$ and returns a function that takes a number $i$,
@@ -173,7 +170,6 @@ Substring & Count the occurrences of a substring.\\
 Tokenizer & A string tokenizing program.\\
 ZigZag & Produce a square arrangement of the first $N^2$ integers,
 where the numbers increase sequentially in a zig-zag along the anti-diagonals of the array.\\
-\hline
 \end{tabular}
 \end{center}
 \caption{List of the selected {\em Rosseta Code} tasks.}
@@ -193,7 +189,6 @@ From that set we selected tasks that implemented diverse
 non-trivial functionality,
 and also, as a test case, the ``Hello, world!'' task.
 The tasks we studied are listed in Table~\ref{tab:tasks}.
-
 
 % FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
 \begin{description}
@@ -245,7 +240,7 @@ We measure:
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
 \begin{tabular}{l r r r r r r r r r r | r}
- & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby & Total\\
+ & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby & \textbf{Total}\\
 \hline
 AccumFactory & 17 & 57 & 8 & 16 & 16 & 8 & 7 & 7 & 10 & 30 & 10 \\
 Hello & 7 & 8 & 7 & 1 & 6 & 1 & 1 & 1 & 7 & 1 & 10 \\
@@ -262,7 +257,7 @@ MutRecursion & 29 & 35 & 31 & 8 & 20 & 18 & 22 & 28 & 4 & 8 & 10 \\
 Dow & 23 & 17 & 17 & 7 & 13 & 5 & 9 & 17 & 7 & 4 & 10 \\
 Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \hline
-Total & 458 & 461 & 258 & 114 & 296 & 102 & 224 & 156 & 161 & 159 & \\
+\textbf{Total} & 458 & 461 & 258 & 114 & 296 & 102 & 224 & 156 & 161 & 159 & \\
 \end{tabular}
 \end{center}
 \caption{Language Compatibility per Task.}
@@ -273,20 +268,20 @@ Total & 458 & 461 & 258 & 114 & 296 & 102 & 224 & 156 & 161 & 159 & \\
 \begin{center}
 \begin{tabular}{ l r r r r r r r r r r r r r r r r r r }
  & \multicolumn{3}{c}{IdSub (\%)} & \multicolumn{3}{c}{IntPert (\%)} & \multicolumn{3}{c}{RandCharSub (\%)} & \multicolumn{3}{c}{RandTokenSub (\%)} & \multicolumn{3}{c}{SimSub (\%)}\\
- & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out\\
+           & com  & run  & out  & com   & run  & out   & com  & run  & out  & com  & run  & out  & com  & run  & out\\
 \hline
-C & 16.6 & 14.0 & 10.4  & 100.0 & 52.6 & 18.6  & 7.3 & 7.3 & 6.1  & 5.4 & 5.1 & 3.4  & 20.6 & 16.6 & 9.6 \\
-C++ & 5.6 & 4.9 & 3.9  & 91.7 & 47.2 & 6.2  & 3.7 & 3.7 & 3.4  & 2.6 & 2.4 & 1.3  & 8.3 & 7.1 & 3.1 \\
-C\# & 6.9 & 6.9 & 6.6  & 69.8 & 65.2 & 11.9  & 4.0 & 4.0 & 3.9  & 3.0 & 3.0 & 2.7  & 7.7 & 7.4 & 6.0 \\
-Haskell & 4.0 & 1.9 & 0.4  & 89.4 & 84.0 & 10.3  & 3.7 & 3.4 & 2.3  & 3.5 & 3.2 & 1.8  & 13.4 & 11.2 & 2.1 \\
-Java & 5.1 & 3.6 & 2.9  & 100.0 & 82.5 & 20.3  & 3.1 & 3.0 & 2.9  & 2.3 & 1.9 & 1.7  & 7.9 & 6.4 & 3.1 \\
-Javascript & 65.9 & 18.4 & 5.7  & 100.0 & 79.7 & 6.0  & 30.9 & 9.6 & 7.9  & 15.0 & 5.7 & 1.9  & 57.2 & 22.9 & 5.1 \\
-PHP & 56.4 & 34.1 & 3.0  & 99.2 & 87.5 & 16.2  & 37.4 & 32.7 & 1.9  & 25.7 & 23.7 & 1.1  & 46.2 & 39.7 & 1.4 \\
-Perl & 57.9 & 29.3 & 7.4  & 100.0 & 91.0 & 22.1  & 15.1 & 11.6 & 6.7  & 18.2 & 14.2 & 4.9  & 44.3 & 27.3 & 10.5 \\
-Python & 43.3 & 17.3 & 12.6  & 100.0 & 75.3 & 14.4  & 18.3 & 6.9 & 6.1  & 20.7 & 10.6 & 5.7  & 45.2 & 23.6 & 10.0 \\
-Ruby & 52.3 & 11.8 & 9.1  & 100.0 & 91.1 & 31.6  & 27.6 & 14.7 & 12.3  & 33.4 & 15.8 & 11.1  & 58.0 & 27.0 & 16.1 \\
+C          & 16.6 & 14.0 & 10.4 & 100.0 & 52.6 & 18.6  & 7.3  & 7.3  & 6.1  & 5.4  & 5.1  & 3.4  & 20.6 & 16.6 & 9.6 \\
+C++        & 5.6  & 4.9  & 3.9  & 91.7  & 47.2 & 6.2   & 3.7  & 3.7  & 3.4  & 2.6  & 2.4  & 1.3  & 8.3  & 7.1  & 3.1 \\
+C\#        & 6.9  & 6.9  & 6.6  & 69.8  & 65.2 & 11.9  & 4.0  & 4.0  & 3.9  & 3.0  & 3.0  & 2.7  & 7.7  & 7.4  & 6.0 \\
+Haskell    & 4.0  & 1.9  & 0.4  & 89.4  & 84.0 & 10.3  & 3.7  & 3.4  & 2.3  & 3.5  & 3.2  & 1.8  & 13.4 & 11.2 & 2.1 \\
+Java       & 5.1  & 3.6  & 2.9  & 100.0 & 82.5 & 20.3  & 3.1  & 3.0  & 2.9  & 2.3  & 1.9  & 1.7  & 7.9  & 6.4  & 3.1 \\
+Javascript & 65.9 & 18.4 & 5.7  & 100.0 & 79.7 & 6.0   & 30.9 & 9.6  & 7.9  & 15.0 & 5.7  & 1.9  & 57.2 & 22.9 & 5.1 \\
+PHP        & 56.4 & 34.1 & 3.0  & 99.2  & 87.5 & 16.2  & 37.4 & 32.7 & 1.9  & 25.7 & 23.7 & 1.1  & 46.2 & 39.7 & 1.4 \\
+Perl       & 57.9 & 29.3 & 7.4  & 100.0 & 91.0 & 22.1  & 15.1 & 11.6 & 6.7  & 18.2 & 14.2 & 4.9  & 44.3 & 27.3 & 10.5 \\
+Python     & 43.3 & 17.3 & 12.6 & 100.0 & 75.3 & 14.4  & 18.3 & 6.9  & 6.1  & 20.7 & 10.6 & 5.7  & 45.2 & 23.6 & 10.0 \\
+Ruby       & 52.3 & 11.8 & 9.1  & 100.0 & 91.1 & 31.6  & 27.6 & 14.7 & 12.3 & 33.4 & 15.8 & 11.1 & 58.0 & 27.0 & 16.1 \\
 \hline
-Avg & \multicolumn{3}{c}{30.6} & \multicolumn{3}{c}{95.1} & \multicolumn{3}{c}{15.1} & \multicolumn{3}{c}{12.8} & \multicolumn{3}{c}{30.3} \\
+\textbf{Mean} & 30.6 & 14.0 & 6.2  & 95.1  & 74.5 & 15.8  & 15.1 & 9.7  & 5.3  & 12.8 & 8.5  & 3.5  & 30.3 & 18.7 & 6.6 \\
 \end{tabular}
 \end{center}
 \caption{Aggregated results per language}

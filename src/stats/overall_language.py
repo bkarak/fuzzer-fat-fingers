@@ -85,6 +85,8 @@ class AggregatedTasks(LineVisitor):
 
 				print "%.1f & %.1f & %.1f" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
 				_dict_fz.add("%s.com"%fz, val=fd.succ_compiled)
+				_dict_fz.add("%s.run"%fz, val=fd.succ_run)
+				_dict_fz.add("%s.out"%fz, val=fd.succ_output)
 				_dict_fz.add("%s.fuzz"%fz, val=fd.succ_fuzz)
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
@@ -95,8 +97,14 @@ class AggregatedTasks(LineVisitor):
 		for fz in self.fuzzers:
 			if fz == 'prime' or fz == 'original':
 				continue
-			_rate = float(_dict_fz.get_value("%s.com"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
-			print "\multicolumn{3}{c}{%.1f} &" % (100*_rate,),
+			_com_rate = float(_dict_fz.get_value("%s.com"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
+			_run_rate = float(_dict_fz.get_value("%s.run"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
+			_out_rate = float(_dict_fz.get_value("%s.out"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
+			print "%.1f & %.1f & %.1f" % (100*_com_rate, 100*_run_rate, 100*_out_rate),
+
+			if fz != self.fuzzers[len(self.fuzzers) - 1]:
+				print " &",
+
 		print "\\\\"
 
 
