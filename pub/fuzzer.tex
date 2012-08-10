@@ -93,9 +93,9 @@ the fuzzer result is deterministic? Each time we executed the fuzzer to the sour
 We measure:
 
 \begin{itemize}
-	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
-	\item Execution Failure: if the program is executing correctly (without crashing)
-	\item Result Error: if the program is not producing the proper result
+	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
+	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
+	\item Output Validity Success Rate (out): if the program is not producing the proper result
 \end{itemize}
 
 \begin{table}
