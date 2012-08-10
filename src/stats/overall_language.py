@@ -103,12 +103,14 @@ class LanguageStatus(LineVisitor):
 	def export(self):
 		print 'Export LanguageStatus'		
 		_dict_count = data_structures.DictCount()
+		task_stats = task_code_stats.TaskStatistics()
 
 		for (tn, dcount) in self.__tasks.iteritems():
 			print "%s &" % (tn,),
-			for l in self.langs_export:			
+
+			for l in self.langs_export:
 				if dcount.get_value(l) == 3:
-					print " ",
+					print "%d" % (task_stats.get_loc(tn, l),),
 					_dict_count.add(l)
 				else:
 					print "\\ding{55}",
