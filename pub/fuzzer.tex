@@ -458,7 +458,7 @@ Type systems are usually realized as type checkers in compilers and linkers of p
 
 In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
 
-Statically typed languages are less tolerant to fuzzing, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are more tolerant and usually they fail upon execution or produce corrupted output.
+Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at runtime and usually they fail upon execution or produce corrupted output.
 
 \section{Conclusions} % {{{1
 \label{sec:conclusions}
