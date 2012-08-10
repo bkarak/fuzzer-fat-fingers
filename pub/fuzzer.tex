@@ -8,6 +8,8 @@
 % authoryear    To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{bbding}
+\usepackage{pifont}
 \usepackage{url}
 
 \begin{document}
@@ -107,25 +109,24 @@ Table~\ref{tab:lang}.
  \hline
 Task Name & Description\\
 \hline
-AccumFactory & \\
-Beers & \\
-Dow & \\
-FlatList & \\
-FuncComp & \\
-Horner & \\
+AccumFactory \\
+Beers \\
+Dow \\
+FlatList \\
+FuncComp \\
+Horner \\
 Hello & A typical ``hello, world!'' program\\
-Mult & \\
-MutRecursion & \\
-ManBoy & \\
-Power & \\
-Substring & \\
-Tokenizer & \\
-ZigZag & \\
+Mult \\
+MutRecursion \\
+ManBoy \\
+Power \\
+Substring \\
+Tokenizer \\
+ZigZag \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-
 
 Fuzzing types
 \begin{itemize}
@@ -146,63 +147,37 @@ We measure:
 \section{Results} % {{{1
 
 \begin{table*}
+% ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
-% ['c', 'cpp', 'cs', 'hs', 'java']
-\caption{Task per languages (1)}
-\label{tbl:lang-per-task-one}
-\begin{tabular}{ c r r r r r r r r r r r r r r r }
+\caption{Language Compatibility per Task}
+\label{tbl:lang-}
+\begin{tabular}{l c c c c c c c c c c}
+ \hline
+ & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby\\
 \hline
- & \multicolumn{3}{c}{C (\%)} & \multicolumn{3}{c}{C++ (\%)} & \multicolumn{3}{c}{C\# (\%)} & \multicolumn{3}{c}{Haskell (\%)} & \multicolumn{3}{c}{Java (\%)}\\
- & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out \\
+AccumFactory & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Hello & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+FlatList & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Power & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+ZigZag & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+FuncComp & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Substring & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+ManBoy & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Beers & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Tokenizer & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Horner & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+MutRecursion & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Dow & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+Mult & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} \\
 \hline
-AccumFactory &  42 & 66 & 100 & 42 & 100 & 50 & 33 & 100 & 100 & 42 & 100 & 100 & 42 & 100 & 50 \\
-Hello &  33 & 100 & 100 & 33 & 100 & 100 & 33 & 100 & 100 & 50 & 100 & 100 & 50 & 100 & 100 \\
-FlatList &  42 & 100 & 100 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 100 & 50 & 0 & 0 & 0 \\
-Power &  85 & 66 & 66 & 42 & 100 & 50 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 100 & 100 \\
-ZigZag &  42 & 66 & 100 & 57 & 100 & 66 & 0 & 0 & 0 & 0 & 0 & 0 & 42 & 66 & 100 \\
-FuncComp &  71 & 80 & 100 & 42 & 66 & 100 & 42 & 100 & 50 & 33 & 100 & 100 & 33 & 100 & 100 \\
-Substring &  42 & 66 & 100 & 42 & 66 & 100 & 42 & 66 & 100 & 0 & 0 & 0 & 33 & 100 & 100 \\
-ManBoy &  42 & 100 & 50 & 0 & 0 & 0 & 42 & 100 & 50 & 42 & 100 & 50 & 42 & 100 & 50 \\
-Beers &  33 & 100 & 100 & 42 & 100 & 50 & 42 & 100 & 50 & 71 & 80 & 33 & 42 & 100 & 50 \\
-Tokenizer &  42 & 66 & 100 & 33 & 100 & 100 & 33 & 100 & 100 & 0 & 0 & 0 & 33 & 100 & 100 \\
-Horner &  42 & 66 & 100 & 42 & 66 & 100 & 50 & 100 & 100 & 42 & 100 & 50 & 42 & 100 & 50 \\
-MutRecursion &  57 & 75 & 50 & 42 & 66 & 100 & 57 & 100 & 66 & 42 & 66 & 100 & 42 & 66 & 100 \\
-Dow &  42 & 66 & 100 & 42 & 100 & 100 & 42 & 100 & 50 & 57 & 100 & 33 & 42 & 100 & 50 \\
-Mult &  57 & 100 & 33 & 42 & 100 & 50 & 57 & 100 & 66 & 42 & 100 & 50 & 42 & 100 & 50 \\
+ & 14 & 12 & 11 & 10 & 13 & 13 & 14 & 14 & 14 & 14 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
-\begin{table*}
-\begin{center}
-% ['js', 'php', 'pl', 'py', 'rb']
-\caption{Task per languages (2)}
-\label{tbl:lang-per-task-two}
-\begin{tabular}{ c r r r r r r r r r r r r r r r }
-\hline
- & \multicolumn{3}{c}{Javascript (\%)} & \multicolumn{3}{c}{PHP (\%)} & \multicolumn{3}{c}{Perl (\%)} & \multicolumn{3}{c}{Python (\%)} & \multicolumn{3}{c}{Ruby (\%)}\\
- & com & run & out & com & run & out & com & run & out & com & run & out & com & run & out \\
-\hline
-AccumFactory &  50 & 100 & 100 & 57 & 75 & 50 & 71 & 80 & 33 & 57 & 100 & 33 & 85 & 83 & 75 \\
-Hello &  50 & 100 & 100 & 50 & 100 & 50 & 66 & 100 & 100 & 33 & 100 & 100 & 66 & 100 & 100 \\
-FlatList &  66 & 100 & 100 & 71 & 100 & 75 & 66 & 75 & 50 & 71 & 40 & 100 & 100 & 85 & 100 \\
-Power &  57 & 100 & 33 & 57 & 100 & 0 & 71 & 100 & 100 & 71 & 80 & 66 & 50 & 100 & 100 \\
-ZigZag &  57 & 0 & 0 & 100 & 100 & 16 & 71 & 60 & 50 & 85 & 83 & 75 & 42 & 100 & 50 \\
-FuncComp &  66 & 50 & 100 & 57 & 75 & 100 & 57 & 75 & 100 & 57 & 50 & 100 & 42 & 100 & 100 \\
-Substring &  83 & 60 & 50 & 33 & 100 & 100 & 66 & 75 & 100 & 50 & 100 & 50 & 66 & 50 & 100 \\
-ManBoy &  57 & 75 & 50 & 57 & 100 & 33 & 57 & 75 & 50 & 42 & 100 & 50 & 42 & 100 & 50 \\
-Beers &  85 & 66 & 33 & 57 & 100 & 33 & 71 & 80 & 66 & 42 & 100 & 50 & 57 & 100 & 33 \\
-Tokenizer &  50 & 66 & 100 & 33 & 100 & 100 & 50 & 100 & 100 & 66 & 50 & 100 & 66 & 50 & 100 \\
-Horner &  71 & 80 & 66 & 57 & 100 & 33 & 57 & 100 & 33 & 33 & 100 & 100 & 57 & 75 & 50 \\
-MutRecursion &  71 & 60 & 100 & 57 & 75 & 50 & 57 & 100 & 100 & 71 & 40 & 100 & 42 & 66 & 100 \\
-Dow &  71 & 60 & 50 & 57 & 75 & 50 & 42 & 100 & 50 & 57 & 75 & 50 & 71 & 80 & 100 \\
-Mult &  42 & 100 & 50 & 57 & 100 & 33 & 42 & 66 & 100 & 57 & 100 & 100 & 42 & 100 & 50 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
+% Aggregated Tasks
+% languages per tasks (original)
 
 \section{Discussion} % {{{1
 
@@ -222,7 +197,6 @@ takes into account the input language's grammar to fuzz the input in
 ways that are syntactically correct.
 This results in a higher rate of successful fuzzing and the location
 of deeper problems.
-
 
 Testing ... \cite{HAM06}
 

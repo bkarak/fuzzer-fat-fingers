@@ -1,6 +1,7 @@
 
-class StatStructure:
+class StatStructure(object):
 	def __init__(self, language):
+		super(StatStructure, self).__init__()
 		self.language = language
 		self.succ_compiled = 0
 		self.fail_compiled = 0
@@ -69,6 +70,18 @@ class StatStructure:
 	def get_total_fuzz(self):
 		return self.succ_fuzz + self.fail_fuzz
 
+class DictCount(object):
+	def __init__(self):
+		super(DictCount, self).__init__()
+		self.__dict = {}
+
+	def add(self, key):
+		value = self.__dict.get(key, 0)
+		value += 1
+		self.__dict[key] = value
+
+	def get_value(self, key):
+		return self.__dict.get(key, 0)
 
 class LineVisitor(object):
 	def __init__(self):
@@ -79,7 +92,6 @@ class LineVisitor(object):
 
 	def export(self):
 		pass
-
 
 class TaskAggregator(LineVisitor):
 	def __init__(self):
@@ -119,8 +131,42 @@ class TaskAggregator(LineVisitor):
 		self.__export(['js', 'php', 'pl', 'py', 'rb'])
 
 
+class AggregatedTasks:
+	def __init__(self):
+		pass
+
+class LanguageStatus(LineVisitor):
+	def __init__(self):
+		self.__tasks = {}
+
+	def visit(self, task_name, language, fuzzer_name, activity, result):
+		if fuzzer_name == 'original':
+			lang_dict = self.__tasks.get(task_name, DictCount())
+			lang_dict.add(language)
+			self.__tasks[task_name] = lang_dict
+
+	def export(self):
+		print 'Export LanguageStatus'
+		_langs = ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
+		_dict_count = DictCount()
+
+		for (tn, dcount) in self.__tasks.iteritems():
+			print "%s &" % (tn,),
+			for l in _langs:			
+				if dcount.get_value(l) == 3:
+					print "\\ding{51} &",
+					_dict_count.add(l)
+				else:
+					print "\\ding{55} &",
+			print "\\\\"
+
+		print "Total &",
+		for l in _langs:
+			print "%d &" % (_dict_count.get_value(l)),
+		print "\\\\"
+
 def main():
-	_visitors = [TaskAggregator()]
+	_visitors = [LanguageStatus()]
 
 	fp = open('run.out', 'r')
 
