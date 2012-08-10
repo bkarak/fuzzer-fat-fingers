@@ -71,6 +71,7 @@ class AggregatedTasks(LineVisitor):
 	def export(self):
 		print 'Export AggregatedTasks'
 		print self.fuzzers
+		_dict_fz = data_structures.DictCount()
 
 		for l in self.langs_export:
 			print "%s &" % (self.lang_names[l]),
@@ -83,10 +84,20 @@ class AggregatedTasks(LineVisitor):
 					continue
 
 				print "%.1f & %.1f & %.1f" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
+				_dict_fz.add("%s.com"%fz, val=fd.succ_compiled)
+				_dict_fz.add("%s.fuzz"%fz, val=fd.succ_fuzz)
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
 
 			print "\\\\"
+
+		print "Total &",
+		for fz in self.fuzzers:
+			if fz == 'prime' or fz == 'original':
+				continue
+			_rate = float(_dict_fz.get_value("%s.com"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
+			print "\multicolumn{3}{c}{%.1f} &" % (100*_rate,),
+		print "\\\\"
 
 
 class LanguageStatus(LineVisitor):
@@ -101,7 +112,8 @@ class LanguageStatus(LineVisitor):
 			self.__tasks[task_name] = lang_dict
 
 	def export(self):
-		print 'Export LanguageStatus'		
+		print 'Export LanguageStatus'
+		print self.langs_export
 		task_stats = task_code_stats.TaskStatistics()
 		loc_lang = data_structures.DictCount()
 
