@@ -100,7 +100,6 @@ and conclude with proposals for further work
 \begin{table}
 \begin{center}
 \begin{tabular}{ l l}
- \hline
 Language & Implementation \\
 \hline
 C 			& gcc 4.4.5 \\
@@ -113,7 +112,6 @@ PHP 		& PHP 5.3.3-7 \\
 Perl 		& perl 5.10.1 \\
 Python 		& python 2.6.6 \\
 Ruby 		& ruby 1.5.8 \\
-\hline
 \end{tabular}
 \end{center}
 \caption{Tested languages.}
@@ -152,7 +150,6 @@ However, most of the tasks are presented only a subset of those languages.
 \begin{table}
 \begin{center}
 \begin{tabular}{ l p{5cm}}
- \hline
 Task Name & Description\\
 \hline
 AccumFactory & Accumulator Generator as described by Paul Graham\footnote{\url{http://paulgraham.com/accgensub.html}}\\
@@ -169,7 +166,6 @@ Power & Implementation of Power sets\footnote{\url{http://en.wikipedia.org/wiki/
 Substring & A program that count the occurrences of a substring.\\
 Tokenizer & A string tokenizing program.\\
 ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url{http://rosettacode.org/wiki/Zig-zag_matrix}}.\\
-\hline
 \end{tabular}
 \end{center}
 \caption{List of selected Rosseta Code tasks.}
@@ -241,7 +237,7 @@ We measure:
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
 \begin{tabular}{l r r r r r r r r r r | r}
- & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby & Total\\
+ & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby & \textbf{Total}\\
 \hline
 AccumFactory & 17 & 57 & 8 & 16 & 16 & 8 & 7 & 7 & 10 & 30 & 10 \\
 Hello & 7 & 8 & 7 & 1 & 6 & 1 & 1 & 1 & 7 & 1 & 10 \\
@@ -258,7 +254,7 @@ MutRecursion & 29 & 35 & 31 & 8 & 20 & 18 & 22 & 28 & 4 & 8 & 10 \\
 Dow & 23 & 17 & 17 & 7 & 13 & 5 & 9 & 17 & 7 & 4 & 10 \\
 Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \hline
-Total & 458 & 461 & 258 & 114 & 296 & 102 & 224 & 156 & 161 & 159 & \\
+\textbf{Total} & 458 & 461 & 258 & 114 & 296 & 102 & 224 & 156 & 161 & 159 & \\
 \end{tabular}
 \end{center}
 \caption{Language Compatibility per Task.}
@@ -282,7 +278,7 @@ Perl       & 57.9 & 29.3 & 7.4  & 100.0 & 91.0 & 22.1  & 15.1 & 11.6 & 6.7  & 18
 Python     & 43.3 & 17.3 & 12.6 & 100.0 & 75.3 & 14.4  & 18.3 & 6.9  & 6.1  & 20.7 & 10.6 & 5.7  & 45.2 & 23.6 & 10.0 \\
 Ruby       & 52.3 & 11.8 & 9.1  & 100.0 & 91.1 & 31.6  & 27.6 & 14.7 & 12.3 & 33.4 & 15.8 & 11.1 & 58.0 & 27.0 & 16.1 \\
 \hline
-Averages   & 30.6 & 14.0 & 6.2  & 95.1  & 74.5 & 15.8  & 15.1 & 9.7  & 5.3  & 12.8 & 8.5  & 3.5  & 30.3 & 18.7 & 6.6 \\
+\textbf{Mean} & 30.6 & 14.0 & 6.2  & 95.1  & 74.5 & 15.8  & 15.1 & 9.7  & 5.3  & 12.8 & 8.5  & 3.5  & 30.3 & 18.7 & 6.6 \\
 \end{tabular}
 \end{center}
 \caption{Aggregated results per language}
