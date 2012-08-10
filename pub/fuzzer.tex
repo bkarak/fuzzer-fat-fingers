@@ -49,18 +49,53 @@ term1, term2
 Programming Languages, Compiler, Fuzzing, Unit Testing
 
 \section{Introduction} % {{{1
+A substitution of a comma with a period in project Mercury's working
+{\sc fortran} code compromised the accuracy of the results,
+rendering them unsuitable for longer orbital missions \cite{Brad89,Neu95}.
+How probable are such events and how does a programming language's
+design affect their likelihood and severity?
 
-\cite{C99}
+To study these questions we chose ten popular programming languages,
+and a corpus of programs written in all of them.
+We then constructed a source code mutation {\em fuzzer}:
+a tool that systematically introduces diverse random perturbations
+into the program's source code,
+and examined whether the resultant source code had errors that
+were detected at compile or runtime, and whether it produced
+erroneous results.
 
-\begin{itemize}
-	\item The common case in this experiment is the human factor, how the program responds to human errors (syntax, mistypes).
-	\item The fuzzer that messes with variables and their values follows the standard pattern that is used to test applications and enhance their security against input validation attacks.
-	\item The work presented here, could measure the fault tolerance for these languages. There is a generic term ``software fault tolerance''.
-	\item Refactoring tools may act as fuzzers (they are programs and we have to assume that they have bugs), thus we are not measuring the resiliense of the programming languages against the human factor, we do it even against automated code refactoring tools.
-\end{itemize}
+In practice,
+the errors that we artificially introduced into the source code can
+crop up in a number of ways.
+Mistyping---the ``fat fingers'' syndrome-- is one plausible source.
+Other scenarios include
+absent-mindedness,
+automated refactorings gone awry
+(especially in languages where such tasks cannot be reliably implemented),
+unintended consequences from complex editor commands or
+search-and-replace operations,
+and even the odd cat walking over the keyboard.
 
+The contribution of our work is twofold.
+First, we describe a method for systematically evaluating the tolerance
+of source code written in diverse programming languages to a particular
+class of errors.
+In addition, we apply this method to numerous tasks written in ten popular
+programming languages,
+and by analyzing tens of thousands of cases we present an overview of
+the likelihood and impact of these errors among diverse languages.
+
+In the remainder of this paper we present our
+methods (Section~\ref{sec:method}) and
+results (Section~\ref{sec:results}),
+we discuss our findings (Section~\ref{sec:discussion}),
+compare our approach against related work
+(Section~\ref{sec:related}),
+and conclude with proposals for further work
+(Section~\ref{sec:conclusions}).
 
 \section{Methodology} % {{{1
+\label{sec:method}
 
 We selected the languages to test based on a number of sources
 collated in an {\sc ieee} Spectrum article \cite{Kin11}:
@@ -148,7 +183,31 @@ ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url
 \end{center}
 \end{table}
 
+Fuzzing types
+
+% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
+\begin{description}
+	\item [IdentifierSubstitution (IdSub)]
+	\item [IntegerPerturbation (IntPert)]
+	\item [RandomCharacterSubstitution (RandCharSub)]
+	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
+
+	\item [SimilarSubstitution (SimSub)]
+\end{description}
+
+the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
+	\item Execution Failure: if the program is executing correctly (without crashing)
+	\item Result Error: if the program is not producing the proper result
+\end{itemize}
+
+
 \section{Results} % {{{1
+\label{sec:results}
 
 \begin{table*}
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
@@ -204,8 +263,10 @@ Ruby & 52 & 22 & 77 & 100 & 91 & 34 & 27 & 53 & 83 & 33 & 47 & 69 & 57 & 46 & 59
 \end{table*}
 
 \section{Discussion} % {{{1
+\label{sec:discussion}
 
 \section{Related Work} % {{{1
+\label{sec:related}
 
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
@@ -229,6 +290,8 @@ Testing ... \cite{HAM06}
 Fault Tolerance ... \cite{KOKR07}, \cite{LYU95}
 
 \section{Conclusions} % {{{1
+\label{sec:conclusions}
+
 
 \acks
 
