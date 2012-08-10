@@ -96,28 +96,6 @@ and conclude with proposals for further work
 
 \section{Methodology} % {{{1
 \label{sec:method}
-\begin{table}
-\begin{center}
-\caption{Tested languages.}
-\label{tab:langs}
-\begin{tabular}{ l l}
- \hline
-Language & Implementation \\
-\hline
-C 			& gcc 4.4.5 \\
-C++ 		& g++ 4.4.5 \\
-C\# 		& mono 2.6.7, CLI v2.0 \\
-Haskell 	& ghc 6.12.1 \\
-Java 		& OpenJDK 1.6.0\_18 \\
-Javascript 	& spidermonkey smjs 1.8.0 \\
-PHP 		& PHP 5.3.3-7 \\
-Perl 		& perl 5.10.1 \\
-Python 		& python 2.6.6 \\
-Ruby 		& ruby 1.5.8 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
 We selected the languages to test based on a number of sources
 collated in an {\sc ieee} Spectrum article \cite{Kin11}:
@@ -134,7 +112,49 @@ According to the source composition,
 our language coverage ranges from 71\% to 86\% of all languages.
 The list of languages we used in our study and the
 particular implementations we used are listed in
-Table~\ref{tab:lang}.
+Table~\ref{tab:langs}.
+
+% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
+\begin{description}
+	\item [IdentifierSubstitution (IdSub)]
+	\item [IntegerPerturbation (IntPert)]
+	\item [RandomCharacterSubstitution (RandCharSub)]
+	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
+	\item [SimilarSubstitution (SimSub)]
+\end{description}
+
+the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
+	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
+	\item Output Validity Success Rate (out): if the program is not producing the proper result
+\end{itemize}
+
+\begin{table}
+\begin{center}
+\caption{Tested languages.}
+\label{tab:langs}
+\begin{tabular}{ l l}
+ \hline
+Language & Implementation \\
+\hline
+C 			& gcc 4.4.5 \\
+C++ 		& g++ 4.4.5 \\
+C\# 		& mono 2.6.7, CLI v2.0 \\
+Haskell 	& ghc 6.12.1 \\
+Java 		& OpenJDK 1.6.0\_18 \\
+Javascript 	& spidermonkey 1.8.0 \\
+PHP 		& PHP 5.3.3-7 \\
+Perl 		& perl 5.10.1 \\
+Python 		& python 2.6.6 \\
+Ruby 		& ruby 1.5.8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \begin{table}
 \begin{center}
@@ -144,20 +164,20 @@ Table~\ref{tab:lang}.
  \hline
 Task Name & Description\\
 \hline
-AccumFactory & Accumulator Generator as described by Paul Graham \footnote{\url{http://paulgraham.com/accgensub.html}}\\
-Beers \\
-Dow & Detects all years (in a range) that christmas is a Sunday\\
-FlatList & Flattens a series of nested lists\\
-FuncComp & Implementation of mathematical function composition\\
-Horner & Horner's rule for polynomial evaluation\\
-Hello & A typical ``hello, world!'' program\\
+AccumFactory & Accumulator Generator as described by Paul Graham\footnote{\url{http://paulgraham.com/accgensub.html}}\\
+Beers & A program that prints the ``99 bottles of beer on the wall'' song\footnote{\url{http://99-bottles-of-beer.net/}}.\\
+Dow & Detects all years (in a range) that christmas is a Sunday.\\
+FlatList & Flattens a series of nested lists.\\
+FuncComp & Implementation of mathematical function composition.\\
+Horner & Horner's rule for polynomial evaluation.\\
+Hello & A typical ``hello, world!'' program.\\
 Mult & Ethiopian Multiplication. A method to multiply integers using only addition, doubling and halving.\\
-MutRecursion \\
-ManBoy \\
-Power \\
-Substring \\
-Tokenizer \\
-ZigZag \\
+MutRecursion & Hofstadter Female and Male sequences\footnote{\url{http://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences}}.\\
+ManBoy & \textit{Man or Boy} test as proposed by Don Knuth.\\
+Power & Implementation of Power sets\footnote{\url{http://en.wikipedia.org/wiki/Power_set}}.\\
+Substring & A program that count the occurrences of a substring.\\
+Tokenizer & A string tokenizing program.\\
+ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url{http://rosettacode.org/wiki/Zig-zag_matrix}}.\\
 \hline
 \end{tabular}
 \end{center}
@@ -250,14 +270,16 @@ Ruby & 52 & 22 & 77 & 100 & 91 & 34 & 27 & 53 & 83 & 33 & 47 & 69 & 57 & 46 & 59
 
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
+
 In that they describe how ... % XXX 
+
 Fuzzing ... \cite{TJC08}, \cite{WWGZ11}
 
 Out approach fuzzes the program with pseudo-random
 perturbations based in same cases on knowledge of
 lexical tokens.
 This can result in a large number of failures.
-An alternative approach, {\em grammar-based white box fuzzing}~\cite{Cog08},
+An alternative approach, {\em grammar-based white box fuzzing}~\cite{God08},
 takes into account the input language's grammar to fuzz the input in
 ways that are syntactically correct.
 This results in a higher rate of successful fuzzing and the location
