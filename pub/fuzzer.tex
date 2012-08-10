@@ -11,6 +11,7 @@
 \usepackage{bbding}
 \usepackage{pifont}
 \usepackage{url}
+\usepackage[pdftex]{graphicx}
 
 \begin{document}
 
@@ -384,8 +385,22 @@ inconsequential to the program's operation.
 The rest, 5,045 programs (69\% of those that run, 15\% of the fuzzed total),
 compiled and run without a problem, but produced wrong results.
 
+These aggregate results indicate that we chose an effective set
+of fuzzing methods.
+Syntax and semantic checking appear to be an effective but not
+fail-safe method for detecting the fuzz errors we introduced,
+as they blocked about two thirds of the fuzzed programs.
 
-The aggregate results for each fuzz type, phase, and language are summarized in
+\begin{figure*}
+        \begin{center}
+                \includegraphics[width=0.95\textwidth]{chart}
+        \end{center}
+        \caption{Risky completion of each phase per language and overall.}
+        \label{fig:results}
+\end{figure*}
+
+
+The results for each fuzz type, phase, and language are summarized in
 Table~\ref{tbl:aggregated-per-language}.
 
 
