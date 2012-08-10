@@ -1,81 +1,4 @@
-
-class StatStructure(object):
-	def __init__(self, key):
-		super(StatStructure, self).__init__()
-		self.key = key
-		self.succ_compiled = 0
-		self.fail_compiled = 0
-		self.succ_run = 0
-		self.fail_run = 0
-		self.succ_output = 0
-		self.fail_output = 0
-		self.succ_fuzz = 0
-		self.fail_fuzz = 0
-
-	def update(self, activity, result):
-		if activity == 'COMPILE':
-			if result == 'OK':
-				self.succ_compiled += 1
-			else:
-				self.fail_compiled += 1
-		elif activity == 'FUZZ':
-			if result == 'OK':
-				self.succ_fuzz += 1
-			else:
-				self.fail_fuzz += 1
-		elif activity == 'OUTPUT':
-			if result == 'OK':
-				self.succ_output += 1
-			else:
-				self.fail_output += 1
-		elif activity == 'RUN':
-			if result == 'OK':
-				self.succ_run += 1
-			else:
-				self.fail_run += 1
-
-	def rate_compiled(self, prime=0):
-		return float(self.succ_compiled) / float(self.__get_succ_fuzz())
-
-	def rate_fuzz(self, prime=0):
-		return float(self.succ_fuzz) / float(self.__get_succ_fuzz())
-
-	def rate_run(self):
-		return float(self.succ_run) / float(self.__get_succ_fuzz())
-
-	def rate_output(self):
-		return float(self.succ_output) / float(self.__get_succ_fuzz())
-
-	def __get_succ_fuzz(self):
-		if self.succ_fuzz == 0:
-			return 1.0
-
-		return self.succ_fuzz
-
-	def get_total_compiled(self):
-		return self.succ_compiled + self.fail_compiled
-
-	def get_total_run(self):
-		return self.succ_run + self.fail_run
-
-	def get_total_output(self):
-		return self.succ_output + self.fail_output
-
-	def get_total_fuzz(self):
-		return self.succ_fuzz + self.fail_fuzz
-
-class DictCount(object):
-	def __init__(self):
-		super(DictCount, self).__init__()
-		self.__dict = {}
-
-	def add(self, key):
-		value = self.__dict.get(key, 0)
-		value += 1
-		self.__dict[key] = value
-
-	def get_value(self, key):
-		return self.__dict.get(key, 0)
+import data_structures, task_code_stats
 
 class LineVisitor(object):
 	def __init__(self):
@@ -106,7 +29,7 @@ class TaskAggregator(LineVisitor):
 
 		# results are task_name, (lang, no_compiled_success, no_run_success, no_fuz, no_output_success)
 		results = self.__tasks.get(task_name, {})
-		stat_structure = results.get(language, StatStructure(language))
+		stat_structure = results.get(language, data_structures.StatStructure(language))
 		stat_structure.update(activity, result)
 		results[language] = stat_structure
 		self.__tasks[task_name] = results
@@ -140,7 +63,7 @@ class AggregatedTasks(LineVisitor):
 			self.fuzzers.append(fuzzer_name)
 
 		results = self.__languages.get(language, {})
-		fuzzer_dict = results.get(fuzzer_name, StatStructure(fuzzer_name))
+		fuzzer_dict = results.get(fuzzer_name, data_structures.StatStructure(fuzzer_name))
 		fuzzer_dict.update(activity, result)
 		results[fuzzer_name] = fuzzer_dict
 		self.__languages[language] = results
@@ -148,6 +71,7 @@ class AggregatedTasks(LineVisitor):
 	def export(self):
 		print 'Export AggregatedTasks'
 		print self.fuzzers
+		_dict_fz = data_structures.DictCount()
 
 		for l in self.langs_export:
 			print "%s &" % (self.lang_names[l]),
@@ -160,10 +84,20 @@ class AggregatedTasks(LineVisitor):
 					continue
 
 				print "%.1f & %.1f & %.1f" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
+				_dict_fz.add("%s.com"%fz, val=fd.succ_compiled)
+				_dict_fz.add("%s.fuzz"%fz, val=fd.succ_fuzz)
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
 
 			print "\\\\"
+
+		print "Total &",
+		for fz in self.fuzzers:
+			if fz == 'prime' or fz == 'original':
+				continue
+			_rate = float(_dict_fz.get_value("%s.com"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
+			print "\multicolumn{3}{c}{%.1f} &" % (100*_rate,),
+		print "\\\\"
 
 
 class LanguageStatus(LineVisitor):
@@ -173,32 +107,33 @@ class LanguageStatus(LineVisitor):
 
 	def visit(self, task_name, language, fuzzer_name, activity, result):
 		if fuzzer_name == 'original':
-			lang_dict = self.__tasks.get(task_name, DictCount())
+			lang_dict = self.__tasks.get(task_name, data_structures.DictCount())
 			lang_dict.add(language)
 			self.__tasks[task_name] = lang_dict
 
 	def export(self):
-		print 'Export LanguageStatus'		
-		_dict_count = DictCount()
+		print 'Export LanguageStatus'
+		print self.langs_export
+		task_stats = task_code_stats.TaskStatistics()
+		loc_lang = data_structures.DictCount()
 
 		for (tn, dcount) in self.__tasks.iteritems():
 			print "%s &" % (tn,),
-			for l in self.langs_export:			
+			__succ = 0
+
+			for l in self.langs_export:
 				if dcount.get_value(l) == 3:
-					print "\\ding{51}",
-					_dict_count.add(l)
+					_loc = task_stats.get_loc(tn, l)
+					print "%d &" % (_loc,),
+					__succ += 1
+					loc_lang.add(l, val=_loc)
 				else:
-					print "\\ding{55}",
-				
-				if l != 'rb':
-					print " &",
-			print "\\\\"
+					print "\\ding{55} &",				
+			print "%d \\\\" % (__succ,)
 
 		print " &",
 		for l in self.langs_export:
-			print "%d" % (_dict_count.get_value(l)),
-			if l != 'rb':
-				print " &",
+			print "%d &" % (loc_lang.get_value(l),),
 		print "\\\\"
 
 def main():
