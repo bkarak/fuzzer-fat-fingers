@@ -399,6 +399,18 @@ as they blocked about two thirds of the fuzzed programs.
         \label{fig:results}
 \end{figure*}
 
+The aggregate results per language are summarized in Figure~\ref{fig:results}.
+This shows the percentage over the successfully fuzzed programs
+for which a particular phase (compilation, running, results)
+completed in a risky state
+(i.e. successful compilation, successful execution, or wrong results).
+To draw the chart we have adjusted downward the figures for
+the successful compilation and execution phases
+to reflect the cases where the final results were correct.
+In these cases the fuzzing was evidently inconsequential and therefore we
+should not expect a failed compilation or execution.
+
+
 
 The results for each fuzz type, phase, and language are summarized in
 Table~\ref{tbl:aggregated-per-language}.
