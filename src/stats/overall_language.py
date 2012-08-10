@@ -84,10 +84,19 @@ class AggregatedTasks(LineVisitor):
 					continue
 
 				print "%.1f & %.1f & %.1f" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
+				
+				# last line
 				_dict_fz.add("%s.com"%fz, val=fd.succ_compiled)
 				_dict_fz.add("%s.run"%fz, val=fd.succ_run)
 				_dict_fz.add("%s.out"%fz, val=fd.succ_output)
 				_dict_fz.add("%s.fuzz"%fz, val=fd.succ_fuzz)
+
+				# total for all fuzzers
+				_dict_fz.add("%s.total_com"%l, val=fd.succ_compiled)
+				_dict_fz.add("%s.total_run"%l, val=fd.succ_run)
+				_dict_fz.add("%s.total_out"%l, val=fd.succ_output)
+				_dict_fz.add("%s.total_fuzz"%l, val=fd.succ_fuzz)
+
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
 
@@ -100,12 +109,31 @@ class AggregatedTasks(LineVisitor):
 			_com_rate = float(_dict_fz.get_value("%s.com"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
 			_run_rate = float(_dict_fz.get_value("%s.run"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
 			_out_rate = float(_dict_fz.get_value("%s.out"%fz)) / float(_dict_fz.get_value("%s.fuzz"%fz))
-			print "%.1f & %.1f & %.1f" % (100*_com_rate, 100*_run_rate, 100*_out_rate),
+			print "\\textbf{%.1f} & \\textbf{%.1f} & \\textbf{%.1f}" % (100*_com_rate, 100*_run_rate, 100*_out_rate),
 
 			if fz != self.fuzzers[len(self.fuzzers) - 1]:
 				print " &",
 
 		print "\\\\"
+		print "---- summary"
+
+		for l in self.langs_export:
+			_total_rate_com = float(_dict_fz.get_value("%s.total_com"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
+			_total_rate_run = float(_dict_fz.get_value("%s.total_run"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
+			_total_rate_out = float(_dict_fz.get_value("%s.total_out"%l)) / float(_dict_fz.get_value("%s.total_fuzz"%l))
+
+			_dict_fz.add("grand_total_com", val=_dict_fz.get_value("%s.total_com"%l))
+			_dict_fz.add("grand_total_run", val=_dict_fz.get_value("%s.total_run"%l))
+			_dict_fz.add("grand_total_out", val=_dict_fz.get_value("%s.total_out"%l))
+			_dict_fz.add("grand_total_fuzz", val=_dict_fz.get_value("%s.total_fuzz"%l))
+
+			print "%s & %.1f & %.1f & %.1f\\\\" % (self.lang_names[l], 100*_total_rate_com, 100*_total_rate_run, 100*_total_rate_out)
+
+		_grand_total_com_rate = float(_dict_fz.get_value("grand_total_com")) / float(_dict_fz.get_value("grand_total_fuzz"))
+		_grand_total_run_rate = float(_dict_fz.get_value("grand_total_run")) / float(_dict_fz.get_value("grand_total_fuzz"))
+		_grand_total_out_rate = float(_dict_fz.get_value("grand_total_out")) / float(_dict_fz.get_value("grand_total_fuzz"))
+
+		print "\\textbf{Mean} & \\textbf{%.1f} & \\textbf{%.1f} & \\textbf{%.1f}\\\\" % (100*_grand_total_com_rate, 100*_grand_total_run_rate, 100*_grand_total_out_rate)
 
 
 class LanguageStatus(LineVisitor):
