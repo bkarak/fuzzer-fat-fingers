@@ -101,6 +101,28 @@ The list of languages we used in our study and the
 particular implementations we used are listed in
 Table~\ref{tab:lang}.
 
+Fuzzing types
+
+% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
+\begin{description}
+	\item [IdentifierSubstitution (IdSub)]
+	\item [IntegerPerturbation (IntPert)]
+	\item [RandomCharacterSubstitution (RandCharSub)]
+	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
+
+	\item [SimilarSubstitution (SimSub)]
+\end{description}
+
+the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
+
+We measure:
+
+\begin{itemize}
+	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
+	\item Execution Failure: if the program is executing correctly (without crashing)
+	\item Result Error: if the program is not producing the proper result
+\end{itemize}
+
 \begin{table}
 \begin{center}
 \caption{List of selected Rosseta Code tasks.}
@@ -127,28 +149,6 @@ ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url
 \end{tabular}
 \end{center}
 \end{table}
-
-Fuzzing types
-
-% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
-\begin{description}
-	\item [IdentifierSubstitution (IdSub)]
-	\item [IntegerPerturbation (IntPert)]
-	\item [RandomCharacterSubstitution (RandCharSub)]
-	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-
-	\item [SimilarSubstitution (SimSub)]
-\end{description}
-
-the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
-
-We measure:
-
-\begin{itemize}
-	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
-	\item Execution Failure: if the program is executing correctly (without crashing)
-	\item Result Error: if the program is not producing the proper result
-\end{itemize}
 
 \section{Results} % {{{1
 
