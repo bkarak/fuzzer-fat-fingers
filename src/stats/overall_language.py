@@ -131,6 +131,10 @@ class TaskAggregator(LineVisitor):
 		self.__export(['js', 'php', 'pl', 'py', 'rb'])
 
 
+class AggregatedTasks:
+	def __init__(self):
+		pass
+
 class LanguageStatus(LineVisitor):
 	def __init__(self):
 		self.__tasks = {}

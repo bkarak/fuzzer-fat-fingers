@@ -1,5 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
  
 public final class FlatList {
  
@@ -14,15 +16,21 @@ public final class FlatList {
 			if (item instanceof List<?>) {
 				flatten((List<?>) item, toFlatList);
 			} else {
-				toFlatList.add(item);
+				System.out.println(item);
 			}
 		}
 	}
 
-	public static void main(String[] args) {
-		List<Object> flat = new ArrayList<Object>();
 
+	public static void main(String[] args) {
 		List<Object> tree = new ArrayList<Object>();
-		tree.add();	
+		List<Object> tone = new ArrayList<Object>();
+		tone.addAll(Arrays.asList(new Object[] {1, 2, 3})); 
+		tree.add(tone);
+		List<Object> flat = flatten(tree);
+
+		for (Object o : flat) {
+			System.out.println(o);
+		}
 	}
 }
