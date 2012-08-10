@@ -61,28 +61,6 @@ Programming Languages, Compiler, Fuzzing, Unit Testing
 
 
 \section{Methodology} % {{{1
-\begin{table}
-\begin{center}
-\caption{Tested languages.}
-\label{tab:langs}
-\begin{tabular}{ l l}
- \hline
-Language & Implementation \\
-\hline
-C 			& gcc 4.4.5 \\
-C++ 		& g++ 4.4.5 \\
-C\# 		& mono 2.6.7, CLI v2.0 \\
-Haskell 	& ghc 6.12.1 \\
-Java 		& OpenJDK 1.6.0\_18 \\
-Javascript 	& spidermonkey smjs 1.8.0 \\
-PHP 		& PHP 5.3.3-7 \\
-Perl 		& perl 5.10.1 \\
-Python 		& python 2.6.6 \\
-Ruby 		& ruby 1.5.8 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
 We selected the languages to test based on a number of sources
 collated in an {\sc ieee} Spectrum article \cite{Kin11}:
@@ -101,15 +79,12 @@ The list of languages we used in our study and the
 particular implementations we used are listed in
 Table~\ref{tab:lang}.
 
-Fuzzing types
-
 % FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
 \begin{description}
 	\item [IdentifierSubstitution (IdSub)]
 	\item [IntegerPerturbation (IntPert)]
 	\item [RandomCharacterSubstitution (RandCharSub)]
 	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-
 	\item [SimilarSubstitution (SimSub)]
 \end{description}
 
@@ -122,6 +97,29 @@ We measure:
 	\item Execution Failure: if the program is executing correctly (without crashing)
 	\item Result Error: if the program is not producing the proper result
 \end{itemize}
+
+\begin{table}
+\begin{center}
+\caption{Tested languages.}
+\label{tab:langs}
+\begin{tabular}{ l l}
+ \hline
+Language & Implementation \\
+\hline
+C 			& gcc 4.4.5 \\
+C++ 		& g++ 4.4.5 \\
+C\# 		& mono 2.6.7, CLI v2.0 \\
+Haskell 	& ghc 6.12.1 \\
+Java 		& OpenJDK 1.6.0\_18 \\
+Javascript 	& spidermonkey 1.8.0 \\
+PHP 		& PHP 5.3.3-7 \\
+Perl 		& perl 5.10.1 \\
+Python 		& python 2.6.6 \\
+Ruby 		& ruby 1.5.8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \begin{table}
 \begin{center}
