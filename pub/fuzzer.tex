@@ -136,7 +136,8 @@ particular implementations we used are listed in
 Table~\ref{tab:langs}.
 
 We obtained source code executing the same task in all ten
-languages of our study from {\em Rosetta Code},\url{http://rosettacode.org/}
+languages of our study from
+{\em Rosetta Code},\footnote{\url{http://rosettacode.org/}}
 a so-called programming chrestomathy site,
 organized in the form of a wiki.
 In the words of its creators,
@@ -145,30 +146,33 @@ thus demonstrating their similarities and differences and
 aiding persons with a grounding in one approach to a problem in learning another.
 At the time of the writing {\em Rosetta Code}
 listed 600 tasks and code in 470 languages.
-However, most of the tasks are presented only a subset of those languages.
+However, most of the tasks are presented only in a subset of those languages.
 
 \begin{table}
 \begin{center}
 \begin{tabular}{ l p{5cm}}
 Task Name & Description\\
 \hline
-AccumFactory & Accumulator Generator as described by Paul Graham\footnote{\url{http://paulgraham.com/accgensub.html}}\\
-Beers & A program that prints the ``99 bottles of beer on the wall'' song\footnote{\url{http://99-bottles-of-beer.net/}}.\\
-Dow & Detects all years (in a range) that christmas is a Sunday.\\
+AccumFactory & A function that takes a number $n$ and returns a function that takes a number $i$,
+and returns $n$ incremented by $i$. \\
+Beers & Print the ``99 bottles of beer on the wall'' song.\\
+Dow & Detects all years in a range in which Christmas falls on a Sunday.\\
 FlatList & Flattens a series of nested lists.\\
 FuncComp & Implementation of mathematical function composition.\\
-Horner & Horner's rule for polynomial evaluation.\\
+Horner & Horner's Method for polynomial evaluation.\\
 Hello & A typical ``hello, world!'' program.\\
-Mult & Ethiopian Multiplication. A method to multiply integers using only addition, doubling and halving.\\
-MutRecursion & Hofstadter Female and Male sequences\footnote{\url{http://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences}}.\\
-ManBoy & \textit{Man or Boy} test as proposed by Don Knuth.\\
-Power & Implementation of Power sets\footnote{\url{http://en.wikipedia.org/wiki/Power_set}}.\\
-Substring & A program that count the occurrences of a substring.\\
+Mult & Ethiopian Multiplication: a method to multiply integers using only addition, doubling and halving.\\
+MutRecursion & Hofstadter's Female and Male sequence~\cite{Hof89}.\\
+ManBoy & A test to distinguish compilers that correctly implement
+recursion and non-local references from those that to not~\cite{Knu64}.  \\
+Power & Calculation of a set's $S$ power set: the set of all subsets of $S$.\\
+Substring & Count the occurrences of a substring.\\
 Tokenizer & A string tokenizing program.\\
-ZigZag & Implementation of a program that produces a zig-zag array\footnote{\url{http://rosettacode.org/wiki/Zig-zag_matrix}}.\\
+ZigZag & Produce a square arrangement of the first $N^2$ integers,
+where the numbers increase sequentially in a zig-zag along the anti-diagonals of the array.\\
 \end{tabular}
 \end{center}
-\caption{List of selected Rosseta Code tasks.}
+\caption{List of the selected {\em Rosseta Code} tasks.}
 \label{tab:Tasks}
 \end{table}
 
