@@ -190,52 +190,6 @@ non-trivial functionality,
 and also, as a test case, the ``Hello, world!'' task.
 The tasks we studied are listed in Table~\ref{tab:tasks}.
 
-% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
-\begin{description}
-	\item [IdentifierSubstitution (IdSub)]
-	\item [IntegerPerturbation (IntPert)]
-	\item [RandomCharacterSubstitution (RandCharSub)]
-	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-	\item [SimilarSubstitution (SimSub)]
-\end{description}
-
-the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
-
-We measure:
-
-\begin{itemize}
-	\item Compilation Success Rate (com): if the a project with the specified fuzzer fails to compile.
-	\item Execution Success Rate (run): if the program is executing correctly (without crashing)
-	\item Output Validity Success Rate (out): if the program is not producing the proper result
-\end{itemize}
-
-
-Fuzzing types
-
-% FuzzIdentifierSubstitution', 'FuzzIntegerPerturbation', 'FuzzRandomCharacterSubstitution', 'FuzzRandomTokenSubstitution', 'FuzzSimilarSubstitution'
-\begin{description}
-	\item [IdentifierSubstitution (IdSub)]
-	\item [IntegerPerturbation (IntPert)]
-	\item [RandomCharacterSubstitution (RandCharSub)]
-	\item [RandomTokenSubstitution (RandTokenSub)] Replace one random token with another. This simulates abbsent-mindendness
-
-	\item [SimilarSubstitution (SimSub)]
-\end{description}
-
-the fuzzer result is deterministic? Each time we executed the fuzzer to the source, it produces the same permutation of the code?
-
-We measure:
-
-\begin{itemize}
-	\item Compilation Failure: if the a project with the specified fuzzer fails to compile.
-	\item Execution Failure: if the program is executing correctly (without crashing)
-	\item Result Error: if the program is not producing the proper result
-\end{itemize}
-
-
-\section{Results} % {{{1
-\label{sec:results}
-
 \begin{table*}
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
@@ -264,6 +218,131 @@ Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \caption{Lines of Code per Task and per Language, Unimplemented Tasks, and Implemented Languages per Task.}
 \label{tbl:lang-compatibility}
 \end{table*}
+
+Unfortunately, many of the tasks listed on {\em Rosetta Stone} were
+not in a form that would allow us to execute them as part of our study.
+Many would not compile, others lacked a test harness to produce output,
+and some required specific installed libraries or particular
+new language features.
+We tried to fix as many problems as possible, but in the end the tasks
+we ended up using were not as large or diverse as we would have liked.
+In addition, we were unable to implement some of the tasks in all our
+chosen languages.
+Tasks written in Objective-C, which was initially part of our language set,
+proved particularly tricky to compile,
+mainly because we found it difficult to automate their compilation and
+running.
+Our impression was that the Objective-C tool chain are was
+mostly geared toward a {\sc gui} environment.
+Key size metrics of the tasks and languages we tested are listed in
+Table~\ref{tbl:lang-compatibility}.
+
+We implemented a language-agnostic fuzzer as a Perl script
+that reads a program,
+splits it into tokens,
+performs a single random modification from a set of
+predefined types,
+and outputs the result.
+The program uses regular expressions to group tokens int
+six categories:
+identifiers (including reserved words),
+horizontal white space (spaces and tabs),
+integer constants,
+floating point constants,
+group delimiters (brackets, square and curly braces), and
+operators (including the multi-character operators of our chosen languages).
+
+Based on this categorization,
+we defined the following five modification types.
+\begin{description}
+\item [Identifier Substitution --- IdSub]
+A single randomly chose identifier is replaced with another one,
+randomly-chosen from the program's tokens.
+This change can simulate absent-mindedness, a semantic error, or
+a search-and-replace or refactoring operation gone awry.
+\item [Integer Perturbation --- IntPert]
+The value of a randomly chosen integer constant
+is randomly perturbed by $1$ or $-1$.
+This change simulates off-by-one errors.
+\item [Random Character Substitution --- RandCharSub]
+A single randomly chosen character (byte) within a randomly chose token
+is substituted with a random byte.
+This change simulates a typo or error in a complex editing command.
+\item [Similar Token Substitution --- SimSub]
+A single randomly chosen token
+that is not a space character or a group delimiter
+is substituted with another token of the same category,
+randomly chosen from the program's source code.
+This change simulates absent-mindedness and semantic errors.
+\item [Random Token Substitution --- RandTokenSub]
+A single randomly chosen non-space token
+is substituted with another token of the same category,
+This change can simulate most of the previously described errors.
+\end{description}
+
+Most fuzzing operations are implemented in a Monte Carlo style:
+tokens are randomly chosen until they match the operation's constraints.
+To aid the reproducibility of our results,
+the fuzzer's random number generator is seeded with a constant value,
+offset by another constant argument that is incremented on each successive run
+and a hash value of the specified fuzzing operation.
+Thus each time the fuzzer is executed with the same parameters it
+produces the same results.
+
+To run our tasks we created for each one of our languages two methods.
+One compiles the source code into an executable program.
+For interpreted languages this method checks the program's syntactic validity.
+The aim of this ``compilation'' method is to test for errors that can
+be statically detected before deployment.
+The second method invokes (if required) the particular language's
+runtime environment to run the executable program
+(or the source code for interpreted languages),
+and stores the results into a file.
+
+A separate driver program compiled and run all the tasks from the ten
+languages introducing fuzz into their source code.
+As a task's programs written in different languages produce slightly
+different results,
+the driver program first runs an unmodified version of each task
+to determine its expected output.
+Output that diverges from it is deemed to be incorrect.
+The running of each fuzzed task can fail in one of four successive
+phases.
+\begin{description}
+\item[Fuzzing]
+The fuzzer may fail to locate source code tokens that match the
+constraints of a particular fuzzing operation.
+This was a rare phenomenon, which mainly occurred in very short programs.
+\item[Compilation --- com]
+The program fails to compile (or syntax check),
+as indicated through the compiler or interpreter's exit code.
+In one particular case a fuzz
+(a substitution of a closing bracket with {\tt func\_t})
+caused an Objective C task's compiler
+to enter into an infinite loop,
+producing a 5{\sc gb} file of error messages.
+We side-stepped this problem when we decided to remove Objective C from
+the languages we tested.
+\item[Execution --- run]
+The program terminates successfully (without crashing),
+as indicated by the program's exit code.
+We had cases where the fuzzed code failed to terminate.
+We detected those cases by imposing a 5s timeout on the time a program
+was allowed to execute.
+\item[Output Validity --- out]
+The fuzzed program is producing the results different from those of
+the original one.
+\end{description}
+
+The driver program run a complete fuzz, compile, run, verify cycle
+for each of the five fuzz operations 50 times for
+each task and each supported language.
+We collected the results of these operations in an 86 thousand row
+table,
+which we analyzed through simple scripts.
+
+\section{Results} % {{{1
+\label{sec:results}
 
 \begin{table*}
 \begin{center}
@@ -330,6 +409,14 @@ We would like to thank Florents Tselai for significant
 help in the porting and implementation of the
 {\em Rosetta Code} tasks in our environment.
 
+
+\paragraph{Code Availability} The source code for
+the implemented tasks,
+the fuzzer,
+the language-specific methods, and
+the driver are maintained on GitHub, and
+will be made publicly available as open source software
+before the paper is published.
 % XXX STEREO
 
 % We recommend abbrvnat bibliography style.
