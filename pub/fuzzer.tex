@@ -38,7 +38,11 @@ This allows us to analyze the extend to which these languages
 can detect simple errors at compile or at run time.
 Our study is based on a large corpus of programs written in several programming
 languages systematically perturbed using a mutation-based fuzz generator.
-We found ... % XXX
+Our results prove that languages with weak type systems are significantly
+likelier than languages that enforce strong typing to let fuzzed programs
+compile and run to produce erroneous results.
+This also shows that comparative language fuzz testing is a
+legitimate technique for evaluating programming language designs.
 \end{abstract}
  
  \category{D.3.0}{Programming Languages}{General}
@@ -106,7 +110,7 @@ C\# 		& mono 2.6.7, CLI v2.0 \\
 Haskell 	& ghc 6.12.1 \\
 Java 		& OpenJDK 1.6.0\_18 \\
 JavaScript 	& spidermonkey 1.8.0 \\
-PHP 		& PHP 5.3.3-7 \\
+{\sc php} 		& {\sc php} 5.3.3-7 \\
 Perl 		& perl 5.10.1 \\
 Python 		& python 2.6.6 \\
 Ruby 		& ruby 1.5.8 \\
@@ -192,7 +196,7 @@ The tasks we studied are listed in Table~\ref{tab:tasks}.
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
 \begin{tabular}{l r r r r r r r r r r   r}
- & C & C++ & C\# & Haskell & Java & JavaScript & PHP & Perl & Python & Ruby & \textbf{Implemented}\\
+ & C & C++ & C\# & Haskell & Java & JavaScript & {\sc php} & Perl & Python & Ruby & \textbf{Implemented}\\
  &   &     &     &         &      &            &     &      &        &      &  \textbf{Languages}\\
 \hline
 AccumFactory & 17 & 57 & 8 & 16 & 16 & 8 & 7 & 7 & 10 & 30 & 10 \\
@@ -390,9 +394,9 @@ of the code.
 \end{figure*}
 
 The aggregate results per language are summarized in Figure~\ref{fig:results}
-in the form of failure modes:
-compiles or executions that failed to catch an erroneous program and
-resulted in wrong results.
+in the form of {\em failure modes}:
+successful compiles or executions, which consequently failed to catch an
+erroneous program and resulted in wrong results.
 The rationale behind this depiction is that the later in the software
 development life cycle an error is caught the more damaging it is.
 The denominator used for calculating the percentages also includes
@@ -432,7 +436,7 @@ associated with scripting language features.
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{ l r r r r r r r r r r r r r r r r r r }
+\begin{tabular}{ l r r r|r r r|r r r|r r r|r r r}
 & \multicolumn{3}{c}{IntPert (\%)} & \multicolumn{3}{c}{IdSub (\%)} & \multicolumn{3}{c}{SimSub (\%)} & \multicolumn{3}{c}{RandCharSub (\%)} & \multicolumn{3}{c}{RandTokenSub (\%)}\\ 
 	       & com  & run  & out  & com  & run  & out  & com  & run  & out  & com & run   & out  & com  & run  & out\\
 \hline													
@@ -442,22 +446,53 @@ C\# & 69.8 & 65.2 & 53.2  & 6.9 & 6.9 & 0.3  & 7.7 & 7.4 & 1.4  & 4.0 & 4.0 & 0.
 Haskell & 89.4 & 84.0 & 73.7  & 4.0 & 1.9 & 1.5  & 13.4 & 11.2 & 9.1  & 3.7 & 3.4 & 1.1  & 3.5 & 3.2 & 1.5 \\
 Java & 100.0 & 82.5 & 62.1  & 5.1 & 3.6 & 0.7  & 7.9 & 6.4 & 3.3  & 3.1 & 3.0 & 0.1  & 2.3 & 1.9 & 0.1 \\
 Javascript & 100.0 & 79.7 & 73.7  & 65.9 & 18.4 & 12.7  & 57.2 & 22.9 & 17.8  & 30.9 & 9.6 & 1.7  & 15.0 & 5.7 & 3.9 \\
-PHP & 99.2 & 87.5 & 71.3  & 56.4 & 34.1 & 31.0  & 46.2 & 39.7 & 38.3  & 37.4 & 32.7 & 30.9  & 25.7 & 23.7 & 22.6 \\
+{\sc php} & 99.2 & 87.5 & 71.3  & 56.4 & 34.1 & 31.0  & 46.2 & 39.7 & 38.3  & 37.4 & 32.7 & 30.9  & 25.7 & 23.7 & 22.6 \\
 Perl & 100.0 & 91.0 & 68.9  & 57.9 & 29.3 & 21.9  & 44.3 & 27.3 & 16.8  & 15.1 & 11.6 & 4.9  & 18.2 & 14.2 & 9.2 \\
 Python & 100.0 & 75.3 & 60.9  & 43.3 & 17.3 & 4.7  & 45.2 & 23.6 & 13.6  & 18.3 & 6.9 & 0.7  & 20.7 & 10.6 & 4.9 \\
 Ruby & 100.0 & 91.1 & 59.5  & 52.3 & 11.8 & 2.7  & 58.0 & 27.0 & 10.9  & 27.6 & 14.7 & 2.4  & 33.4 & 15.8 & 4.8 \\
-\hline
 \textbf{Mean} & \textbf{95.1} & \textbf{74.5} & \textbf{58.7}  & \textbf{30.6} & \textbf{14.0} & \textbf{7.8}  & \textbf{30.3} & \textbf{18.7} & \textbf{12.1}  & \textbf{15.1} & \textbf{9.7} & \textbf{4.3}  & \textbf{12.8} & \textbf{8.5} & \textbf{5.0} \\
 \end{tabular}
 \end{center}
-\caption{Success rates for each phase, fuzz operation, and language.}
+\caption{Failure modes for each language, fuzz operation, and phase (successful compilations, runs, and wrong output).}
 \label{tbl:aggregated-per-language}
 \end{table*}
 
 The results for each fuzz type, phase, and language are summarized in
 Table~\ref{tbl:aggregated-per-language}.
+Predictably, the off-by-one integer perturbation ({\em IntPert})
+was the fuzz that
+compilers found most difficult to catch and the one that resulted
+in most cases of erroneous output.
+The C\# compiler seems to behave better than the others in this area,
+having a significantly lower number of successful compilations than the
+rest.
+However, this did not result in a similarly good performance rank
+regarding lack of erroneous output.
 
+Identifier substitution ({\em IdSub}) and similar token substitution
+({\em SimSub}) resulted in almost equal numbers of compilation failures.
+Although one might expect that {\em IdSub} would be more difficult
+to detect than the wider-ranging {\em SimSub},
+our fuzzer's treatment of reserved words as identifiers
+probably gave the game away.
+Nevertheless, {\em SimSub} resulted in a significantly higher number
+of successful runs and erroneous results.
+The erroneous results for {\em SimSub} were dramatically higher
+than those for {\em IdSub} in the case of
+languages with a more imaginative syntax, like Python, Haskell, and Ruby.
 
+The random character substitution fuzz was the one that resulted
+in the lowest number of erroneous results.
+However, it wrecked havoc with {\sc php}s compilation and output,
+and JavaScript's compilation.
+This could be associated with how these languages treat source code
+with non-{\sc ascii} characters.
+
+Finally, the random token substitution resulted in the lowest number
+of successful compilations or runs and consequently
+also a low number of erroneous results.
+{\sc php} performed particularly badly in this area indicating a
+dangerously loose syntax.
 
 \section{Related Work} % {{{1
 \label{sec:related}
@@ -504,14 +539,25 @@ In addition, a programming language is called safe, when it protects its own abs
 
 Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at runtime and usually they fail upon execution or produce corrupted output.
 
-\section{Conclusions} % {{{1
+\section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
 
-Larger corpus,
-more exapmples
-More languages
-More and more realistic fuzz operations
+The work we described in this study cries to be extended
+by applying it on a larger and more diverse corpus of programming tasks.
+It would also be interesting to test a wider variety of languages.
+Although Haskell performed broadly similar to the other strongly-typed
+languages in our set we would hope that other declarative languages
+would exhibit more interesting characteristics.
+The fuzz operations can be also extended and be made more realistic,
+perhaps by implementing a mixture based on data from actual programming
+errors.
 
+In this study we tallied the failure modes associated with each
+languages and fuzz operation and reported the aggregate results.
+Manually analyzing and categorizing the failure modes associated
+with each language and fuzz operation is likely to produce
+interesting insights, as well as feedback that can drive the
+construction of better fuzz operations.
 
 We already mentioned in Section~\ref{sec:results} that the
 large degree of variation we witnessed among the scripting
@@ -522,13 +568,38 @@ comparative language fuzz testing of the type we performed
 can also be used to objectively evaluate programming language
 designs.
 
+Probably the most significant outcome of our study is the
+fact that comparative language fuzz testing is a
+legitimate technique for evaluating programming language designs.
+This opens the door into two broad research directions.
 
+The first research direction involves the comparative evaluation
+of programming languages using objective criteria,
+such as the response to fuzzing of code implementing the same functionality
+in diverse languages.
+This is made significantly easier through the publication of
+tasks implemented in numerous programming languages on the
+{\em Rosetta Code} site.
+Our community should therefore expend effort to contribute to
+the site's wiki, increasing the trustworthiness and diversity of
+the provided examples.
+
+The second research strand involves the systematic study of
+language design by using methods from the fields of reliability engineering
+and software testing.
+Again, fuzzing is just one technique, others could be inspired from
+established methods like
+hazard analysis,
+fault tree analysis, and
+test coverage analysis.
 
 \acks
 
 We would like to thank Florents Tselai for significant
 help in the porting and implementation of the
-{\em Rosetta Code} tasks in our environment.
+{\em Rosetta Code} tasks in our environment,
+and the numerous contributors of {\em Rosetta Code} for
+making their efforts available to the public.
 
 This work is supported by European and Greek national funds
 under the ``Thalis'' action, {\sc stereo} research program
