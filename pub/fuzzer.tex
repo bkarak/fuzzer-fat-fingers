@@ -23,7 +23,7 @@
 %\preprintfooter{short description of paper} % 'preprint' option specified.
 
 \title{Programming Languages vs. Fat Fingers}
-\subtitle{An Empirical Study}
+\subtitle{Comparative Language Fuzz Testing}
 
 \authorinfo{Diomidis Spinellis\and Vassilios Karakoidas}
   {Athens University of Economics and Business}
@@ -105,7 +105,7 @@ C++ 		& g++ 4.4.5 \\
 C\# 		& mono 2.6.7, CLI v2.0 \\
 Haskell 	& ghc 6.12.1 \\
 Java 		& OpenJDK 1.6.0\_18 \\
-Javascript 	& spidermonkey 1.8.0 \\
+JavaScript 	& spidermonkey 1.8.0 \\
 PHP 		& PHP 5.3.3-7 \\
 Perl 		& perl 5.10.1 \\
 Python 		& python 2.6.6 \\
@@ -192,7 +192,7 @@ The tasks we studied are listed in Table~\ref{tab:tasks}.
 % ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 \begin{center}
 \begin{tabular}{l r r r r r r r r r r   r}
- & C & C++ & C\# & Haskell & Java & Javascript & PHP & Perl & Python & Ruby & \textbf{Implemented}\\
+ & C & C++ & C\# & Haskell & Java & JavaScript & PHP & Perl & Python & Ruby & \textbf{Implemented}\\
  &   &     &     &         &      &            &     &      &        &      &  \textbf{Languages}\\
 \hline
 AccumFactory & 17 & 57 & 8 & 16 & 16 & 8 & 7 & 7 & 10 & 30 & 10 \\
@@ -340,29 +340,6 @@ which we analyzed through simple scripts.
 \section{Results and Discussion} % {{{1
 \label{sec:results}
 
-\begin{table*}
-\begin{center}
-\begin{tabular}{ l r r r r r r r r r r r r r r r r r r }
-& \multicolumn{3}{c}{IntPert (\%)} & \multicolumn{3}{c}{IdSub (\%)} & \multicolumn{3}{c}{SimSub (\%)} & \multicolumn{3}{c}{RandCharSub (\%)} & \multicolumn{3}{c}{RandTokenSub (\%)}\\ 
-	       & com  & run  & out  & com  & run  & out  & com  & run  & out  & com & run   & out  & com  & run  & out\\
-\hline															
-C          & 100  & 52.6 & 18.6 & 16.6 & 14   & 10.4 & 20.6	& 16.6 & 9.6  &	7.3	 & 7.3  & 6.1  & 5.4  & 5.1  & 3.4\\
-C++        & 91.7 &	47.2 & 6.2  & 5.6  & 4.9  & 3.9	 & 8.3	& 7.1  & 3.1  & 3.7	 & 3.7  & 3.4  & 2.6  & 2.4  & 1.3\\
-C\#        & 69.8 & 65.2 & 11.9 & 6.9  & 6.9  & 6.6	 & 7.7	& 7.4  & 6.0  & 4	 & 4    & 3.9  & 3    & 3    & 2.7\\
-Haskell    & 89.4 & 84   & 10.3 & 4    & 1.9  & 0.4	 & 13.4	& 11.2 & 2.1  & 3.7	 & 3.4  & 2.3  & 3.5  & 3.2  & 1.8\\
-Java       & 100  & 82.5 & 20.3 & 5.1  & 3.6  & 2.9	 & 7.9	& 6.4  & 3.1  & 3.1	 & 3    & 2.9  & 2.3  & 1.9  & 1.7\\
-Javascript & 100  & 79.7 & 6    & 65.9 & 18.4 & 5.7	 & 57.2	& 22.9 & 5.1  & 30.9 & 9.6  & 7.9  & 15   & 5.7  & 1.9\\
-PHP        & 99.2 & 87.5 & 16.2 & 56.4 & 34.1 & 3	 & 46.2	& 39.7 & 1.4  & 37.4 & 32.7 & 1.9  & 25.7 & 23.7 & 1.1\\
-Perl       & 100  & 91   & 22.1 & 57.9 & 29.3 & 7.4	 & 44.3	& 27.3 & 10.5 & 15.1 & 11.6	& 6.7  & 18.2 & 14.2 & 4.9\\
-Python     & 100  & 75.3 & 14.4 & 43.3 & 17.3 & 12.6 & 45.2	& 23.6 & 10.0 & 18.3 & 6.9	& 6.1  & 20.7 & 10.6 & 5.7\\
-Ruby       & 100  & 91.1 & 31.6 & 52.3 & 11.8 & 9.1	 & 58	& 27   & 16.1 & 27.6 & 14.7	& 12.3 & 33.4 & 15.8 & 11.1\\
-\hline															
-\textbf{Mean} & \textbf{95.1} & \textbf{74.5} & \textbf{15.8} & \textbf{30.6} & \textbf{14.0} & \textbf{6.2} & \textbf{30.3} & \textbf{18.7} & \textbf{6.6} & \textbf{15.1} & \textbf{9.7} & \textbf{5.3} & \textbf{12.8} & \textbf{8.5} & \textbf{3.5}\\
-\end{tabular}
-\end{center}
-\caption{Success rates for each phase, fuzz operation, and language.}
-\label{tbl:aggregated-per-language}
-\end{table*}
 
 
 In total we tested
@@ -388,27 +365,94 @@ of fuzzing methods.
 Syntax and semantic checking appear to be an effective but not
 fail-safe method for detecting the fuzz errors we introduced,
 as they blocked about two thirds of the fuzzed programs.
+A large percentage of the programs also executed without an error,
+giving us in the end wrong results for 15\% of the programs.
+
+This is worrying:
+it indicates that a significant number of trivial changes in a program's source
+code that can happen accidentally will not be caught at compile and run
+time and result in an erroneously operating program.
+In an ideal case we would want program code to have enough redundancy
+so that such small changes would result in an incorrect program
+that would not compile.
+However, as any user of {\sc raid} storage can attest,
+redundancy comes at a cost.
+Programming productivity in such language would suffer as programmers
+would have to write more code and keep in sync mutually dependent parts
+of the code.
 
 \begin{figure*}
         \begin{center}
                 \includegraphics[width=0.95\textwidth]{chart}
         \end{center}
-        \caption{Risky completion of each phase per language and overall.}
+        \caption{Failure modes for each phase per language and overall.}
         \label{fig:results}
 \end{figure*}
 
-The aggregate results per language are summarized in Figure~\ref{fig:results}.
-This shows the percentage over the successfully fuzzed programs
-for which a particular phase (compilation, running, results)
-completed in a risky state
-(i.e. successful compilation, successful execution, or wrong results).
-To draw the chart we have adjusted downward the figures for
-the successful compilation and execution phases
-to reflect the cases where the final results were correct.
-In these cases the fuzzing was evidently inconsequential and therefore we
-should not expect a failed compilation or execution.
+The aggregate results per language are summarized in Figure~\ref{fig:results}
+in the form of failure modes:
+compiles or executions that failed to catch an erroneous program and
+resulted in wrong results.
+The rationale behind this depiction is that the later in the software
+development life cycle an error is caught the more damaging it is.
+The denominator used for calculating the percentages also includes
+fuzzing operations that resulted in correct results.
+Therefore, the numbers also reflect the programming language's
+information density:
+in our case the chance that a fuzz will not affect the program's operation.
 
+The figure confirms a number of intuitive notions.
+Languages with strong static typing (Java, Haskell, C++)
+caught more errors at compile time than languages
+with weak or dynamic type systems
+(Ruby, Python, Perl, {\sc php}, and JavaScript).
+Somewhat predictably, C fell somewhere in the middle,
+confirming a belief that its type system is not as strong
+as many of its adherents (including this article's first author)
+think it is.
+However, C produced a higher number of run-time errors,
+which in the end resulted in a rate of incorrect output
+similar to that of the other strongly-typed languages.
 
+A picture similar to that of compile-time errors
+is also apparent for run time behavior.
+Again, code written in weakly-typed languages are more probable to run without
+a problem than code written in languages with a strong type system.
+As one would expect these two differences result in a higher rate of
+wrong output from programs written in languages with weak typing.
+With an error rate of 37\% for {\sc php} against one of 8\% for
+C++ and C\#, one would be foolish indeed to write a defibrillator's
+software in {\sc php}.
+
+Overall, the figures for dynamic scripting languages show a far larger
+degree of variation compared to the figures of the strongly static typed
+ones.
+This is probably a result of a higher level of experimentation
+associated with scripting language features.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{ l r r r r r r r r r r r r r r r r r r }
+& \multicolumn{3}{c}{IntPert (\%)} & \multicolumn{3}{c}{IdSub (\%)} & \multicolumn{3}{c}{SimSub (\%)} & \multicolumn{3}{c}{RandCharSub (\%)} & \multicolumn{3}{c}{RandTokenSub (\%)}\\ 
+	       & com  & run  & out  & com  & run  & out  & com  & run  & out  & com & run   & out  & com  & run  & out\\
+\hline															
+C          & 100  & 52.6 & 18.6 & 16.6 & 14   & 10.4 & 20.6	& 16.6 & 9.6  &	7.3	 & 7.3  & 6.1  & 5.4  & 5.1  & 3.4\\
+C++        & 91.7 &	47.2 & 6.2  & 5.6  & 4.9  & 3.9	 & 8.3	& 7.1  & 3.1  & 3.7	 & 3.7  & 3.4  & 2.6  & 2.4  & 1.3\\
+C\#        & 69.8 & 65.2 & 11.9 & 6.9  & 6.9  & 6.6	 & 7.7	& 7.4  & 6.0  & 4	 & 4    & 3.9  & 3    & 3    & 2.7\\
+Haskell    & 89.4 & 84   & 10.3 & 4    & 1.9  & 0.4	 & 13.4	& 11.2 & 2.1  & 3.7	 & 3.4  & 2.3  & 3.5  & 3.2  & 1.8\\
+Java       & 100  & 82.5 & 20.3 & 5.1  & 3.6  & 2.9	 & 7.9	& 6.4  & 3.1  & 3.1	 & 3    & 2.9  & 2.3  & 1.9  & 1.7\\
+JavaScript & 100  & 79.7 & 6    & 65.9 & 18.4 & 5.7	 & 57.2	& 22.9 & 5.1  & 30.9 & 9.6  & 7.9  & 15   & 5.7  & 1.9\\
+PHP        & 99.2 & 87.5 & 16.2 & 56.4 & 34.1 & 3	 & 46.2	& 39.7 & 1.4  & 37.4 & 32.7 & 1.9  & 25.7 & 23.7 & 1.1\\
+Perl       & 100  & 91   & 22.1 & 57.9 & 29.3 & 7.4	 & 44.3	& 27.3 & 10.5 & 15.1 & 11.6	& 6.7  & 18.2 & 14.2 & 4.9\\
+Python     & 100  & 75.3 & 14.4 & 43.3 & 17.3 & 12.6 & 45.2	& 23.6 & 10.0 & 18.3 & 6.9	& 6.1  & 20.7 & 10.6 & 5.7\\
+Ruby       & 100  & 91.1 & 31.6 & 52.3 & 11.8 & 9.1	 & 58	& 27   & 16.1 & 27.6 & 14.7	& 12.3 & 33.4 & 15.8 & 11.1\\
+\hline															
+\textbf{Mean} & \textbf{95.1} & \textbf{74.5} & \textbf{15.8} & \textbf{30.6} & \textbf{14.0} & \textbf{6.2} & \textbf{30.3} & \textbf{18.7} & \textbf{6.6} & \textbf{15.1} & \textbf{9.7} & \textbf{5.3} & \textbf{12.8} & \textbf{8.5} & \textbf{3.5}\\
+\end{tabular}
+\end{center}
+\caption{Success rates for each phase, fuzz operation, and language.}
+\label{tbl:aggregated-per-language}
+\end{table*}
 
 The results for each fuzz type, phase, and language are summarized in
 Table~\ref{tbl:aggregated-per-language}.
@@ -462,6 +506,22 @@ Statically typed languages are in general resilient to several fuzzing technique
 
 \section{Conclusions} % {{{1
 \label{sec:conclusions}
+
+Larger corpus,
+more exapmples
+More languages
+More and more realistic fuzz operations
+
+
+We already mentioned in Section~\ref{sec:results} that the
+large degree of variation we witnessed among the scripting
+language results may be a result of those languages
+more experimental nature.
+More interestingly, this variation also suggests that
+comparative language fuzz testing of the type we performed
+can also be used to objectively evaluate programming language
+designs.
+
 
 
 \acks
