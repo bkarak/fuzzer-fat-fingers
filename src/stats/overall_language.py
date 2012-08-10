@@ -34,29 +34,29 @@ class StatStructure(object):
 			else:
 				self.fail_run += 1
 
-	def rate_compiled(self):
+	def rate_compiled(self, prime=0):
 		if self.get_total_compiled() == 0:
 			return 0.0
 
-		return float(self.succ_compiled) / float(self.get_total_compiled())
+		return float(self.succ_compiled) / float(self.get_total_compiled() - prime)
 
-	def rate_fuzz(self):
+	def rate_fuzz(self, prime=0):
 		if self.get_total_fuzz() == 0:
 			return 0.0
 
-		return float(self.succ_fuzz) / float(self.get_total_fuzz())
+		return float(self.succ_fuzz) / float(self.get_total_fuzz() - prime)
 
-	def rate_run(self):
+	def rate_run(self, prime=0):
 		if self.get_total_run() == 0:
 			return 0.0
 
-		return float(self.succ_run) / float(self.get_total_run())
+		return float(self.succ_run) / float(self.get_total_run() - prime)
 
-	def rate_output(self):
+	def rate_output(self,prime=0):
 		if self.get_total_output() == 0:
 			return 0.0
 
-		return float(self.succ_output) / float(self.get_total_output())
+		return float(self.succ_output) / float(self.get_total_output() - prime)
 
 	def get_total_compiled(self):
 		return self.succ_compiled + self.fail_compiled
@@ -159,12 +159,15 @@ class AggregatedTasks(LineVisitor):
 			print "%s &" % (self.lang_names[l]),
 			results = self.__languages[l]
 
+			fd_prime = results['prime']
+
 			for fz in self.fuzzers:
 				fd = results[fz]
+
 				if fz == 'prime' or fz == 'original':
 					continue
 
-				print "%d & %d & %d" % (fd.rate_compiled()*100, fd.rate_run()*100, fd.rate_output()*100),
+				print "%d & %d & %d" % (fd.rate_compiled(prime=fd_prime.fail_compiled)*100, fd.rate_run(prime=fd_prime.fail_run)*100, fd.rate_output(prime=fd_prime.fail_run)*100),
 				if fz != self.fuzzers[len(self.fuzzers) - 1]:
 					print " &",
 
