@@ -33,7 +33,7 @@ Selected languages (based on popularity)
 * Perl (perl 5.10.1)
 * Javascript (spidermonkey smjs 1.8.0)
 * Haskell (ghc 6.12.1)
-* Ruby (ruby 1.5.8)
+* Ruby (ruby 1.8.7)
 * Not Included
   * Actionscript (?)
   * Shell (bash, csh (?))
