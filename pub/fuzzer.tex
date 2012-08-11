@@ -55,6 +55,7 @@ Reliability, Experimentation, Measurement
 Programming Languages; Fuzzing; Comparison; Rosetta Stone
 
 \section{Introduction} % {{{1
+\label{sec:intro}
 A substitution of a comma with a period in project Mercury's working
 {\sc fortran} code compromised the accuracy of the results,
 rendering them unsuitable for longer orbital missions \cite{Brad89,Neu95}.
@@ -77,7 +78,7 @@ crop up in a number of ways.
 Mistyping---the ``fat fingers'' syndrome---is one plausible source.
 Other scenarios include
 absent-mindedness,
-automated refactorings gone awry
+automated refactorings \cite{Fow00} gone awry
 (especially in languages where such tasks cannot be reliably implemented),
 unintended consequences from complex editor commands or
 search-and-replace operations,
@@ -409,7 +410,7 @@ information density:
 in our case the chance that a fuzz will not affect the program's operation.
 
 The figure confirms a number of intuitive notions.
-Languages with strong static typing (Java, Haskell, C++)
+Languages with strong static typing \cite{Pie02} (Java, Haskell, C++)
 caught more errors at compile time than languages
 with weak or dynamic type systems
 (Ruby, Python, Perl, {\sc php}, and JavaScript).
@@ -504,53 +505,65 @@ dangerously loose syntax.
 \section{Related Work} % {{{1
 \label{sec:related}
 
-Comparative language evaluation has a long and colorful history; Kernighan \cite{Ker81} points out Pascal's design and syntax flaws. A comparison of Algol 60, FORTRAN, Pascal and Algol 68 is presented in reference \cite{BOJO80}.
+Comparative language evaluation has a long and sometimes colorful history.
+See for instance,
+the comparison of {\sc pl/i} with Cobol, {\sc fortran} and Jovial in
+terms of programmer productivity and programmer efficiency~\cite{RWSB68};
+the qualitative and quantitative comparison of Algol 60,
+{\sc fortran}, Pascal and Algol 68 in reference~\cite{BOJO80};
+Kernighan's delightful description of
+Pascal's design and syntax flaws~\cite{Ker81};
+as well as the relatively more recent study where code written
+C, C++, Java, Perl, Python, Rexx, and Tcl
+is compared in terms of execution time, memory consumption,
+program size, and programmer productivity~\cite{PREC00}.
 
-Different behaviour and productivity issues are pointed out in reference \cite{RWSB68}. It states that high-level abstractions of PL/I helped programmers to write fewer program statements, but with higher frequency of errors. To support this, a programmer implemented twice, seven benchmark problems in PL/I and in one other language; Cobol, Fortran and Jovial. The aforementioned publication correlates directly the language abstractions with the user productivity and efficiency, in terms of valid program code.
-
-In reference \cite{PREC00} seven different languages are also compared in terms of reliability, program length among others. This time modern languages are included in the comparison, like C, C++ and Java.
-
+Our work introduces fuzzing as a method for programming language
+evaluation.
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
+In this paper they tested common Unix
+utilities in various operating systems and architectures and discovered that
+25--33\% of these were crashing under certain conditions.
 
-In this paper they tested the common collection of {\sc unix}
-utilities in various operating systems and architectures and discrovered that
-25-33\% of these are crashing under certain conditions. To perform these tests
-they implemented automation shell scripts and a fuzzer, a program that generated
-random character sequences according to certain specifications.
+Nowadays fuzzing techniques are used mainly to detect software security
+vulnerabilities and improve software reliability \cite{TJC08,GODE07}.
+Several tools and techniques \cite{WWGZ11} have been developed,
+introducing concepts like \textit{directed fuzz testing} \cite{GLRI09}.
 
-Fuzzing techniques are used mainly to detect software security vulnerabilities and 
-improve software reliability \cite{TJC08,GODE07}. Several tools and techniques \cite{WWGZ11}
-have been developed, introducing concepts like \textit{directed fuzz testing} \cite{GLRI09}.
-
+Our experiment aims to exhibit the fault tolerance of each language
+and, in particular, the extend to which a language can use features such as
+their type systems to shield programmers from errors~\cite{LYU95,KOKR07}.
+The random fuzzing we employed in our study can be improved by taking
+into account specific properties of the object being studied.
 {\em Grammar-based white box fuzzing} \cite{God08},
 takes into account the input language's grammar to fuzz the input in
-ways that are syntactically correct. This results in a higher rate of successful fuzzing and the location
+ways that are syntactically correct.
+This results in a higher rate of successful fuzzing and the location
 of deeper problems.
+Another interesting approach is H-fuzzing \cite{ZWZH11}:
+a heuristic method that examines the execution paths of the program
+to achieve higher path coverage.
 
-Another interesting approach is H-fuzzing \cite{ZWZH11}, which is a heuristic method that examines the execution paths
-of the program to achieve higher path coverage. 
+Fuzz testing approaches are based on the fact that it is practically
+impossible to determine all execution paths and all program inputs that will
+fully test the validity and the reliability of a program.
+The analogy to our study is that it is impossible to come up with all
+the ways in which a programmer can write an incorrect program that the
+compiler or run time system could detect.
+Random testing \cite{HAM06} has been touted as a solution that can partially
+deal with the aforementioned problem.
+However it is not widely adopted outside the academic fields \cite{GGBO07},
+because the techniques it introduces are difficult to apply
+in complex systems and achieve good code coverage only at a significant cost
+\cite{RAWO06}.
 
-All these approaches are based on the fact that it is practically impossible to detect all
-execution paths and all program inputs to fully test the validity and the reliability of a program.
-
-Our approach fuzzes the program with pseudo-random perturbations based in same cases on knowledge of
-lexical tokens.
-
-Random Testing \cite{HAM06} seems to be promising solution that can partially deal with the aforementioned problem,
-but still it is not widely adopted outside the academic fields \cite{GGBO07}, since the techniques it 
-introduces are difficult to be applied in complex systems and achieve good code coverage, at a significant cost \cite{RAWO06}.
-
-The above case is made worse with the use of complex refactorings \cite{Fow00} in day-to-day programming. Refactorings are beneficial, but they are programs integrated in {\sc ide}s and also have bugs \cite{DDGM07}. Every bug results in corrupted code, which is very difficult to detect, especially for the case of dynamic langugages \cite{SCHA12,FFM11}.
-
-Our experiment aims to exhibit the fault tolerance of each language and use their features such as 
-their type systems to our advantage \cite{LYU95,KOKR07}. 
-
-Type systems are usually realized as type checkers in compilers and linkers of programming languages. They are categorized as static and dynamic. \textit{Static typing} implies static type checking. In other words, the ability of a programming language's compiler to know all the data types that are used in a program, and guarantee that they are correct at compile time. \textit{Dynamic typing} is exactly the opposite. The languages that are dynamically checked perform run-time checks in order to ensure consistent type use. 
-
-In addition, a programming language is called safe, when it protects its own abstractions. For example, a programming language that provides an abstraction for arrays, is considered safe, if it performs boundary checking upon access. Consequently, Java is a statically checked and safe programming language, while C/C++ are statically checked and unsafe. On the other hand, Perl and Lisp are dynamically checked and safe \cite{Pie02}.
-
-Statically typed languages are in general resilient to several fuzzing techniques, since the compiler catches all syntax or type errors and fail the compilation process. Dynamic languages like python, perl and ruby are evaluating many things at run time and usually they fail upon execution or produce corrupted output.
+In the introduction we mentioned that complex refactorings can
+result in errors similar to the ones we are investigating.
+A study of such errors appears in reference~\cite{DDGM07}.
+Refactoring bugs result in corrupted code,
+which is very difficult to detect, especially in the case of dynamic
+languages~\cite{SCHA12,FFM11}.
 
 \section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
