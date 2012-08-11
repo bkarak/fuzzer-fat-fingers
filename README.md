@@ -50,11 +50,9 @@ Selected languages (based on popularity)
   * VB (bwbasic 2.20 [http://sourceforge.net/projects/bwbasic/](http://sourceforge.net/projects/bwbasic/))
   * Objective-C (GNU Objective-C 4.4.5)
 
-Proposed Tasks
+Selected Tasks
 --------------
 We want each task to be available in all the languages, to be non-trivial and easy to test via its standard input and standard output.
-
-Selected:
 
 * [http://rosettacode.org/wiki/Day_of_the_week](http://rosettacode.org/wiki/Day_of_the_week)
 * [http://rosettacode.org/wiki/Flatten_a_list](http://rosettacode.org/wiki/Flatten_a_list)
