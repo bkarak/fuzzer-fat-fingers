@@ -3,8 +3,49 @@ using System.Collections;
  
 namespace RosettaCodeTasks
 {
+	public class FlattenList
+	{
+		// public static ArrayList Flatten(this ArrayList List)
+		// {
+			// ArrayList NewList = new ArrayList ( );
+ 
+			// NewList.AddRange ( List );
+ 
+			// while ( NewList.OfType<ArrayList> ( ).Count ( ) > 0 )
+			// {
+				// int index = NewList.IndexOf ( NewList.OfType<ArrayList> ( ).ElementAt ( 0 ) );
+				// ArrayList Temp = (ArrayList)NewList[index];
+				// NewList.RemoveAt ( index );
+				// NewList.InsertRange ( index, Temp );
+			// }
+ 
+			// return NewList;
+		// }
+		
+		//more generic flattener for enumerables
+		public static IEnumerable Flatten(IEnumerable enumerable)
+		{
+			foreach (object element in enumerable)
+			{
+				IEnumerable candidate = element as IEnumerable;
+				if (candidate != null)
+				{
+					foreach (object nested in Flatten(candidate))
+					{
+						yield return nested;
+					}
+				}
+				else
+				{
+					yield return element;
+				}
+			}
+		}
+	}
+
 	class Program
 	{
+	
 		static void Main ( string[ ] args )
 		{
  
@@ -30,7 +71,7 @@ namespace RosettaCodeTasks
 			Parent.Add ( new ArrayList ( ) );
  
  
-			foreach ( Object o in Parent.Flatten ( ) )
+			foreach ( Object o in FlattenList.Flatten ( Parent ) )
 			{
 				Console.WriteLine ( o.ToString ( ) );
 			}
