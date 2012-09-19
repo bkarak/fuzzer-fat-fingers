@@ -350,8 +350,11 @@ the original one.
 The driver program run a complete fuzz, compile, run, verify cycle
 for each of the five fuzz operations 50 times for
 each task and each supported language.
-We collected the results of these operations in an 86,627 row table,
+We collected the results of these operations in an XXX row table,
 which we analyzed through simple scripts.
+(The table's size is not round, because when each task involves
+fuzzing, compilation, running, and result comparison.
+If a phase fails, the subsequent phases are not performed.)
 
 \section{Results and Discussion} % {{{1
 \label{sec:results}
