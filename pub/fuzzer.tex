@@ -131,9 +131,18 @@ the number of book titles listed on Powell's Books,
 references in online discussions on {\sc irc}, and
 the number of job posts on Craigslist.
 From the superset of the popular languages listed in those
-sources we excluded
-Actionscript, Visual Basic, {\sc sql}, Objective C, and the Unix shell,
-because the corresponding programs or infrastructure would not match our methods.
+sources we excluded some languages for the following reasons.
+\begin{description}
+\item[Actionscript, Visual Basic] Both languages
+required a proprietary compiler and runtime environment,
+which were not available on our system.
+\item[{\sc sql}, Unix shell] Lack of implementations of the programs
+we could test.
+\item[Objective C] Problems with the requisite runtime environment:
+missing libraries, incompatible runtime frameworks,
+and lack of familiarity with the system.
+\end{description}
+
 According to the source of the popularity index,
 the coverage of the languages we selected over all languages
 ranges from 71\% to 86\%.
