@@ -1,17 +1,6 @@
 fuzzer-fat-fingers
 ==================
 
-Repository Structure
---------------------
-
-* pub/ -- 
-* src/
-  * fuzz/
-  * lang/
-  * run/
-  * stats/
-  * tasks/
-
 License
 -------
 
@@ -29,8 +18,33 @@ License
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Selected languages (based on popularity)
-----------------------------------------
+Repository Structure
+--------------------
+
+* **pub/** : PLATAEU 2012, Publication (LaTeX format)
+* **src/**
+  * _fuzz/_ : Fuzzer implementation (Perl) and main execution script (run.sh)
+  * _lang/_ : Scripts for compilation and execution of programs in the selected languages
+  * _run/_ : Temporary directory, used when the benchmark is running.
+  * _stats/_ : Data analysis scripts (Python)
+  * _tasks/_ : Rosseta Code task implementations
+
+Execution
+---------
+
+To execute the fuzzer scripts on some or all tasks, you need to execute the **run.sh** script, located in 
+_src/fuzz_ directory of the repository.
+
+    Usage: $0 [-l lang] [-t task] [-v]
+    -f fuzzfunc Execute only the specified fuzz function
+    -l lang   Run only specified language
+    -t task   Run only specified task
+    -v    Verify tasks, to not fuzz
+
+If no parameter is specified, the shell script will execute all the tasks available in the _src/tasks/_ directory for all the languages that are specified in the _src/lang_ directory.
+
+Selected languages (based on popularity/IEEE Article)
+-----------------------------------------------------
 
 * Java (OpenJDK 1.6.0_18)
 * C (gcc 4.4.5)
