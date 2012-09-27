@@ -20,7 +20,10 @@
 . ../lang/languages.sh
 
 # Maximum time to run a command
-TIMEOUT=5
+RUN_TIMEOUT=5
+
+# Maximum time to compile a command
+COMPILE_TIMEOUT=20
 
 # Source language-specific functionality
 for lang in $LANGS
@@ -85,13 +88,13 @@ test_version()
 	cd $dir
 	base=$(basename $program)
 	echo "Testing $task for $lang version $fuzzid" 1>&2
-	if ! compile_$lang $base
+	if ! timeout $COMPILE_TIMEOUT bash -c ". ../../../../lang/$lang.sh; compile_$lang $base"
 	then
 		log COMPILE $fuzzid FAIL
 		return
 	fi
 	log COMPILE $fuzzid OK
-	if ! timeout $TIMEOUT bash -c ". ../../../../lang/$lang.sh; run_$lang $base" >$task.$lang.$fuzzid.output 2>&1 </dev/null
+	if ! timeout $RUN_TIMEOUT bash -c ". ../../../../lang/$lang.sh; run_$lang $base" >$task.$lang.$fuzzid.output 2>&1 </dev/null
 	then
 		log RUN $fuzzid FAIL
 		return
