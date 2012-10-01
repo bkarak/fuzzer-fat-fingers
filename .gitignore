@@ -12,4 +12,5 @@ src/rosetta
 *.bbl
 *.blg
 *.log
+run.out
 pub/fuzzer.pdf
