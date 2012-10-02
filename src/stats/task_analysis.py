@@ -30,7 +30,7 @@ class TaskAnalyzer(LineVisitor):
 	def export(self):
 		for fuz in self.fuzzers:
 			for act in self.activities:
-				fp = open('analytics/%s-%s' % (fuz, act), 'w')
+				fp = open('analytics/%s-%s.text' % (fuz, act), 'w')
 
 				for lang in self.languages:
 					key = '%s-%s-%s' % (fuz, lang, act)
