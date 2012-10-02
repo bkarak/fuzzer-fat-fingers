@@ -192,7 +192,9 @@ class LanguageStatus(LineVisitor):
 		print "\\\\"
 
 def main():
-	_visitors = [LanguageStatus(), AggregatedTasks()]
+	import task_analysis
+
+	_visitors = [LanguageStatus(), AggregatedTasks(), task_analysis.TaskAnalyzer()]
 
 	fp = open('run.out', 'r')
 

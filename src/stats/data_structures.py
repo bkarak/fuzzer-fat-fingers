@@ -79,6 +79,7 @@ class StatStructure(object):
 	def get_total_fuzz(self):
 		return self.succ_fuzz + self.fail_fuzz
 
+
 class DictCount(object):
 	def __init__(self):
 		super(DictCount, self).__init__()
@@ -91,4 +92,28 @@ class DictCount(object):
 
 	def get_value(self, key):
 		return self.__dict.get(key, 0)
+
+
+class DictListCount(object):
+	def __init__(self, length):
+		super(DictListCount, self).__init__()
+		self.__dict = {}
+		self.__length = length
+
+	def __get_empty_list(self, pos):
+		r = []
+
+		for i in range(0, pos):
+			r.append(0)
+
+		return r
+
+	def add(self, key, pos, val=1):
+		value = self.__dict.get(key, self.__get_empty_list(self.__length))
+		value[pos] += val
+		self.__dict[key] = value
+
+	def get_value(self, key):
+		return self.__dict[key]
+
 
