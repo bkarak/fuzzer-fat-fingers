@@ -168,8 +168,7 @@ However, most of the tasks are presented only in a subset of those languages.
 \begin{tabular}{ l p{5cm}}
 Task Name & Description\\
 \hline
-AccumFactory & A function that takes a number $n$ and returns a function that takes a number $i$,
-and returns $n$ incremented by $i$. \\
+AccumFactory & A function that takes a number $n$ and returns a function that acts as an accumulator and also accepts a number. Each function should return the sum of the numbers added to the accumulator so far.\\
 Beers & Print the ``99 bottles of beer on the wall'' song.\\
 Dow & Detects all years in a range in which Christmas falls on a Sunday.\\
 FlatList & Flattens a series of nested lists.\\
@@ -350,7 +349,7 @@ the original one.
 The driver program run a complete fuzz, compile, run, verify cycle
 for each of the five fuzz operations 400 times for
 each task and each supported language.
-We collected the results of these operations in an XXX row table,
+We collected the results of these operations in an 692,646 row table,
 which we analyzed through simple scripts.
 (The table's size is not round, because when each task involves
 fuzzing, compilation, running, and result comparison.
