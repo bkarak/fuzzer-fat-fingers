@@ -348,7 +348,7 @@ the original one.
 \end{description}
 
 The driver program run a complete fuzz, compile, run, verify cycle
-for each of the five fuzz operations 50 times for
+for each of the five fuzz operations 400 times for
 each task and each supported language.
 We collected the results of these operations in an XXX row table,
 which we analyzed through simple scripts.
@@ -359,25 +359,23 @@ If a phase fails, the subsequent phases are not performed.)
 \section{Results and Discussion} % {{{1
 \label{sec:results}
 
-
-
 In total we tested
 % grep 'original COMPILE OK' run2.out | wc -l
-133 task implementations
+136 task implementations
 % grep FUZZ run2.out |wc -l
-attempting 35,000 fuzzing operations,
+attempting 280,000 fuzzing operations,
 % grep 'FUZZ OK' run2.out |wc -l
-of which 32,602 (93\%) were successful.
+of which 261,667 (93\%) were successful.
 % egrep -v 'original|prime' run2.out | fgrep 'COMPILE OK' | wc -l
-From the fuzzed programs 10,999 (34\%)
+From the fuzzed programs 90,166 (32\%)
 compiled or were syntax-checked without a problem.
 % egrep -v 'original|prime' run2.out | fgrep 'RUN OK' | wc -l
-From those programs 7,348 (67\%, or 22\% of the fuzzed total) terminated successfully.
-Of those 2,301 produced output identical to the reference one,
+From those programs 60,126 (67\%, or 23\% of the fuzzed total) terminated successfully.
+Of those 18,256 produced output identical to the reference one,
 indicating that the fuzz was
 inconsequential to the program's operation.
 % egrep -v 'original|prime' run2.out | fgrep 'OUTPUT FAIL' | wc -l
-The rest, 5,045 programs (69\% of those that run, 15\% of the fuzzed total),
+The rest, 41,870 programs (70\% of those that run, 16\% of the fuzzed total),
 compiled and run without a problem, but produced wrong output.
 
 These aggregate results indicate that we chose an effective set
@@ -386,7 +384,7 @@ Syntax and semantic checking appear to be an effective but not
 fail-safe method for detecting the fuzz errors we introduced,
 as they blocked about two thirds of the fuzzed programs.
 A large percentage of the programs also terminated successfully,
-giving us in the end wrong results for 15\% of the programs.
+giving us in the end wrong results for 16\% of the programs.
 
 This is worrying:
 it indicates that a significant number of trivial changes in a program's source
