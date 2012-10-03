@@ -515,10 +515,6 @@ dangerously loose syntax.
 \section{Related Work} % {{{1
 \label{sec:related}
 
-% Add these
-
-\cite{JIHA10}, \cite{HANE10}, \cite{STHA11}, \cite{KHRT12}, \cite{LFGC07}
-
 Comparative language evaluation has a long and sometimes colorful history.
 See for instance,
 the comparison of {\sc pl/i} with Cobol, {\sc fortran} and Jovial in
@@ -572,12 +568,28 @@ because the techniques it introduces are difficult to apply
 in complex systems and achieve good code coverage only at a significant cost
 \cite{RAWO06}.
 
+Our approach is similar to Mutation testing \cite{JIHA10}, which 
+is another interesting approach that deliberately introduces errors in 
+computer programs and then check them against valid results to see if they
+can be detected.
+
 In the introduction we mentioned that complex refactorings can
 result in errors similar to the ones we are investigating.
 A study of such errors appears in reference~\cite{DDGM07}.
 Refactoring bugs result in corrupted code,
 which is very difficult to detect, especially in the case of dynamic
 languages~\cite{SCHA12,FFM11}.
+
+In addition, a publication by Hanenberg \cite{HANE10} argues that programming 
+language design methodology should take in account developers and empirical evidence.
+This indicates that language design, actually could be related directly with 
+these types of errors, along with other human factors.
+
+Type systems are integral part of language design, thus they tightly related with
+code maintainability and error detection in recent works \cite{STHA11,KHRT12}.
+
+All these factors support our findings and partially explain that languages with
+strong typing perform better in our tests than dynamic languages.
 
 \section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
