@@ -171,8 +171,7 @@ However, most of the tasks are presented only in a subset of those languages.
 \begin{tabular}{ l p{5cm}}
 Task Name & Description\\
 \hline
-AccumFactory & A function that takes a number $n$ and returns a function that takes a number $i$,
-and returns $n$ incremented by $i$. \\
+AccumFactory & A function that takes a number $n$ and returns a function that acts as an accumulator and also accepts a number. Each function should return the sum of the numbers added to the accumulator so far.\\
 Beers & Print the ``99 bottles of beer on the wall'' song.\\
 Dow & Detects all years in a range in which Christmas falls on a Sunday.\\
 FlatList & Flattens a series of nested lists.\\
@@ -352,9 +351,9 @@ the original one.
 \end{description}
 
 The driver program run a complete fuzz, compile, run, verify cycle
-for each of the five fuzz operations 50 times for
+for each of the five fuzz operations 400 times for
 each task and each supported language.
-We collected the results of these operations in an XXX row table,
+We collected the results of these operations in an 692,646 row table,
 which we analyzed through simple scripts.
 (The table's size is not round, because when each task involves
 fuzzing, compilation, running, and result comparison.
@@ -363,25 +362,23 @@ If a phase fails, the subsequent phases are not performed.)
 \section{Results and Discussion} % {{{1
 \label{sec:results}
 
-
-
 In total we tested
 % grep 'original COMPILE OK' run2.out | wc -l
-133 task implementations
+136 task implementations
 % grep FUZZ run2.out |wc -l
-attempting 35,000 fuzzing operations,
+attempting 280,000 fuzzing operations,
 % grep 'FUZZ OK' run2.out |wc -l
-of which 32,602 (93\%) were successful.
+of which 261,667 (93\%) were successful.
 % egrep -v 'original|prime' run2.out | fgrep 'COMPILE OK' | wc -l
-From the fuzzed programs 10,999 (34\%)
+From the fuzzed programs 90,166 (32\%)
 compiled or were syntax-checked without a problem.
 % egrep -v 'original|prime' run2.out | fgrep 'RUN OK' | wc -l
-From those programs 7,348 (67\%, or 22\% of the fuzzed total) terminated successfully.
-Of those 2,301 produced output identical to the reference one,
+From those programs 60,126 (67\%, or 23\% of the fuzzed total) terminated successfully.
+Of those 18,256 produced output identical to the reference one,
 indicating that the fuzz was
 inconsequential to the program's operation.
 % egrep -v 'original|prime' run2.out | fgrep 'OUTPUT FAIL' | wc -l
-The rest, 5,045 programs (69\% of those that run, 15\% of the fuzzed total),
+The rest, 41,870 programs (70\% of those that run, 16\% of the fuzzed total),
 compiled and run without a problem, but produced wrong output.
 
 These aggregate results indicate that we chose an effective set
@@ -390,7 +387,7 @@ Syntax and semantic checking appear to be an effective but not
 fail-safe method for detecting the fuzz errors we introduced,
 as they blocked about two thirds of the fuzzed programs.
 A large percentage of the programs also terminated successfully,
-giving us in the end wrong results for 15\% of the programs.
+giving us in the end wrong results for 16\% of the programs.
 
 This is worrying:
 it indicates that a significant number of trivial changes in a program's source
@@ -445,8 +442,8 @@ a problem (a crash or an exception)
 than code written in languages with a strong type system.
 As one would expect these two differences result in a higher rate of
 wrong output from programs written in languages with weak typing.
-With an error rate of 37\% for {\sc php} against one of 8\% for
-C++ and C\#, one would be foolish indeed to write a defibrillator's
+With an error rate of 36\% for {\sc php} against one of 8\% for
+C++ and 10\% for C\#, one would be foolish indeed to write a defibrillator's
 software in {\sc php}.
 
 Overall, the figures for dynamic scripting languages show a far larger
@@ -521,10 +518,6 @@ dangerously loose syntax.
 \section{Related Work} % {{{1
 \label{sec:related}
 
-% Add these
-
-\cite{JIHA10}, \cite{HANE10}, \cite{STHA11}, \cite{KHRT12}, \cite{LFGC07}
-
 Comparative language evaluation has a long and sometimes colorful history.
 See for instance,
 the comparison of {\sc pl/i} with Cobol, {\sc fortran} and Jovial in
@@ -578,12 +571,28 @@ because the techniques it introduces are difficult to apply
 in complex systems and achieve good code coverage only at a significant cost
 \cite{RAWO06}.
 
+Our approach is similar to Mutation testing \cite{JIHA10}, which 
+is another interesting approach that deliberately introduces errors in 
+computer programs and then check them against valid results to see if they
+can be detected.
+
 In the introduction we mentioned that complex refactorings can
 result in errors similar to the ones we are investigating.
 A study of such errors appears in reference~\cite{DDGM07}.
 Refactoring bugs result in corrupted code,
 which is very difficult to detect, especially in the case of dynamic
 languages~\cite{SCHA12,FFM11}.
+
+In addition, a publication by Hanenberg \cite{HANE10} argues that programming 
+language design methodology should take in account developers and empirical evidence.
+This indicates that language design, actually could be related directly with 
+these types of errors, along with other human factors.
+
+Type systems are integral part of language design, thus they tightly related with
+code maintainability and error detection in recent works \cite{STHA11,KHRT12}.
+
+All these factors support our findings and partially explain that languages with
+strong typing perform better in our tests than dynamic languages.
 
 \section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
