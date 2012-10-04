@@ -649,6 +649,14 @@ hazard analysis,
 fault tree analysis, and
 test coverage analysis.
 
+In each table, the results of the Fisher exact test for each language
+vs.\ the other languages is presented. In each row, black lozenges
+show the fuzz tests that did not show a signficant statistical
+difference between the two languages pointing to that cell. Each row
+is divided in five bands, one for each test, in the order {\em IdSub},
+{\em IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
+each band, the tests are, in order, {\em compilation}, {\em fuzzing},
+{\em output validity}, {\em execution}.
 \input{contingency_table_results.tex}
 
 \acks
