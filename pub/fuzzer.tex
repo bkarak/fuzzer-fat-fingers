@@ -8,10 +8,13 @@
 % authoryear To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{bbding}
 \usepackage{pifont}
 \usepackage{url}
 \usepackage[pdftex]{graphicx}
+
+\usepackage{lscape}
 
 \begin{document}
 
@@ -233,6 +236,7 @@ Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \caption{Lines of Code per Task and per Language, Unimplemented Tasks, and Implemented Languages per Task.}
 \label{tbl:lang-compatibility}
 \end{table*}
+
 
 Unfortunately, many of the tasks listed on {\em Rosetta Stone} were
 not in a form that would allow us to execute them as part of our study.
@@ -635,6 +639,8 @@ established methods like
 hazard analysis,
 fault tree analysis, and
 test coverage analysis.
+
+\input{contingency_table_results.tex}
 
 \acks
 
