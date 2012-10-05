@@ -13,6 +13,7 @@
 \usepackage{pifont}
 \usepackage{url}
 \usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
 
 \usepackage{lscape}
 
@@ -216,9 +217,9 @@ The tasks we studied are listed in Table~\ref{tab:tasks}.
 \hline
 AccumFactory & 17 & 57 & 8 & 16 & 16 & 8 & 7 & 7 & 10 & 30 & 10 \\
 Hello & 7 & 8 & 7 & 1 & 6 & 1 & 1 & 1 & 7 & 1 & 10 \\
-FlatList & 118 & \ding{55} & 39 & 15 & 35 & 4 & 15 & 5 & 14 & 1 & 9 \\
+FlatList & 118 & \ding{55} & 80 & 15 & 35 & 4 & 15 & 5 & 14 & 1 & 9 \\
 Power & 27 & 77 & \ding{55} & 10 & 31 & 13 & 59 & 3 & 29 & 47 & 9 \\
-ZigZag & 22 & 80 & 24 & 19 & 46 & \ding{55} & 31 & 15 & 13 & 14 & 9 \\
+ZigZag & 22 & 80 & 51 & 19 & 46 & \ding{55} & 31 & 15 & 13 & 14 & 9 \\
 FuncComp & 60 & 34 & 18 & 4 & 32 & 6 & 7 & 9 & 3 & 7 & 10 \\
 Substring & 21 & 21 & 35 & \ding{55} & 10 & 1 & 3 & 9 & 1 & 1 & 9 \\
 ManBoy & 46 & 32 & 22 & 11 & 28 & 8 & 13 & 8 & 11 & 5 & 10 \\
@@ -229,13 +230,12 @@ MutRecursion & 29 & 35 & 31 & 8 & 20 & 18 & 22 & 28 & 4 & 8 & 10 \\
 Dow & 23 & 17 & 17 & 7 & 13 & 5 & 9 & 17 & 7 & 4 & 10 \\
 Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \hline
-\textbf{Total lines} & 458 & 461 & 321 & 114 & 331 & 102 & 224 & 156 & 161 & 159 & \\
+\textbf{Total lines} & 458 & 461 & 389 & 114 & 331 & 102 & 224 & 156 & 161 & 159 & \\
 \end{tabular}
 \end{center}
 \caption{Lines of Code per Task and per Language, Unimplemented Tasks, and Implemented Languages per Task.}
 \label{tbl:lang-compatibility}
 \end{table*}
-
 
 Unfortunately, many of the tasks listed on {\em Rosetta Stone} were
 not in a form that would allow us to execute them as part of our study.
@@ -558,11 +558,13 @@ analysis for all pairs of languages and each fuzz test. We used the
 Fisher exact test, instead of the more common chi square test, since
 there were cases with very low frequencies. 
 
-The results are presented in tables XXX. Black lozenges appear when a
+%% @dds
+The results are presented in Tables \ref{tbl:contingency-test-results}. 
+Black lozenges appear when a
 particular fuzz test \emph{failed} to show a statistically significant
 difference between two languages (significance was set at the 0.05
 level). In each table, the results of the Fisher exact test for each
-language vs.\ the other languages is presented. Each row is divided in
+language vs.\ the other languages are presented. Each row is divided in
 five bands, one for each test, in the order {\em IdSub}, {\em
   IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
 each band, the tests are, in order, {\em fuzzing}, {\em compilation},
@@ -573,11 +575,15 @@ out:
   and dynamic languages are statistically significant. This validates
   the finding in Figure~\ref{fig:results} that less errors escape
   detection in static languages than dynamic.
+
 \item {\em fuzzing} in {\em RandCharSub} does not behave
 differently among languages, since all the tests passed.
+
 \item C\# behaves more like C and C++ and less like Java, despite its
   surface similarities to the latter.
+
 \item Haskel behaves more similarly to Java than other languages.
+
 \item Although there is cluster of blacks between statically compiled
   languages, we do not see a comparable pattern in dynamic languages.
   To paraphrase Tolstoy, it would seem that they are different in
@@ -585,7 +591,7 @@ differently among languages, since all the tests passed.
 \end{itemize}
 
 \input{contingency_table_results.tex}
-
+%% @dds
 
 \section{Related Work} % {{{1
 \label{sec:related}
@@ -747,7 +753,7 @@ the implemented tasks,
 the fuzzer,
 the language-specific methods, and
 the driver are maintained on GitHub, and
-are publicly available as open source software on \url{http://XXX}.
+are publicly available as open source software on \url{https://github.com/bkarak/fuzzer-plateau-2012}.
 
 % XXX STEREO
 
