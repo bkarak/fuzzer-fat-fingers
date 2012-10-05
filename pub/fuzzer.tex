@@ -501,19 +501,52 @@ the erroneous results for {\em SimSub} were dramatically higher
 than those for {\em IdSub} in the case of
 languages with a more imaginative syntax, like Python, Haskell, and Ruby.
 
-The random character substitution fuzz was the one that resulted
-in the lowest number of erroneous results.
-However, it wreaked havoc with {\sc php}s compilation and output,
-and JavaScript's compilation.
-This could be associated with how these languages treat source code
-with non-{\sc ascii} characters.
+The random character substitution fuzz was the one that resulted in
+the lowest number of erroneous results. However, it wreaked havoc with
+{\sc php}s compilation and output, and JavaScript's compilation. This
+could be associated with how these languages treat source code with
+non-{\sc ascii} characters. The random token substitution resulted in
+the lowest number of successful compilations or runs and consequently
+also a low number of erroneous results. However, {\sc php} performed
+particularly badly in this area indicating a dangerously loose syntax.
 
-Finally, the random token substitution resulted in the lowest number
-of successful compilations or runs and consequently
-also a low number of erroneous results.
-However,
-{\sc php} performed particularly badly in this area indicating a
-dangerously loose syntax.
+To investigate the validity of our results, we carried out a
+statistical analysis of the fuzz tests. In particular, we examined
+whether the differences we see in the fuzzing results among languages
+(e.g., compilation errors caught by the compiler) are statistically
+significant. To do that we performed a $2\times 2$ contingency
+analysis for all pairs of languages and each fuzz test. We used the
+Fisher exact test, instead of the more common chi square test, since
+there were cases with very low frequencies. 
+
+The results are presented in tables XXX. Black lozenges appear when a
+particular fuzz test \emph{failed} to show a statistically significant
+difference between two languages (significance was set at the 0.05
+level). In each table, the results of the Fisher exact test for each
+language vs.\ the other languages is presented. Each row is divided in
+five bands, one for each test, in the order {\em IdSub}, {\em
+  IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
+each band, the tests are, in order, {\em fuzzing}, {\em compilation},
+{\em execution}, {\em output validity}. Among the results that stand
+out:
+\begin{itemize}
+\item The different results in {\em IdSub} between statically compiled
+  and dynamic languages are statistically significant. This validates
+  the finding in Figure~\ref{fig:results} that less errors escape
+  detection in static languages than dynamic.
+\item {\em fuzzing} in {\em RandCharSub} does not behave
+differently among languages, since all the tests passed.
+\item C\# behaves more like C and C++ and less like Java, despite its
+  surface similarities to the latter.
+\item Haskel behaves more similarly to Java than other languages.
+\item Although there is cluster of blacks between statically compiled
+  languages, we do not see a comparable pattern in dynamic languages.
+  To paraphrase Tolstoy, it would seem that they are different in
+  their own ways.
+\end{itemize}
+
+\input{contingency_table_results.tex}
+
 
 \section{Related Work} % {{{1
 \label{sec:related}
@@ -648,16 +681,6 @@ established methods like
 hazard analysis,
 fault tree analysis, and
 test coverage analysis.
-
-In each table, the results of the Fisher exact test for each language
-vs.\ the other languages is presented. In each row, black lozenges
-show the fuzz tests that did not show a signficant statistical
-difference between the two languages pointing to that cell. Each row
-is divided in five bands, one for each test, in the order {\em IdSub},
-{\em IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
-each band, the tests are, in order, {\em compilation}, {\em fuzzing},
-{\em output validity}, {\em execution}.
-\input{contingency_table_results.tex}
 
 \acks
 
