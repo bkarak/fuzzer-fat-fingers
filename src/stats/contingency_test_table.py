@@ -52,8 +52,8 @@ for i in range(lang_len):
             values = []
             for test_index, test in enumerate(tests):
                 # bkarak's addition #
-                if test_index in [1,5,9,13,17]:
-                    values.append('' + sep)
+                if test_index in [0,4,8,12,16]:
+                    values.append('')
                     continue
                 # end bkarak #
                 if test_index != num_tests - 1 and test_index % 4 == 3:
