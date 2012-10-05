@@ -57,7 +57,7 @@ for i in range(lang_len):
                     continue
                 # end bkarak #
                 if test_index != num_tests - 1 and test_index % 4 == 3:
-                    sep = '|'
+                    sep = r'$&$\scriptscriptstyle'
                 else:
                     sep = ''
                 if test[i][j] == True:
@@ -70,8 +70,8 @@ for i in range(lang_len):
 for lang_index, lang in enumerate(latex_keys):
     print """
 \subtable[%s]{
-\\begin{tabular}{l c}
-$\scriptscriptstyle IdSub|IntPer|CharSub|TokSub|SimSub$\\\\
+\\begin{tabular}{l c c c c c}
+& {\scriptsize IdSub}&{\scriptsize IntPer}&{\scriptsize CharSub}&{\scriptsize TokSub}&{\scriptsize SimSub}\\\\
 \\hline
 """ % lang
     for i in range(lang_len):
