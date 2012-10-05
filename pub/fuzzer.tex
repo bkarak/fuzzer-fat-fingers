@@ -41,14 +41,14 @@ We explore how programs written in ten popular programming languages
 are affected by small changes of their source code.
 This allows us to analyze the extend to which these languages
 allow the detection of simple errors at compile or at run time.
-Our study is based on a large corpus of programs written in several programming
+Our study is based on a diverse corpus of programs written in several programming
 languages systematically perturbed using a mutation-based fuzz generator.
 The results we obtained
 prove that languages with weak type systems are significantly
 likelier than languages that enforce strong typing to let fuzzed programs
 compile and run, and, in the end, produce erroneous results.
-More importantly, our study also shows that comparative language fuzz testing
-is a legitimate technique for evaluating programming language designs.
+More importantly, our study also demonstrates the potential of comparative
+language fuzz testing for evaluating programming language designs.
 \end{abstract}
 
  \category{D.3.0}{Programming Languages}{General}
@@ -148,12 +148,12 @@ missing libraries, incompatible runtime frameworks,
 and lack of familiarity with the system.
 \end{description}
 
-According to the source of the popularity index,
-the coverage of the languages we selected over all languages
-ranges from 71\% to 86\%.
 The list of the ten languages we adopted for our study and the
 particular implementations we used are listed in
 Table~\ref{tab:langs}.
+According to the source of the popularity index,
+the coverage of the languages we selected over all languages
+ranges from 71\% to 86\%.
 
 We obtained fragments of source code executing the same task in all of
 our study's ten languages from
@@ -161,7 +161,7 @@ our study's ten languages from
 a so-called programming chrestomathy site,
 implemented as a wiki.
 In the words of its creators,
-the site aims is to present code for the same task in as many languages as possible,
+the site aims to present code for the same task in as many languages as possible,
 thus demonstrating their similarities and differences and
 aiding persons with a grounding in one approach to a problem in learning another.
 At the time of our writing {\em Rosetta Code}
@@ -197,7 +197,7 @@ where the numbers increase sequentially in a zig-zag along the anti-diagonals of
 
 We selected our tasks from {\em Rosetta Code} through the following process.
 First, we downloaded the listing of all available tasks and
-filtered it to create a list of task name {\sc url}s.
+filtered it to create a list of task {\sc url}s.
 We then downloaded the page for each task in MediWiki markup format,
 located the headers for the languages in which that task was implemented, and
 created a table containing tasks names and language names.
@@ -273,7 +273,7 @@ Based on this categorization,
 our intuition about common errors, and
 what types of fuzzing could be implemented easily and portably across
 diverse languages,
-we defined five modification types.
+we defined five types of fuzzing modifications.
 Given that we are not adding or removing elements,
 all modifications correspond to an error of type
 {\em presence: incorrect} according to the taxonomy proposed
@@ -334,7 +334,7 @@ The aim of this ``compilation'' method is to test for errors that can
 be statically detected before deployment.
 The second method invokes (if required) the particular language's
 run time environment to run the executable program
-(or the source code for interpreted languages),
+(or the script for interpreted languages),
 and stores the results into a file.
 
 A separate driver program compiles and runs all the tasks from the ten
@@ -353,7 +353,7 @@ constraints of a particular fuzzing operation.
 This was a rare phenomenon, which mainly occurred in very short programs.
 \item[Compilation --- com]
 The program fails to compile (or syntax check),
-as indicated through the compiler or interpreter's exit code.
+as indicated through the compiler's or interpreter's exit code.
 In one particular case a fuzz
 (a substitution of a closing bracket with {\tt func\_t})
 caused an Objective C task's compiler
@@ -361,13 +361,13 @@ to enter into an infinite loop,
 producing a 5{\sc gb} file of error messages.
 We side-stepped this problem when we decided to remove Objective C from
 the languages we tested.
-In another case the Haskell compiler running on a fuzzed program
-entered into an infinite loop.
+In another case the Haskell compiler entered an infinite loop.
 To avoid such problems we imposed a 20s timeout on the compilation process.
 \item[Execution --- run]
-The program terminates successfully (without crashing),
+The program fails to terminate successfully,
 as indicated by the program's exit code.
-We had cases where the fuzzed code failed to terminate.
+These failures included crashes.
+We also had cases where the fuzzed code failed to terminate.
 We detected those cases by imposing a 5s timeout on the time a program
 was allowed to execute.
 \item[Output Validity --- out]
@@ -384,7 +384,7 @@ for each of the five fuzz operations 400 times for
 each task and each supported language.
 We collected the results of these operations in an 692,646 row table,
 which we analyzed through simple scripts.
-(The table's size is not round, because when each task involves
+(The table's size is not round, because each task involves
 fuzzing, compilation, running, and result comparison.
 If a phase fails, the subsequent phases are not performed.)
 
@@ -422,14 +422,14 @@ This is worrying:
 it indicates that a significant number of trivial changes in a program's source
 code that can happen accidentally will not be caught at compile and run
 time and will result in an erroneously operating program.
-In an ideal case we would want program code to have enough redundancy
+In an ideal case we might want program code to have enough redundancy
 so that such small changes would result in an incorrect program
 that would not compile.
 However, as any user of {\sc raid} storage can attest,
 redundancy comes at a cost.
 Programming productivity in such a language would suffer as programmers
 would have to write more code and keep in sync mutually dependent parts
-of the code.
+of it.
 
 \begin{figure*}
         \begin{center}
@@ -482,7 +482,7 @@ As is often the case,
 there is a trade-off between usability and reliability.
 The adoption of languages in which typos can slip undetected
 into production code is especially risky when a system also lacks
-a through testing process.
+a thorough testing process.
 Worryingly, in such a scenario, the effects of a typo may be
 detected only in a program's real-life production run.
 
@@ -543,7 +543,7 @@ languages with a more imaginative syntax, like Python, Haskell, and Ruby.
 
 The random character substitution fuzz was the one that resulted in
 the lowest number of erroneous results. However, it wreaked havoc with
-{\sc php}s compilation and output, and JavaScript's compilation. This
+{\sc php}'s compilation and output, and JavaScript's compilation. This
 could be associated with how these languages treat source code with
 non-{\sc ascii} characters. The random token substitution resulted in
 the lowest number of successful compilations or runs and consequently
@@ -556,34 +556,41 @@ whether the differences we see in the fuzzing results among languages
 (e.g., compilation errors caught by the compiler) are statistically
 significant. To do that we performed a $2\times 2$ contingency
 analysis for all pairs of languages and each fuzz test. We used the
-Fisher exact test, instead of the more common chi square test, since
-there were cases with very low frequencies. 
+Fisher exact test \cite{Fis35},
+instead of the more common chi square test,
+since there were cases with very low frequencies.
 
 The results are presented in Tables \ref{tbl:contingency-test-results-1} 
-and \ref{tbl:contingency-test-results-1}. 
+and \ref{tbl:contingency-test-results-2}. 
 Black lozenges appear when a
 particular fuzz test \emph{failed} to show a statistically significant
 difference between two languages (significance was set at the 0.05
 level). In each table, the results of the Fisher exact test for each
-language vs.\ the other languages are presented. Each row is divided in
-four bands, one for each test, in the order {\em IdSub}, {\em
-  IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
-each band, the tests are, in order, {\em compilation},
-{\em execution (run)}, {\em output validity}. Among the results that stand
-out:
+language vs.\ the other languages are presented.
+Each row is divided into five bands, one for each fuzzing operation,
+and for each band the tests are, in order, {\em compilation},
+{\em execution (run)}, {\em output validity}.
+The following results stand out.
 \begin{itemize}
-\item The different results in {\em IdSub} between statically compiled
-  and dynamic languages are statistically significant. This validates
-  the finding in Figure~\ref{fig:results} that less errors escape
-  detection in static languages than dynamic.
+\item
+The different results in fuzz tests between statically compiled and
+dynamic languages are to a large extent statistically significant.
+This validates the finding in Figure ~\ref{fig:results}
+that less errors escape detection in static languages than dynamic.
 
 \item C\# behaves more like C and C++ and less like Java, despite its
   surface similarities to the latter.
 
 \item Haskell behaves more similarly to Java than other languages.
 
-\item Although there is cluster of blacks between statically compiled
-  languages, we do not see a comparable pattern in dynamic languages.
+\item There are clusters of black longenes
+(indicating a failure to show a significant difference)
+between statically compiled languages:
+C and C++,
+C++ and Java,
+Haskell and Java.
+However,
+  we do not see a comparable pattern in dynamic languages.
   To paraphrase Tolstoy, it would seem that they are different in
   their own ways.
 \end{itemize}
@@ -598,7 +605,7 @@ See for instance,
 the comparison of {\sc pl/i} with Cobol, {\sc fortran} and Jovial in
 terms of programmer productivity and programmer efficiency~\cite{RWSB68};
 the qualitative and quantitative comparison of Algol 60,
-{\sc fortran}, Pascal and Algol 68 in reference~\cite{BOJO80};
+{\sc fortran}, Pascal and Algol 68~\cite{BOJO80};
 Kernighan's delightful description of
 Pascal's design and syntax flaws~\cite{Ker81};
 as well as the relatively more recent study where code written
@@ -610,7 +617,7 @@ Our work introduces fuzzing as a method for programming language
 evaluation.
 Fuzzing as a technique to investigate the reliability of software
 was first proposed in an article by Miller and his colleagues~\cite{MFS90}.
-In this paper they tested common Unix
+There they described how they tested common Unix
 utilities in various operating systems and architectures and discovered that
 25--33\% of these were crashing under certain conditions.
 
@@ -621,7 +628,7 @@ introducing concepts like \textit{directed fuzz testing} \cite{GLRI09}.
 
 Our experiment aims to exhibit the fault tolerance of each language
 and, in particular, the extend to which a language can use features such as
-their type systems to shield programmers from errors~\cite{LYU95,KOKR07}.
+its type system to shield programmers from errors~\cite{LYU95,KOKR07}.
 The random fuzzing we employed in our study can be improved by taking
 into account specific properties of the object being studied.
 {\em Grammar-based white box fuzzing} \cite{God08},
@@ -645,29 +652,18 @@ However it is not widely adopted outside the academic fields \cite{GGBO07},
 because the techniques it introduces are difficult to apply
 in complex systems and achieve good code coverage only at a significant cost
 \cite{RAWO06}.
-
-Our approach is similar to Mutation testing \cite{JIHA10}, which 
-is another interesting approach that deliberately introduces errors in 
-computer programs and then check them against valid results to see if they
-can be detected.
+Similarly, {\em mutation testing}~\cite{JIHA10}
+introduces errors in computer programs and then checks their
+output against valid results.
 
 In the introduction we mentioned that complex refactorings can
 result in errors similar to the ones we are investigating.
 A study of such errors appears in reference~\cite{DDGM07}.
 Refactoring bugs result in corrupted code,
 which is very difficult to detect, especially in the case of dynamic
-languages~\cite{SCHA12,FFM11}.
-
-In addition, a publication by Hanenberg \cite{HANE10} argues that programming 
-language design methodology should take in account developers and empirical evidence.
-This indicates that language design, actually could be related directly with 
-these types of errors, along with other human factors.
-
-Type systems are integral part of language design, thus they tightly related with
-code maintainability and error detection in recent works \cite{STHA11,KHRT12}.
-
-All these factors support our findings and partially explain that languages with
-strong typing perform better in our tests than dynamic languages.
+languages~\cite{FFM11,SCHA12}.
+Recent studies indicate that type systems are tightly related with
+code maintainability and error detection~\cite{STHA11,KHRT12}.
 
 \section{Conclusions and Further Work} % {{{1
 \label{sec:conclusions}
@@ -681,6 +677,9 @@ would exhibit more interesting characteristics.
 The fuzz operations can be also extended and be made more realistic,
 perhaps by implementing a mixture based on data from actual programming
 errors.
+Ideally, we would want to construct fuzz scenarios by taking
+into account empirical evidence collected from developers working
+in real-life situations~\cite{HANE10}.
 
 In this study we tallied the failure modes associated with each
 language and fuzz operation and reported the aggregate results.
@@ -710,7 +709,7 @@ This opens the door into two broad research directions.
 The first research direction involves the comparative evaluation
 of programming languages using objective criteria,
 such as the response of code implementing the same functionality
-in diverse languages to fuzz manipulation.
+in diverse languages to fuzzing.
 This is made significantly easier through the publication of
 tasks implemented in numerous programming languages on the
 {\em Rosetta Code} site.
