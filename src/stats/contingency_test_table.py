@@ -51,6 +51,11 @@ for i in range(lang_len):
             format_str = r'$\scriptscriptstyle' + format_str +'$'
             values = []
             for test_index, test in enumerate(tests):
+                # bkarak's addition #
+                if test_index in [1,5,9,13,17]:
+                    values.append('' + sep)
+                    continue
+                # end bkarak #
                 if test_index != num_tests - 1 and test_index % 4 == 3:
                     sep = '|'
                 else:
@@ -64,10 +69,8 @@ for i in range(lang_len):
 
 for lang_index, lang in enumerate(latex_keys):
     print """
-\\begin{table*}
-\\centering
+\subtable[%s]{
 \\begin{tabular}{l c}
-& %s \\\\
 \\hline
 """ % lang
     for i in range(lang_len):
@@ -78,7 +81,4 @@ for lang_index, lang in enumerate(latex_keys):
 \\hline
 & \\\\
 \\end{tabular}
-\\caption{Contingency test results for %s}
-\\label{tbl:contingency-test-results-%s}
-\end{table*}
-""" % (lang_keys[lang_index], lang_keys[lang_index])
+}""",
