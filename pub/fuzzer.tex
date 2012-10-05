@@ -237,7 +237,6 @@ Mult & 31 & 53 & 61 & 14 & 40 & 25 & 32 & 23 & 41 & 25 & 10 \\
 \label{tbl:lang-compatibility}
 \end{table*}
 
-
 Unfortunately, many of the tasks listed on {\em Rosetta Stone} were
 not in a form that would allow us to execute them as part of our study.
 Many would not compile, others lacked a test harness to produce output,
@@ -520,11 +519,12 @@ analysis for all pairs of languages and each fuzz test. We used the
 Fisher exact test, instead of the more common chi square test, since
 there were cases with very low frequencies. 
 
-The results are presented in tables XXX. Black lozenges appear when a
+The results are presented in Tables \ref{tbl:contingency-test-results}. 
+Black lozenges appear when a
 particular fuzz test \emph{failed} to show a statistically significant
 difference between two languages (significance was set at the 0.05
 level). In each table, the results of the Fisher exact test for each
-language vs.\ the other languages is presented. Each row is divided in
+language vs.\ the other languages are presented. Each row is divided in
 five bands, one for each test, in the order {\em IdSub}, {\em
   IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
 each band, the tests are, in order, {\em fuzzing}, {\em compilation},
@@ -535,11 +535,15 @@ out:
   and dynamic languages are statistically significant. This validates
   the finding in Figure~\ref{fig:results} that less errors escape
   detection in static languages than dynamic.
+
 \item {\em fuzzing} in {\em RandCharSub} does not behave
 differently among languages, since all the tests passed.
+
 \item C\# behaves more like C and C++ and less like Java, despite its
   surface similarities to the latter.
+
 \item Haskel behaves more similarly to Java than other languages.
+
 \item Although there is cluster of blacks between statically compiled
   languages, we do not see a comparable pattern in dynamic languages.
   To paraphrase Tolstoy, it would seem that they are different in
