@@ -10,11 +10,9 @@ class TaskAnalyzer(LineVisitor):
 						'FuzzSimilarSubstitution', 
 						'FuzzRandomCharacterSubstitution', 
 						'FuzzRandomTokenSubstitution']
-		self.activities = ['COMPILE', 'FUZZ', 'RUN', 'OUTPUT']
+		self.activities = ['FUZZ', 'COMPILE', 'RUN', 'OUTPUT']
 		self.languages = ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
 		self.results = DictListCount(2)
-
-
 
 	def visit(self, task_name, language, fuzzer_name, activity, result):
 		if fuzzer_name == 'prime' or fuzzer_name == 'original':
@@ -29,8 +27,10 @@ class TaskAnalyzer(LineVisitor):
 
 	def export(self):
 		for fuz in self.fuzzers:
+			count = 1
+
 			for act in self.activities:
-				fp = open('analytics/%s-%s.text' % (fuz, act), 'w')
+				fp = open('analytics/%d-%s-%s.text' % (count, fuz, act), 'w')
 
 				for lang in self.languages:
 					key = '%s-%s-%s' % (fuz, lang, act)
@@ -38,3 +38,4 @@ class TaskAnalyzer(LineVisitor):
 					fp.write('%s %d %d\n' % (lang, counters[0], counters[1]))
 				
 				fp.close()
+				count += 1
