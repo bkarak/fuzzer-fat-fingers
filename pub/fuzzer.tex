@@ -558,7 +558,6 @@ analysis for all pairs of languages and each fuzz test. We used the
 Fisher exact test, instead of the more common chi square test, since
 there were cases with very low frequencies. 
 
-%% @dds
 The results are presented in Tables \ref{tbl:contingency-test-results}. 
 Black lozenges appear when a
 particular fuzz test \emph{failed} to show a statistically significant
@@ -567,7 +566,7 @@ level). In each table, the results of the Fisher exact test for each
 language vs.\ the other languages are presented. Each row is divided in
 five bands, one for each test, in the order {\em IdSub}, {\em
   IntPert}, {\em RandCharSub}, {\em RandTokenSub}, {\em SimSub}. In
-each band, the tests are, in order, {\em fuzzing}, {\em compilation},
+each band, the tests are, in order, {\em compilation},
 {\em execution}, {\em output validity}. Among the results that stand
 out:
 \begin{itemize}
@@ -590,8 +589,7 @@ differently among languages, since all the tests passed.
   their own ways.
 \end{itemize}
 
-\input{contingency_table_results.tex}
-%% @dds
+\input{contigency_tables_no_fuzz}
 
 \section{Related Work} % {{{1
 \label{sec:related}

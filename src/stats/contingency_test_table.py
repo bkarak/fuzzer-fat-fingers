@@ -71,6 +71,7 @@ for lang_index, lang in enumerate(latex_keys):
     print """
 \subtable[%s]{
 \\begin{tabular}{l c}
+$\scriptscriptstyle IdSub|IntPer|CharSub|TokSub|SimSub$\\\\
 \\hline
 """ % lang
     for i in range(lang_len):
