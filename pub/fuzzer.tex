@@ -269,31 +269,52 @@ group delimiters (brackets, square and curly braces), and
 operators (including the multi-character operators of our chosen languages).
 
 Based on this categorization,
-we defined the following five modification types.
+our intuition about common errors, and
+what types of fuzzing could be implemented easily and portably across
+diverse languages,
+we defined five modification types.
+Given that we are not adding or removing elements,
+all modifications correspond to an error of type
+{\em presence: incorrect} according to the taxonomy proposed
+by Ostrand and Weyuker~\cite{OW84}.
+Although our choice could be improved by basing it on empirical data,
+it turns out that our selection matches actual programmer errors.
+For each item in the list below we indicate how other
+researchers~\cite{End75,KNUTH89} categorize a programmer error
+corresponding to such a modification.
+
 \begin{description}
 \item [Identifier Substitution --- IdSub]
 A single randomly chosen identifier is replaced with another one,
 randomly-chosen from the program's tokens.
 This change can simulate absent-mindedness, a semantic error, or
 a search-and-replace or refactoring operation gone awry.
+\cite[B3.b]{End75},
+\cite[B]{KNUTH89}
 \item [Integer Perturbation --- IntPert]
 The value of a randomly chosen integer constant
 is randomly perturbed by $1$ or $-1$.
 This change simulates off-by-one errors.
+\cite[B4.b]{End75},
+\cite[A]{KNUTH89}
 \item [Random Character Substitution --- RandCharSub]
 A single randomly chosen character (byte) within a randomly chosen token
 is substituted with a random byte.
 This change simulates a typo or error in a complex editing command.
+\cite[C1]{End75},
+\cite[T]{KNUTH89}
 \item [Similar Token Substitution --- SimSub]
 A single randomly chosen token
 that is not a space character or a group delimiter
 is substituted with another token of the same category,
 randomly chosen from the program's source code.
 This change simulates absent-mindedness and semantic errors.
+\cite[B]{KNUTH89}
 \item [Random Token Substitution --- RandTokenSub]
 A single randomly chosen non-space token
 is substituted with another token.
 This change can simulate most of the previously described errors.
+\cite[T, B]{KNUTH89}
 \end{description}
 
 Most fuzzing operations are implemented in a Monte Carlo fashion:
@@ -339,6 +360,9 @@ to enter into an infinite loop,
 producing a 5{\sc gb} file of error messages.
 We side-stepped this problem when we decided to remove Objective C from
 the languages we tested.
+In another case the Haskell compiler running on a fuzzed program
+entered into an infinite loop.
+To avoid such problems we imposed a 20s timeout on the compilation process.
 \item[Execution --- run]
 The program terminates successfully (without crashing),
 as indicated by the program's exit code.
@@ -348,6 +372,10 @@ was allowed to execute.
 \item[Output Validity --- out]
 The fuzzed program is producing results different from those of
 the original one.
+In contrast to a modern real-world scenario,
+the programs we used lacked a test suite,
+which we could employ to test a program independently from its productive
+operation.
 \end{description}
 
 The driver program run a complete fuzz, compile, run, verify cycle
@@ -443,8 +471,19 @@ than code written in languages with a strong type system.
 As one would expect these two differences result in a higher rate of
 wrong output from programs written in languages with weak typing.
 With an error rate of 36\% for {\sc php} against one of 8\% for
-C++ and 10\% for C\#, one would be foolish indeed to write a defibrillator's
-software in {\sc php}.
+C++ and 10\% for C\#,
+those writing safety-critical applications should carefully
+weight the usability advantages offered by a weakly-type language,
+like {\sc php}, against the increased risk that a typo
+will slip undetected into production code.
+
+As is often the case,
+there is a trade-off between usability and reliability.
+The adoption of languages in which typos can slip undetected
+into production code is especially risky when a system also lacks
+a through testing process.
+Worryingly, in such a scenario, the effects of a typo may be
+detected only in a program's real-life production run.
 
 Overall, the figures for dynamic scripting languages show a far larger
 degree of variation compared to the figures of the strongly static typed
@@ -658,8 +697,11 @@ can also be used to objectively evaluate programming language
 designs.
 
 Probably the most significant outcome of our study is the
-fact that comparative language fuzz testing is a
-legitimate technique for evaluating programming language designs.
+demonstration of the potential of comparative language fuzz testing
+for evaluating programming language designs.
+While this study only evaluated the sensitivity of program behavior to typos,
+other higher-level types of fuzzing
+that simulate more complex programmer errors are certainly possible.
 This opens the door into two broad research directions.
 
 The first research direction involves the comparative evaluation
