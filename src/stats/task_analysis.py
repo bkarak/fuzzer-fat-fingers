@@ -30,7 +30,7 @@ class TaskAnalyzer(LineVisitor):
 			count = 1
 
 			for act in self.activities:
-				fp = open('analytics/%d-%s-%s.text' % (count, fuz, act), 'w')
+				fp = open('analytics/%d-%s-%s.text' % (count, act, fuz), 'w')
 
 				for lang in self.languages:
 					key = '%s-%s-%s' % (fuz, lang, act)
