@@ -1,4 +1,4 @@
-class Array
+class RMS
   def quadratic_mean
     Math.sqrt( self.inject(0) {|s, y| s += y*y}.to_f / self.length )
   end
