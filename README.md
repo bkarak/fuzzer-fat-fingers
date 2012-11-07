@@ -86,4 +86,5 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Arithmetic/Integer] (http://rosettacode.org/wiki/Arithmetic/Integer)
 * [http://rosettacode.org/wiki/Averages/Pythagorean_means] (http://rosettacode.org/wiki/Averages/Pythagorean_means)
 * [http://rosettacode.org/wiki/Averages/Root_mean_square] (http://rosettacode.org/wiki/Averages/Root_mean_square)
+* [http://rosettacode.org/wiki/Averages/Simple_moving_average] (http://rosettacode.org/wiki/Averages/Simple_moving_average)
 * 
