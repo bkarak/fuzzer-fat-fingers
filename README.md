@@ -84,3 +84,4 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/100_doors] (http://rosettacode.org/wiki/100_doors)
 * [http://rosettacode.org/wiki/Anagrams] (http://rosettacode.org/wiki/Anagrams)
 * [http://rosettacode.org/wiki/Arithmetic/Integer] (http://rosettacode.org/wiki/Arithmetic/Integer)
+* [http://rosettacode.org/wiki/Averages/Pythagorean_means] (http://rosettacode.org/wiki/Averages/Pythagorean_means)
