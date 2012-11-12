@@ -89,4 +89,4 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Averages/Simple_moving_average] (http://rosettacode.org/wiki/Averages/Simple_moving_average)
 * [http://rosettacode.org/wiki/Balanced_brackets] (http://rosettacode.org/wiki/Balanced_brackets)
 * [http://rosettacode.org/wiki/Binary_digits] (http://rosettacode.org/wiki/Binary_digits)
-* 
+* [http://rosettacode.org/wiki/Bulls_and_cows] (http://rosettacode.org/wiki/Bulls_and_cows)
