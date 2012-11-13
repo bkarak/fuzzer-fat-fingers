@@ -100,4 +100,5 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Create_a_file] (http://rosettacode.org/wiki/Create_a_file)
 * [http://rosettacode.org/wiki/Create_a_two-dimensional_array_at_runtime] (http://rosettacode.org/wiki/Create_a_two-dimensional_array_at_runtime)
 * [http://rosettacode.org/wiki/CSV_to_HTML_translation#Simple_solution_6] (http://rosettacode.org/wiki/CSV_to_HTML_translation#Simple_solution_6)
+* [http://rosettacode.org/wiki/Date_format] (http://rosettacode.org/wiki/Date_format)
 * 
