@@ -97,4 +97,5 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life] (http://rosettacode.org/wiki/Conway%27s_Game_of_Life)
 * [http://rosettacode.org/wiki/Count_in_octal] (http://rosettacode.org/wiki/Count_in_octal)
 * [http://rosettacode.org/wiki/Count_occurrences_of_a_substring] (http://rosettacode.org/wiki/Count_occurrences_of_a_substring)
+* [http://rosettacode.org/wiki/Create_a_file] (http://rosettacode.org/wiki/Create_a_file)
 * 
