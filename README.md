@@ -103,4 +103,5 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Date_format] (http://rosettacode.org/wiki/Date_format)
 * [http://rosettacode.org/wiki/Date_manipulation] (http://rosettacode.org/wiki/Date_manipulation)
 * [http://rosettacode.org/wiki/Delegates] (http://rosettacode.org/wiki/Delegates)
+* [http://rosettacode.org/wiki/Delete_a_file] (http://rosettacode.org/wiki/Delete_a_file)
 * 
