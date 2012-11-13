@@ -94,4 +94,5 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Combinations] (http://rosettacode.org/wiki/Combinations)
 * [http://rosettacode.org/wiki/Command-line_arguments] (http://rosettacode.org/wiki/Command-line_arguments)
 * [http://rosettacode.org/wiki/Concurrent_computing] (http://rosettacode.org/wiki/Concurrent_computing)
+* [http://rosettacode.org/wiki/Conway%27s_Game_of_Life] (http://rosettacode.org/wiki/Conway%27s_Game_of_Life)
 * 
