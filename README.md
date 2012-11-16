@@ -109,3 +109,4 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Equilibrium_index] (http://rosettacode.org/wiki/Equilibrium_index)
 * [http://rosettacode.org/wiki/Evaluate_binomial_coefficients] (http://rosettacode.org/wiki/Evaluate_binomial_coefficients)
 * [http://rosettacode.org/wiki/Evolutionary_algorithm] (http://rosettacode.org/wiki/Evolutionary_algorithm)
+* [http://rosettacode.org/wiki/Exceptions/Catch_an_exception_thrown_in_a_nested_call] (http://rosettacode.org/wiki/Exceptions/Catch_an_exception_thrown_in_a_nested_call)
