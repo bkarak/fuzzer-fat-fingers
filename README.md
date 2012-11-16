@@ -107,3 +107,4 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Dot_product] (http://rosettacode.org/wiki/Dot_product)
 * [http://rosettacode.org/wiki/Ensure_that_a_file_exists] (http://rosettacode.org/wiki/Ensure_that_a_file_exists)
 * [http://rosettacode.org/wiki/Equilibrium_index] (http://rosettacode.org/wiki/Equilibrium_index)
+* [http://rosettacode.org/wiki/Evaluate_binomial_coefficients] (http://rosettacode.org/wiki/Evaluate_binomial_coefficients)
