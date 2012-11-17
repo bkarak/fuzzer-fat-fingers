@@ -1,7 +1,10 @@
 
 all:
-	pdflatex fuzzer.tex
-	pdflatex fuzzer.tex
+	latex fuzzer.tex
+	latex fuzzer.tex
+
+ps: all
+	dvips -P pdf -t letter -o fuzzer.ps fuzzer.dvi
 
 clean:
 	-rm -f fuzzer.aux
@@ -9,3 +12,5 @@ clean:
 	-rm -f fuzzer.pdf
 	-rm -f fuzzer.bbl
 	-rm -f fuzzer.blg
+	-rm -f fuzzer.ps
+	-rm -f fuzzer.dvi
