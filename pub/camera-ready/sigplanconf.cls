@@ -669,7 +669,7 @@
 \newcommand{\reprintprice}[1]{%
   \gdef \@reprintprice {#1}}
 
-\reprintprice{\$10.00}
+\reprintprice{\$15.00}
 
 \newcommand{\authorversion}[4]{%
   \permission{%
@@ -1182,7 +1182,7 @@
 %  Date         Person  Ver.    Change
 %  ----         ------  ----    ------
 
-%  2004.09.12   PCA     0.1--5  Preliminary development.
+%  2004.09.12   PCA     0.1--4  Preliminary development.
 
 %  2004.11.18   PCA     0.5     Start beta testing.
 
@@ -1264,10 +1264,9 @@
 %  2009.09.30   PCA     2.3     Remove \softraggedright from thebibliography.  
 %                               Just include in the template.
 
-%  2010.05.24   PCA     2.4     Obfuscate author's email address.
+%  2010.05.24   PCA     2.4     Obfuscate class author's email address.
 
 %  2011.11.08   PCA     2.5     Add copyright notice to this file.
 %                               Remove 'sort' option from natbib when using
 %                                 'authoryear' style.
 %                               Add the \authorversion command.
-
