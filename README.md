@@ -96,7 +96,6 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Concurrent_computing] (http://rosettacode.org/wiki/Concurrent_computing)
 * [http://rosettacode.org/wiki/Conway%27s_Game_of_Life] (http://rosettacode.org/wiki/Conway%27s_Game_of_Life)
 * [http://rosettacode.org/wiki/Count_in_octal] (http://rosettacode.org/wiki/Count_in_octal)
-* [http://rosettacode.org/wiki/Count_occurrences_of_a_substring] (http://rosettacode.org/wiki/Count_occurrences_of_a_substring)
 * [http://rosettacode.org/wiki/Create_a_file] (http://rosettacode.org/wiki/Create_a_file)
 * [http://rosettacode.org/wiki/Create_a_two-dimensional_array_at_runtime] (http://rosettacode.org/wiki/Create_a_two-dimensional_array_at_runtime)
 * [http://rosettacode.org/wiki/CSV_to_HTML_translation#Simple_solution_6] (http://rosettacode.org/wiki/CSV_to_HTML_translation#Simple_solution_6)
