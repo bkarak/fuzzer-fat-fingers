@@ -12,7 +12,7 @@
 # * z-test implementation to find outliers
 #
 
-import math
+import math, sys
 
 
 # range
@@ -51,6 +51,7 @@ def first_quartile(input_data):
 # median
 def median(input_data):
 	_length = len(input_data)
+	_pos = 0
 
 	if _length % 2 == 1:
 		return (_length / 2) + 1
@@ -95,8 +96,24 @@ def ztest(input_data):
 	
 	return _result
 
+
 def main():
-	pass
+	input_data = []
+	fp = open('data.file', 'r')
+
+	for l in fp:
+		input_data.append(int(l))
+
+	print 'Min: %d' % (stat_min(input_data),)
+	print 'Max: %d' % (stat_max(input_data),)
+	print 'Range: %d' % (stat_range(input_data),)
+	print '1st Qrt: %d' % (input_data[first_quartile(input_data) - 1],)
+	print '3rd Qrt: %d' % (input_data[third_quartile(input_data) - 1],)
+	print 'Mean: %.2f' % (mean(input_data),)
+	print 'Median: %d' % (input_type[median(input_data) - 1],)
+	print 'Stddev: %.2f' % (stddev(input_data),)
+	print 'ztest: %s' % (ztest(input_data,))
 
 if __name__ == '__main__':
 	main()
+
