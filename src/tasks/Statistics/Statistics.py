@@ -104,6 +104,8 @@ def main():
 	for l in fp:
 		input_data.append(int(l))
 
+	input_data.sort()
+
 	print 'Min: %d' % (stat_min(input_data),)
 	print 'Max: %d' % (stat_max(input_data),)
 	print 'Range: %d' % (stat_range(input_data),)
