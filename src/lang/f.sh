@@ -1,3 +1,5 @@
+#!/bin/sh
+#
 # Copyright [2012] [Diomidis Spinellis <dds@aueb.gr>, Vassilios Karakoidas <bkarak@aueb.gr>]
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,6 +14,16 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-# Languages identified by their source code suffix
-# Java, C, C++, Objective C, PHP, C#, Python, Javascript, Haskell, Ruby, Perl
-LANGS="java c cpp php cs py js hs rb pl f"
+# Language-specific functionality for compiling and running
+# the specified source file
+#
+
+compile_f()
+{
+	
+}
+
+run_f()
+{
+	
+}
