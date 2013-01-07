@@ -112,4 +112,6 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Exceptions/Catch_an_exception_thrown_in_a_nested_call](http://rosettacode.org/wiki/Exceptions/Catch_an_exception_thrown_in_a_nested_call)
 * [http://rosettacode.org/wiki/User_input/Text] (http://rosettacode.org/wiki/User_input/Text)
 * [http://rosettacode.org/wiki/Trigonometric_functions] (http://rosettacode.org/wiki/Trigonometric_functions)
-* 
+* [http://rosettacode.org/wiki/Text_processing/Max_licenses_in_use] (http://rosettacode.org/wiki/Text_processing/Max_licenses_in_use) 
+* [http://rosettacode.org/wiki/Symmetric_difference] (http://rosettacode.org/wiki/Symmetric_difference)
+* [http://rosettacode.org/wiki/Substring/Top_and_tail] (http://rosettacode.org/wiki/Substring/Top_and_tail)
