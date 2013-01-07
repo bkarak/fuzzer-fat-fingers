@@ -30,25 +30,25 @@ end
 	
 # arithmetic mean
 def mean(contents_array)
-		_length = contents_array.size
-		_total = 0
+	_length = contents_array.size
+	_total = 0
 		
-		for i in contents_array
-		_total = _total + i
-		end
-		return _total.round(10) / _length.round(10)
-end	
+	for i in contents_array
+	_total = _total + i
+	end
+	return _total.round(10) / _length.round(10)
+	end	
 	
 # arithmetic median
 def median(contents_array)
-		return nil if contents_array.empty?
-		mid, rem = contents_array.length.divmod(2)
+	return nil if contents_array.empty?
+	mid, rem = contents_array.length.divmod(2)
 	if rem == 0
 		contents_array.sort[mid-1,2].inject(:+) / 2.0
 	else
 		contents_array.sort[mid]
 	end
-end
+	end
 
 # standard deviation
 def stddev(contents_array)
@@ -60,8 +60,8 @@ def stddev(contents_array)
 		_total = _total + ((i - _mean) ** 2)
 		end
 		_total = _total/_length
-		return Math.sqrt(_total)
-end
+	return Math.sqrt(_total)
+	end
 
 # z-test calculates outliers
 def ztest(contents_array)
@@ -75,8 +75,8 @@ def ztest(contents_array)
 		_result << i
 			end
 		end
-			return _result
-		end
+	return _result
+	end
 
 #calculate the first quartile 		
 def first_quartile(contents_array)
@@ -88,7 +88,7 @@ def first_quartile(contents_array)
 		if ((i < _median))
 			_fquartile << i
 			end
-			end
+		end
 	_fquartile.sort
 	return median(_fquartile)
 	end
@@ -102,7 +102,7 @@ def third_quartile(contents_array)
 	for i in contents_array
 		if ((i > _median))
 			_tquartile << i
-			end
+		end
 	end
 	_tquartile.sort
 	return median(_tquartile)
@@ -121,11 +121,11 @@ puts "The median is : #{median(contents_array)}"
 puts "First quartile is : #{first_quartile(contents_array)}"
 puts "Third quartile is : #{third_quartile(contents_array)}"
 puts "The standard deviation is : #{stddev(contents_array)}"
-if (!ztest(contents_array).empty? )
-	puts "We calculate the outliers through z-test, which are :"
-	puts ztest(contents_array)
-else 
-	puts "There are no values in the outliers"
+	if (!ztest(contents_array).empty? )
+		puts "We calculate the outliers through z-test, which are :"
+		puts ztest(contents_array)
+	else 
+		puts "There are no values in the outliers"
 	end
-
+	
 f.close
