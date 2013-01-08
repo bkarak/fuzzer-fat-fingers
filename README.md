@@ -119,4 +119,8 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/String_concatenation] (http://rosettacode.org/wiki/String_concatenation)
 * [http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort] (http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort)
 * [http://rosettacode.org/wiki/Sorting_algorithms/Bogosort] (http://rosettacode.org/wiki/Sorting_algorithms/Bogosort)
+* [http://rosettacode.org/wiki/Sort_using_a_custom_comparator] (http://rosettacode.org/wiki/Sort_using_a_custom_comparator)
+* [http://rosettacode.org/wiki/Sleep] (http://rosettacode.org/wiki/Sleep)
+* [http://rosettacode.org/wiki/Sieve_of_Eratosthenes] (http://rosettacode.org/wiki/Sieve_of_Eratosthenes)
+* [http://rosettacode.org/wiki/SEDOLs] (http://rosettacode.org/wiki/SEDOLs)
 * 
