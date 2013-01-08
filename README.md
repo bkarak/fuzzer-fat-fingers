@@ -115,3 +115,8 @@ We want each task to be available in all the languages, to be non-trivial and ea
 * [http://rosettacode.org/wiki/Text_processing/Max_licenses_in_use] (http://rosettacode.org/wiki/Text_processing/Max_licenses_in_use) 
 * [http://rosettacode.org/wiki/Symmetric_difference] (http://rosettacode.org/wiki/Symmetric_difference)
 * [http://rosettacode.org/wiki/Substring/Top_and_tail] (http://rosettacode.org/wiki/Substring/Top_and_tail)
+* [http://rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string] (http://rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string)
+* [http://rosettacode.org/wiki/String_concatenation] (http://rosettacode.org/wiki/String_concatenation)
+* [http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort] (http://rosettacode.org/wiki/Sorting_algorithms/Merge_sort)
+* [http://rosettacode.org/wiki/Sorting_algorithms/Bogosort] (http://rosettacode.org/wiki/Sorting_algorithms/Bogosort)
+* 
