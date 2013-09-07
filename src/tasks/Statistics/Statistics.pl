@@ -58,17 +58,6 @@ sub my_range{
 	return $range;
 }
 
-# Median subroutine
-sub my_median{
-	my $med;
-	if( (@array % 2) == 1 ) {
-        $med = $array[((@array+1) / 2)-1];
-    } else {
-        $med = ($array[(@array / 2)-1] + $array[@array / 2]) / 2;
-    }
-    return $med;
-}
-
 # Standard Deviation subroutine
 sub my_stdev{
 	my $num;
@@ -98,13 +87,27 @@ sub my_ztest{
 	}
 	}
 	if (@ztest){
-		return @ztest}
+		print "Outliers: \n";
+		foreach $_(@ztest){
+			print $_ ;
+		}
+	}
 	else {
-		return "No z values";
+		return "No outliers";
 	}
 	
 }
 
+# Median subroutine
+sub my_median{
+	my $med;
+	if( (@array % 2) == 1 ) {
+        $med = $array[((@array+1) / 2)-1];
+    } else {
+        $med = ($array[(@array / 2)-1] + $array[@array / 2]) / 2;
+    }
+    return $med;
+}
 # 1st quartile subroutine
 sub my_firstquartile{
 	my $med = my_median(@array);
@@ -151,6 +154,6 @@ print "Maximum value is:", my_max(@array),"\n";
 print "Range between values is :", my_range(@array), "\n";
 print "Median is: ", my_median(@array), "\n";
 print "Standard deviation is: ", my_stdev(@array), "\n";
-print "Z-test values are: ", my_ztest(@array), "\n";
 print "1st quartile is : ", my_firstquartile(@array), "\n";
 print "3nd quartile is : ", my_thirdquartile(@array), "\n";
+my_ztest(@array);

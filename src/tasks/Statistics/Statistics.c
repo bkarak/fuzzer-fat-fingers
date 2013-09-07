@@ -233,23 +233,27 @@ void z_test(int array[], int arraySize)
 			temp += 1;
 		}
 	}
-	printf("temp is %d\n", temp);
-	for(i = 0; i < arraySize; i++)
+	if( temp == 0)
 	{
-		if((fabs(array[i] - mymean) / mystdev) > 3)
+		printf("There are no outliers");
+	}
+	else{
+		for(i = 0; i < arraySize; i++)
 		{
-			for( j = 0; j < temp; j++)
+			if((fabs(array[i] - mymean) / mystdev) > 3)
 			{
-				z_testArray[j] = array[i];
+				for( j = 0; j < temp; j++)
+				{
+					z_testArray[j] = array[i];
+				}
 			}
 		}
+		printf("Outliers: ");
+		for( j = 0; j < temp; j++)
+		{
+			printf("%2d ,", z_testArray[j]);
+		}
 	}
-	printf("Values in Z-test: ");
-	for( j = 0; j < temp; j++)
-	{
-		printf("%2d ,", z_testArray[j]);
-	}
-	
 }
 		
 		

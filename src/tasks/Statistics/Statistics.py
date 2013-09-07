@@ -99,7 +99,7 @@ def ztest(input_data):
 
 def main():
 	input_data = []
-	fp = open('data.file', 'r')
+	fp = open('data.txt', 'r')
 
 	for l in fp:
 		input_data.append(int(l))
