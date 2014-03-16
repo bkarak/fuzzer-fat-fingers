@@ -15,4 +15,4 @@ function comb(c,n) {
       s.push(bitprint(u))
   return s.sort();
 }
-document.write(comb(3,5));
+comb(3,5)
