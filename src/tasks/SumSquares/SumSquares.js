@@ -8,4 +8,4 @@ function sumsq(array) {
   return sum;
 }
  
-alert(sumsq([1,2,3,4,5]));  // 55
+document.write(sumsq([1,2,3,4,5]));  // 55
