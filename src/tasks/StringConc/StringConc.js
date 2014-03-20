@@ -1,2 +1,2 @@
 var s = "hello"
-print(s + " there!")
+document.write(s + " there!")
