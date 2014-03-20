@@ -7,4 +7,4 @@ function lengthSorter(a, b) {
  
 var test = ["Here", "are", "some", "sample", "strings", "to", "be", "sorted"];
 test.sort(lengthSorter);
-alert( test.join(' ') );                      // strings sample sorted Here some are be to
+document.write( test.join(' ') );                      // strings sample sorted Here some are be to
