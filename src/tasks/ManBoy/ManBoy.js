@@ -5,4 +5,4 @@ function A(k, x1, x2, x3, x4, x5) {
  
 function K(n) function() n;
  
-print(A(10, K(1), K(-1), K(-1), K(1), K(0)));
+document.write(A(10, K(1), K(-1), K(-1), K(1), K(0)));
