@@ -8,5 +8,5 @@ function is_pangram(str) {
     return true;
 }
  
-document.write(is_pangram("is this a pangram"));  // false
-document.write(is_pangram("The quick brown fox jumps over the lazy dog"));  // true
+print(is_pangram("is this a pangram"));  // false
+print(is_pangram("The quick brown fox jumps over the lazy dog"));  // true
