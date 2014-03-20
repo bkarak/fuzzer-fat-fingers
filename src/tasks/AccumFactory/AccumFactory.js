@@ -5,4 +5,4 @@ function accumulator(sum) {
 }
 var x = accumulator(1);
 x(5);
-print(x(2.3));
+document.write(x(2.3));
