@@ -39,6 +39,6 @@ var totalGames = 10000,
  * Start the simulation
  */
  
-document.write("Playing " + totalGames + " games");
-document.write("Wins when not switching door", play(false));
-document.write("Wins when switching door", play(true));
+console.log("Playing " + totalGames + " games");
+console.log("Wins when not switching door", play(false));
+console.log("Wins when switching door", play(true));
