@@ -1,1 +1,1 @@
-print("Hello,How,Are,You,Today".split(",").join(".") );
+document.write("Hello,How,Are,You,Today".split(",").join(".") );
