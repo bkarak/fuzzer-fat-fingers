@@ -7,5 +7,5 @@ function dot_product(ary1, ary2) {
     return dotprod;
 }
  
-print(dot_product([1,3,-5],[4,-2,-1])); // ==> 3
-print(dot_product([1,3,-5],[4,-2,-1,0])); // ==> exception
+document.write(dot_product([1,3,-5],[4,-2,-1])); // ==> 3
+document.write(dot_product([1,3,-5],[4,-2,-1,0])); // ==> exception
