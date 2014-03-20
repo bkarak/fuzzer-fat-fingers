@@ -9,14 +9,14 @@ var
  arctan = Math.atan(tangent);
  
 // sine
-window.alert(sine + " " + Math.sin(degrees * Math.PI / 180));
+document.write(sine + " " + Math.sin(degrees * Math.PI / 180));
 // cosine
-window.alert(cosine + " " + Math.cos(degrees * Math.PI / 180));
+document.write(cosine + " " + Math.cos(degrees * Math.PI / 180));
 // tangent
-window.alert(tangent + " " + Math.tan(degrees * Math.PI / 180));
+document.write(tangent + " " + Math.tan(degrees * Math.PI / 180));
 // arcsine
-window.alert(arcsin + " " + (arcsin * 180 / Math.PI));
+document.write(arcsin + " " + (arcsin * 180 / Math.PI));
 // arccosine
-window.alert(arccos + " " + (arccos * 180 / Math.PI));
+document.write(arccos + " " + (arccos * 180 / Math.PI));
 // arctangent
-window.alert(arctan + " " + (arctan * 180 / Math.PI));
+document.write(arctan + " " + (arctan * 180 / Math.PI));
