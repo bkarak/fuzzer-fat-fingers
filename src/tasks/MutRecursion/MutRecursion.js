@@ -16,4 +16,4 @@ for (i = 0; i < 20; i++)
  out.F.push(F(i));
  out.M.push(M(i));
 }
-print(out.F + "\n" + out.M);
+document.write(out.F + "\n" + out.M);
