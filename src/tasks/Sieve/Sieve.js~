@@ -23,5 +23,5 @@ function erasthenes(limit) {
 var primes = erasthenes(100);
  
 if (typeof print == "undefined")
-    document.write = (typeof WScript != "undefined") ? WScript.Echo : alert;
-document.write(primes);
+    print = (typeof WScript != "undefined") ? WScript.Echo : alert;
+print(primes);
