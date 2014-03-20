@@ -24,6 +24,6 @@ Matrix.prototype.transpose = function() {
 }
  
 var m = new Matrix([[1,1,1,1],[2,4,8,16],[3,9,27,81],[4,16,64,256],[5,25,125,625]]);
-document.write(m);
-document.write();
-document.write(m.transpose());
+print(m);
+print();
+print(m.transpose());
