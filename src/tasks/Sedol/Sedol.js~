@@ -29,13 +29,13 @@ for (var i in input) {
     try {
         var sedolized = sedol(input[i]);
         if (sedolized == expected[i]) 
-            document.write(sedolized);
+            print(sedolized);
         else
-            document.write("error: calculated sedol for input " + input[i] + 
+            print("error: calculated sedol for input " + input[i] + 
                   " is " + sedolized + ", but it should be " + expected[i]
             );
     }
     catch (e) {
-        document.write("error: " + e);
+        print("error: " + e);
     }
 }
