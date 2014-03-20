@@ -19,5 +19,6 @@ var sma5 = simple_moving_averager(5);
 var data = [1,2,3,4,5,5,4,3,2,1];
 for (var i in data) {
     var n = data[i];
-    document.write("Next number = " + n + ", SMA_3 = " + sma3(n) + ", SMA_5 = " + sma5(n));
+    // using WSH
+    WScript.Echo("Next number = " + n + ", SMA_3 = " + sma3(n) + ", SMA_5 = " + sma5(n));
 }
