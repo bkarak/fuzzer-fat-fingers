@@ -3,5 +3,5 @@ function toBinary(number) {
 }
 var demoValues = [5, 50, 9000];
 for (var i=0; i<demoValues.length; ++i) {
-  print(toBinary(demoValues[i])); // alert() in a browser, wscript.echo in WSH, etc.
+  document.write(toBinary(demoValues[i])); // alert() in a browser, wscript.echo in WSH, etc.
 }
