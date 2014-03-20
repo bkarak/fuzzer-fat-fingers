@@ -21,5 +21,5 @@ var eth = {
 	}
 }
 
-print(eth.mult(17,34));
+document.write(eth.mult(17,34));
  
