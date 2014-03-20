@@ -10,4 +10,4 @@ function powerset(ary) {
  
 var res = powerset([1,2,3,4]);
  
-print(res);
+document.write(res);
