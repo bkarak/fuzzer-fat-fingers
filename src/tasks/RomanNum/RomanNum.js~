@@ -15,5 +15,4 @@ var roman = {
     }
 }
  
-var roman_num = roman.int_to_roman(1999); // "MCMXCIX"
-document.write(roman_num);
+roman.int_to_roman(1999); // "MCMXCIX"
