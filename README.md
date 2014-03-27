@@ -1,4 +1,4 @@
-fuzzer-fat-fingers
+Fuzz Testing: Programming Languages vs. Fat Fingers
 ==================
 
 License
