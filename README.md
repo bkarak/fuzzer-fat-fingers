@@ -17,6 +17,11 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+   
+Publication
+-----------
+
+* Diomidis Spinellis, Vassilios Karakoidas, Panos Louridas, Comparative Language Fuzz Testing: Programming Languages vs. Fat Fingers, _in Proceedings of the Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU)_ at the ACM Onward! and SPLASH Conferences, 2012.
 
 Repository Structure
 --------------------
