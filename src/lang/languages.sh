@@ -14,5 +14,6 @@
 #
 # Languages identified by their source code suffix
 # Java, C, C++, Objective C, PHP, C#, Python, Javascript, Haskell, Ruby, Perl
-LANGS="java c cpp php cs py js hs rb pl f"
-LANGS="ada"
+# Set it this way so that users can pass in a different list via the
+# "LANGS" environment variable.
+: ${LANGS:="java c cpp php cs py js hs rb pl f ada"}
