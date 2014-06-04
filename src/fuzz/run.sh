@@ -60,6 +60,7 @@ Usage: $0 [-l lang] [-t task] [-v]
 -f fuzzfunc	Execute only the specified fuzz function
 -l lang		Run only specified language
 -t task		Run only specified task
+-n number	Set number of times (default 1)
 -v		Verify tasks, to not fuzz
 EOF
       exit 1
