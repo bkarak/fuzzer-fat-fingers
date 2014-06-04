@@ -17,11 +17,12 @@
 # the specified source file
 
 # The original code is in ".ada" files, which is unusual.
-# In normal use GNAT has specific file content and naming conventions that
-# the fuzzing driver doesn't support.  E.G., Ada specifications must be
-# in ".ads" files, Ada bodies (implementations of the specifications) must
-# be in ".adb" files, and the filenames must match the package name but
-# be in lower case.  Thus, we'll put the source code in one ".ada" file
+# Ada programs with GNAT usually follow specific file content and
+# naming conventions that the fuzzing driver doesn't support.
+# E.G., Ada specifications must be in ".ads" files,
+# Ada bodies (implementations of the specifications) must be in ".adb" files,
+# and the filenames must match the package name and be in lower case.
+# Thus, we'll put the source code in one ".ada" file
 # and use "gnatchop" to divide it into multiple files during compilation.
 # This ".ada" file may have name changes (as compared to Rosetta Stone)
 # so that the (main) library level subprogram body has the executable name
@@ -29,19 +30,21 @@
 # from "Main" to "Hello").  That way, we know from the name where to start.
 # By doing things this way we don't have to change the main fuzzer driver.
 
+# We enable -gnat2012 to enable the use of Ada2012 capabilities.
 # We enable -gnato, which enables integer overflow checking as required
-# by the Ada standard.  In May 2014 the GNAT developers changed this so
-# that this option is the default; this way, it will be enabled on
-# older GNAT compilers as well.
+# by the Ada standard.  In May 2014 the GNAT developers changed GNAT so
+# that this option is the default, but by explicitly listing it this
+# option will be enabled in older GNAT compilers as well.
 compile_ada()
 {
 	if [ -f "$1" ] ; then
 	  LOWERCASE=`printf '%s' "$1" | tr A-Z a-z`
 	  TOPLEVEL=`basename "$LOWERCASE" .ada`
 	  EXE="$TOPLEVEL"
+	  find . -name '*.ad[sb]' -exec rm {} \+
 	  rm -f "$EXE"
-	  gnatchop "$1"
-	  gnatmake -gnato -o "$EXE" "$TOPLEVEL"
+	  gnatchop -q -w -c -x -gnat2012 "$1" && \
+	  gnatmake -gnat2012 -gnato -we -o "$EXE" "$TOPLEVEL"
 	else
 	  false
 	fi
