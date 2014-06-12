@@ -22,7 +22,7 @@ compile_m()
 {
 	EXE=`basename $1 .m`-m
 	rm -f $EXE
-        gcc `gnustep-config --base-libs --objc-flags` -O -c $1
+    gcc `gnustep-config --base-libs --objc-flags` -O -c $1
 	#gcc `gnustep-config --base-libs` -o $EXE $1
 }
 
