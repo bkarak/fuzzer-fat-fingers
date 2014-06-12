@@ -20,10 +20,10 @@
 
 compile_f()
 {
-	
+	echo $1
 }
 
 run_f()
 {
-	
+	echo $1
 }
