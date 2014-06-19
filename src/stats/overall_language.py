@@ -18,8 +18,8 @@ import data_structures, task_code_stats
 class LineVisitor(object):
 	def __init__(self):
 		super(LineVisitor, self).__init__()
-		self.langs_export = ['c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
-		self.lang_names = {'c' : 'C', 'cpp' : 'C++', 'cs' : 'C\\#', 
+		self.langs_export = ['ada', 'c', 'cpp', 'cs', 'hs', 'java', 'js', 'php', 'pl', 'py', 'rb']
+		self.lang_names = { 'ada' : 'Ada', 'c' : 'C', 'cpp' : 'C++', 'cs' : 'C\\#', 
 						   'hs' : 'Haskell', 'java' : 'Java', 'js' : 'Javascript',
 						   'php' : 'PHP', 'pl' : 'Perl', 'py' : 'Python', 'rb' : 'Ruby'}
 

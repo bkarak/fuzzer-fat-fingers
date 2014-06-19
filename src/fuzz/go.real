@@ -1,0 +1,4 @@
+#!/bin/sh
+make clean
+LANGS="ada" bash run.sh -n 400 > run.out
+make

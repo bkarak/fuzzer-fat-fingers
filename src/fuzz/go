@@ -1,0 +1,3 @@
+#!/bin/sh
+# Run program so that we can hang up
+nohup ./go.real > run.progress 2>&1 &

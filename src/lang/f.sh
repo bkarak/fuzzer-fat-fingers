@@ -20,10 +20,12 @@
 
 compile_f()
 {
-	echo $1
+	EXE=`basename $1 .f`
+	rm -f $EXE
+	gcc -lm -o $EXE $1
 }
 
 run_f()
 {
-	echo $1
+	./`basename $1 .f`
 }

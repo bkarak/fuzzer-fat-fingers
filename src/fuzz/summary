@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# Print summary statistics after running
+
+# Print sum of first field of each line; returns 0 if no lines.
+total_lines() {
+  awk 'BEGIN {s=0} {s+=$1} END {print s}'
+}
+
+sort run.out | uniq -c | sed -e 's/^ *//' > ,raw
+
+languages=$(cut -d' ' -f3 < ,raw | sort -u )
+fuzzers=$(cut -d' ' -f4 < ,raw | sort -u | grep -E -v '^(original|prime)$' )
+tasks=$(cut -d' ' -f2 < ,raw | sort -u )
+# echo "languages=$languages"
+# echo "fuzzers=$fuzzers"
+# echo "tasks=$tasks"
+
+
+echo "lang task fuzz_fail compile_fail run_fail output_ok output_fail :total_lang :percent_compile_succeed :percent_run_fail"
+for lang in $languages ; do
+  total_fuzz_fail=0
+  total_compile_fail=0
+  total_run_ok=0
+  total_run_fail=0
+  for task in $tasks ; do
+    # Look for 1 Hello ada prime RUN OK
+    if grep -q -E "^[0-9]+ $task $lang prime RUN OK\$" ,raw ; then
+      fuzz_fail=$(grep -E "^[0-9]+ $task $lang .* FUZZ FAIL" ,raw | \
+               grep -E -v ' (original|primary) ' | total_lines )
+      compile_fail=$(grep -E "^[0-9]+ $task $lang .* COMPILE FAIL" ,raw | \
+               grep -E -v ' (original|primary) ' | total_lines )
+      run_fail=$(grep -E "^[0-9]+ $task $lang .* RUN FAIL" ,raw | \
+               grep -E -v ' (original|primary) ' | total_lines )
+      output_ok=$(grep -E "^[0-9]+ $task $lang .* OUTPUT OK" ,raw | \
+               grep -E -v ' (original|primary) ' | total_lines )
+      output_fail=$(grep -E "^[0-9]+ $task $lang .* OUTPUT FAIL" ,raw | \
+               grep -E -v ' (original|primary) ' | total_lines )
+
+      echo "$lang $task $fuzz_fail $compile_fail $run_fail $output_ok $output_fail"
+      total_fuzz_fail=$(( total_fuzz_fail + fuzz_fail ))
+      total_compile_fail=$(( total_compile_fail + compile_fail ))
+      total_run_fail=$(( total_run_fail + run_fail ))
+      total_output_ok=$(( total_output_ok + output_ok ))
+      total_output_fail=$(( total_output_fail + output_fail ))
+    fi
+  done
+  total_lang=$((total_fuzz_fail + total_compile_fail + total_run_fail + total_output_ok + total_output_fail ))
+  percent_compile_succeed=$( python -c "print(($total_lang - $total_compile_fail)*1.0/$total_lang)" )
+  percent_run_fail=$( python -c "print($total_output_fail*1.0/$total_lang)" )
+  echo "$lang GRAND_TOTAL $total_fuzz_fail $total_compile_fail $total_run_fail $total_output_ok $total_output_fail $total_lang $percent_compile_succeed $percent_run_fail"
+done
+
